@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at can_top.v(126): always construct contains both blocking and non-blocking assignments File: C:/hdl_projects/CAN/can_top.v Line: 126

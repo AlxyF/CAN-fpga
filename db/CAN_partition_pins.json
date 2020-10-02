@@ -1,0 +1,101 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "tx_o",
+					"strict" : false
+				},
+				{
+					"name" : "test_clk_can",
+					"strict" : false
+				},
+				{
+					"name" : "test_can_state[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_can_tx_state[0]",
+					"strict" : false
+				},
+				{
+					"name" : "test_can_tx_state[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_can_tx_state[2]",
+					"strict" : false
+				},
+				{
+					"name" : "test_can_tx_state[3]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[3]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[4]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[5]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[6]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_count[7]",
+					"strict" : false
+				},
+				{
+					"name" : "test_bit_pol_count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "test_bit_pol_count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_bit_pol_count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bit_stuffed",
+					"strict" : false
+				},
+				{
+					"name" : "test_last_bit",
+					"strict" : false
+				},
+				{
+					"name" : "clk_i",
+					"strict" : false
+				},
+				{
+					"name" : "type",
+					"strict" : false
+				},
+				{
+					"name" : "rst_i",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
