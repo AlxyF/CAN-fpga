@@ -1,5 +1,5 @@
 EDA Netlist Writer report for CAN
-Tue Oct 06 20:28:41 2020
+Wed Oct 07 19:41:50 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Tue Oct 06 20:28:41 2020 ;
+; EDA Netlist Writer Status ; Successful - Wed Oct 07 19:41:50 2020 ;
 ; Revision Name             ; CAN                                   ;
 ; Top-level Entity Name     ; can_top                               ;
 ; Family                    ; Cyclone IV E                          ;
@@ -66,13 +66,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------------------------+---------------------------+
 
 
-+--------------------------------------------------------+
-; Simulation Generated Files                             ;
-+--------------------------------------------------------+
-; Generated Files                                        ;
-+--------------------------------------------------------+
-; C:/hdl_projects/Can/Custom_Can/simulation/qsim//CAN.vo ;
-+--------------------------------------------------------+
++---------------------------------------------+
+; Simulation Generated Files                  ;
++---------------------------------------------+
+; Generated Files                             ;
++---------------------------------------------+
+; C:/hdl_projects/Can/simulation/qsim//CAN.vo ;
++---------------------------------------------+
 
 
 +-----------------------------+
@@ -95,15 +95,15 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Tue Oct 06 20:28:40 2020
-Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/hdl_projects/Can/Custom_Can/simulation/qsim/ CAN -c CAN
+    Info: Processing started: Wed Oct 07 19:41:50 2020
+Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/hdl_projects/Can/simulation/qsim/ CAN -c CAN
 Info (119006): Selected device EP4CE6E22C8 for design "CAN"
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (204019): Generated file CAN.vo in folder "C:/hdl_projects/Can/Custom_Can/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file CAN.vo in folder "C:/hdl_projects/Can/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4653 megabytes
-    Info: Processing ended: Tue Oct 06 20:28:41 2020
-    Info: Elapsed time: 00:00:01
+    Info: Peak virtual memory: 4651 megabytes
+    Info: Processing ended: Wed Oct 07 19:41:50 2020
+    Info: Elapsed time: 00:00:00
     Info: Total CPU time (on all processors): 00:00:01
 
 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for CAN
-Tue Oct 06 20:28:34 2020
+Wed Oct 07 19:41:42 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -13,17 +13,18 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |can_top|CAN_STATE
-  9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: baud_rate:baud_rate_gen
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
- 18. Analysis & Synthesis Suppressed Messages
+  8. State Machine - |can_top|NEXT_TX_STATE
+  9. State Machine - |can_top|TX_STATE
+ 10. State Machine - |can_top|CAN_STATE
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: baud_rate:baud_rate_gen
+ 16. Post-Synthesis Netlist Statistics for Top Partition
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
+ 19. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -50,15 +51,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Oct 06 20:28:34 2020       ;
+; Analysis & Synthesis Status        ; Successful - Wed Oct 07 19:41:42 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_top                                     ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 205                                         ;
-;     Total combinational functions  ; 204                                         ;
-;     Dedicated logic registers      ; 75                                          ;
-; Total registers                    ; 75                                          ;
+; Total logic elements               ; 211                                         ;
+;     Total combinational functions  ; 197                                         ;
+;     Dedicated logic registers      ; 83                                          ;
+; Total registers                    ; 83                                          ;
 ; Total pins                         ; 123                                         ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -158,26 +159,27 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 12          ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-12        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                             ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path               ; Library ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------+---------+
-; can_top.v                        ; yes             ; User Verilog HDL File  ; C:/hdl_projects/Can/Custom_Can/can_top.v   ;         ;
-; baud_rate.v                      ; yes             ; User Verilog HDL File  ; C:/hdl_projects/Can/Custom_Can/baud_rate.v ;         ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                  ;
++----------------------------------+-----------------+------------------------+---------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path    ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------+---------+
+; can_top.v                        ; yes             ; User Verilog HDL File  ; C:/hdl_projects/CAN/can_top.v   ;         ;
+; baud_rate.v                      ; yes             ; User Verilog HDL File  ; C:/hdl_projects/CAN/baud_rate.v ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------+---------+
 
 
 +-----------------------------------------------------------+
@@ -185,20 +187,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 205         ;
+; Estimated Total logic elements              ; 211         ;
 ;                                             ;             ;
-; Total combinational functions               ; 204         ;
+; Total combinational functions               ; 197         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 122         ;
-;     -- 3 input functions                    ; 28          ;
-;     -- <=2 input functions                  ; 54          ;
+;     -- 4 input functions                    ; 126         ;
+;     -- 3 input functions                    ; 27          ;
+;     -- <=2 input functions                  ; 44          ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 182         ;
+;     -- normal mode                          ; 175         ;
 ;     -- arithmetic mode                      ; 22          ;
 ;                                             ;             ;
-; Total registers                             ; 75          ;
-;     -- Dedicated logic registers            ; 75          ;
+; Total registers                             ; 83          ;
+;     -- Dedicated logic registers            ; 83          ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 123         ;
@@ -206,9 +208,9 @@ https://fpgasoftware.intel.com/eula.
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; rst_i~input ;
-; Maximum fan-out                             ; 66          ;
-; Total fan-out                               ; 1120        ;
-; Average fan-out                             ; 2.13        ;
+; Maximum fan-out                             ; 74          ;
+; Total fan-out                               ; 1142        ;
+; Average fan-out                             ; 2.17        ;
 +---------------------------------------------+-------------+
 
 
@@ -217,10 +219,64 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name              ; Entity Name ; Library Name ;
 +------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
-; |can_top                     ; 204 (188)           ; 75 (64)                   ; 0           ; 0            ; 0       ; 0         ; 123  ; 0            ; |can_top                         ; can_top     ; work         ;
+; |can_top                     ; 197 (181)           ; 83 (72)                   ; 0           ; 0            ; 0       ; 0         ; 123  ; 0            ; |can_top                         ; can_top     ; work         ;
 ;    |baud_rate:baud_rate_gen| ; 16 (16)             ; 11 (11)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|baud_rate:baud_rate_gen ; baud_rate   ; work         ;
 +------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |can_top|NEXT_TX_STATE                                                                                                                                                                                                                                                                                                                                                                                                                                      ;
++------------------------------------+-----------------------+----------------------+--------------------------------+-------------------------------+------------------------------------+--------------------------------+---------------------------------+--------------------------------+-------------------------------+----------------------+---------------------------+----------------------+----------------------+----------------------+-----------------------+
+; Name                               ; NEXT_TX_STATE.TX_DATA ; NEXT_TX_STATE.TX_DLC ; NEXT_TX_STATE.TX_CMD_DATA_SIGN ; NEXT_TX_STATE.TX_EXPAND_COUNT ; NEXT_TX_STATE.TX_ATRIBUTE_RESERVED ; NEXT_TX_STATE.TX_HANDSHAKING_P ; NEXT_TX_STATE.TX_ADDRESS_REMOTE ; NEXT_TX_STATE.TX_ADDRESS_LOCAL ; NEXT_TX_STATE.TX_MESSAGE_TYPE ; NEXT_TX_STATE.TX_CRC ; NEXT_TX_STATE.TX_RESERVED ; NEXT_TX_STATE.TX_RTR ; NEXT_TX_STATE.TX_IDE ; NEXT_TX_STATE.TX_SRR ; NEXT_TX_STATE.TX_IDLE ;
++------------------------------------+-----------------------+----------------------+--------------------------------+-------------------------------+------------------------------------+--------------------------------+---------------------------------+--------------------------------+-------------------------------+----------------------+---------------------------+----------------------+----------------------+----------------------+-----------------------+
+; NEXT_TX_STATE.TX_IDLE              ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 0                     ;
+; NEXT_TX_STATE.TX_SRR               ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 1                    ; 1                     ;
+; NEXT_TX_STATE.TX_IDE               ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 1                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_RTR               ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 1                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_RESERVED          ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 1                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_CRC               ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 1                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_MESSAGE_TYPE      ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 1                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_ADDRESS_LOCAL     ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 1                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_ADDRESS_REMOTE    ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 1                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_HANDSHAKING_P     ; 0                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 1                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_ATRIBUTE_RESERVED ; 0                     ; 0                    ; 0                              ; 0                             ; 1                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_EXPAND_COUNT      ; 0                     ; 0                    ; 0                              ; 1                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_CMD_DATA_SIGN     ; 0                     ; 0                    ; 1                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_DLC               ; 0                     ; 1                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
+; NEXT_TX_STATE.TX_DATA              ; 1                     ; 0                    ; 0                              ; 0                             ; 0                                  ; 0                              ; 0                               ; 0                              ; 0                             ; 0                    ; 0                         ; 0                    ; 0                    ; 0                    ; 1                     ;
++------------------------------------+-----------------------+----------------------+--------------------------------+-------------------------------+------------------------------------+--------------------------------+---------------------------------+--------------------------------+-------------------------------+----------------------+---------------------------+----------------------+----------------------+----------------------+-----------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |can_top|TX_STATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ;
++-------------------------------+------------------+-----------------+---------------------------+--------------------------+-------------------------------+---------------------------+----------------------------+---------------------------+--------------------------+--------------------------+---------------------------+----------------------+---------------------------+-----------------+----------------------+-----------------+-----------------+-----------------+----------------------------+-----------------------+------------------+
+; Name                          ; TX_STATE.TX_DATA ; TX_STATE.TX_DLC ; TX_STATE.TX_CMD_DATA_SIGN ; TX_STATE.TX_EXPAND_COUNT ; TX_STATE.TX_ATRIBUTE_RESERVED ; TX_STATE.TX_HANDSHAKING_P ; TX_STATE.TX_ADDRESS_REMOTE ; TX_STATE.TX_ADDRESS_LOCAL ; TX_STATE.TX_MESSAGE_TYPE ; TX_STATE.TX_END_OF_FRAME ; TX_STATE.TX_ACK_DELIMITER ; TX_STATE.TX_ACK_SLOT ; TX_STATE.TX_CRC_DELIMITER ; TX_STATE.TX_CRC ; TX_STATE.TX_RESERVED ; TX_STATE.TX_RTR ; TX_STATE.TX_IDE ; TX_STATE.TX_SRR ; TX_STATE.TX_START_OF_FRAME ; TX_STATE.TX_BIT_STUFF ; TX_STATE.TX_IDLE ;
++-------------------------------+------------------+-----------------+---------------------------+--------------------------+-------------------------------+---------------------------+----------------------------+---------------------------+--------------------------+--------------------------+---------------------------+----------------------+---------------------------+-----------------+----------------------+-----------------+-----------------+-----------------+----------------------------+-----------------------+------------------+
+; TX_STATE.TX_IDLE              ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 0                ;
+; TX_STATE.TX_BIT_STUFF         ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 1                     ; 1                ;
+; TX_STATE.TX_START_OF_FRAME    ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 1                          ; 0                     ; 1                ;
+; TX_STATE.TX_SRR               ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 1               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_IDE               ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 1               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_RTR               ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 1               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_RESERVED          ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 1                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_CRC               ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 1               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_CRC_DELIMITER     ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 1                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_ACK_SLOT          ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 1                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_ACK_DELIMITER     ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 1                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_END_OF_FRAME      ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 1                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_MESSAGE_TYPE      ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 1                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_ADDRESS_LOCAL     ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 1                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_ADDRESS_REMOTE    ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 1                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_HANDSHAKING_P     ; 0                ; 0               ; 0                         ; 0                        ; 0                             ; 1                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_ATRIBUTE_RESERVED ; 0                ; 0               ; 0                         ; 0                        ; 1                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_EXPAND_COUNT      ; 0                ; 0               ; 0                         ; 1                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_CMD_DATA_SIGN     ; 0                ; 0               ; 1                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_DLC               ; 0                ; 1               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
+; TX_STATE.TX_DATA              ; 1                ; 0               ; 0                         ; 0                        ; 0                             ; 0                         ; 0                          ; 0                         ; 0                        ; 0                        ; 0                         ; 0                    ; 0                         ; 0               ; 0                    ; 0               ; 0               ; 0               ; 0                          ; 0                     ; 1                ;
++-------------------------------+------------------+-----------------+---------------------------+--------------------------+-------------------------------+---------------------------+----------------------------+---------------------------+--------------------------+--------------------------+---------------------------+----------------------+---------------------------+-----------------+----------------------+-----------------+-----------------+-----------------+----------------------------+-----------------------+------------------+
 
 
 Encoding Type:  One-Hot
@@ -235,41 +291,32 @@ Encoding Type:  One-Hot
 +--------------------+--------------------+------------------+------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                 ;
-+----------------------------------------+-------------------------------------------+
-; Register name                          ; Reason for Removal                        ;
-+----------------------------------------+-------------------------------------------+
-; TX_STATE.TX_CMD_DATA_SIGN              ; Merged with TX_STATE.TX_ATRIBUTE_RESERVED ;
-; NEXT_TX_STATE.TX_ACK_DELIMITER         ; Merged with NEXT_TX_STATE.00001011        ;
-; NEXT_TX_STATE.TX_ACK_SLOT              ; Merged with NEXT_TX_STATE.00001011        ;
-; NEXT_TX_STATE.TX_ATRIBUTE_RESERVED     ; Merged with NEXT_TX_STATE.00001011        ;
-; NEXT_TX_STATE.TX_CMD_DATA_SIGN         ; Merged with NEXT_TX_STATE.00001011        ;
-; NEXT_TX_STATE.TX_CRC_DELIMITER         ; Merged with NEXT_TX_STATE.00001011        ;
-; NEXT_TX_STATE.TX_END_OF_FRAME          ; Merged with NEXT_TX_STATE.00001011        ;
-; NEXT_TX_STATE.TX_START_OF_FRAME        ; Merged with NEXT_TX_STATE.00001011        ;
-; NEXT_TX_STATE.00001011                 ; Stuck at GND due to stuck port data_in    ;
-; TX_STATE.TX_ATRIBUTE_RESERVED          ; Stuck at GND due to stuck port data_in    ;
-; CAN_STATE.CAN_IDLE                     ; Lost fanout                               ;
-; CAN_STATE~7                            ; Lost fanout                               ;
-; CAN_STATE~8                            ; Lost fanout                               ;
-; CAN_STATE.CAN_RX                       ; Stuck at GND due to stuck port data_in    ;
-; NEXT_TX_STATE.TX_EXPAND_COUNT          ; Stuck at GND due to stuck port data_in    ;
-; TX_STATE.TX_EXPAND_COUNT               ; Stuck at GND due to stuck port data_in    ;
-; NEXT_TX_STATE.TX_RTR                   ; Stuck at GND due to stuck port data_in    ;
-; TX_STATE.TX_RTR                        ; Stuck at GND due to stuck port data_in    ;
-; Total Number of Removed Registers = 18 ;                                           ;
-+----------------------------------------+-------------------------------------------+
-
-
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                ;
-+-------------------------------+---------------------------+--------------------------------------------------------------------------------+
-; Register name                 ; Reason for Removal        ; Registers Removed due to This Register                                         ;
-+-------------------------------+---------------------------+--------------------------------------------------------------------------------+
-; TX_STATE.TX_ATRIBUTE_RESERVED ; Stuck at GND              ; NEXT_TX_STATE.TX_EXPAND_COUNT, TX_STATE.TX_EXPAND_COUNT, NEXT_TX_STATE.TX_RTR, ;
-;                               ; due to stuck port data_in ; TX_STATE.TX_RTR                                                                ;
-+-------------------------------+---------------------------+--------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; CAN_STATE.CAN_IDLE                     ; Lost fanout                            ;
+; NEXT_TX_STATE~19                       ; Lost fanout                            ;
+; NEXT_TX_STATE~20                       ; Lost fanout                            ;
+; NEXT_TX_STATE~21                       ; Lost fanout                            ;
+; NEXT_TX_STATE~22                       ; Lost fanout                            ;
+; NEXT_TX_STATE~23                       ; Lost fanout                            ;
+; NEXT_TX_STATE~25                       ; Lost fanout                            ;
+; NEXT_TX_STATE~26                       ; Lost fanout                            ;
+; TX_STATE~5                             ; Lost fanout                            ;
+; TX_STATE~6                             ; Lost fanout                            ;
+; TX_STATE~7                             ; Lost fanout                            ;
+; TX_STATE~8                             ; Lost fanout                            ;
+; TX_STATE~9                             ; Lost fanout                            ;
+; TX_STATE~10                            ; Lost fanout                            ;
+; TX_STATE~11                            ; Lost fanout                            ;
+; TX_STATE~12                            ; Lost fanout                            ;
+; CAN_STATE~7                            ; Lost fanout                            ;
+; CAN_STATE~8                            ; Lost fanout                            ;
+; CAN_STATE.CAN_RX                       ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 19 ;                                        ;
++----------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -277,12 +324,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 75    ;
+; Total registers                              ; 83    ;
 ; Number of registers using Synchronous Clear  ; 25    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 64    ;
+; Number of registers using Asynchronous Clear ; 72    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 60    ;
+; Number of registers using Clock Enable       ; 67    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -292,10 +339,8 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; TX_STATE.00000000                      ; 5       ;
 ; bit_pol_count[0]                       ; 5       ;
-; NEXT_TX_STATE.00000000                 ; 2       ;
-; Total number of inverted registers = 3 ;         ;
+; Total number of inverted registers = 1 ;         ;
 +----------------------------------------+---------+
 
 
@@ -305,11 +350,11 @@ Encoding Type:  One-Hot
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |can_top|bit_pol_count[2]                 ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |can_top|baud_rate:baud_rate_gen|count[8] ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |can_top|crc_reg[14]                      ;
-; 13:1               ; 3 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |can_top|NEXT_TX_STATE.TX_HANDSHAKING_P   ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |can_top|baud_rate:baud_rate_gen|count[9] ;
 ; 16:1               ; 7 bits    ; 70 LEs        ; 7 LEs                ; 63 LEs                 ; Yes        ; |can_top|count[0]                         ;
-; 19:1               ; 4 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |can_top|TX_STATE.TX_ATRIBUTE_RESERVED    ;
+; 14:1               ; 4 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; No         ; |can_top|NEXT_TX_STATE                    ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; No         ; |can_top|TX_STATE                         ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 20 LEs               ; 28 LEs                 ; No         ; |can_top|TX_STATE                         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------+
 
 
@@ -331,24 +376,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 123                         ;
-; cycloneiii_ff         ; 75                          ;
-;     CLR               ; 4                           ;
-;     ENA CLR           ; 45                          ;
+; cycloneiii_ff         ; 83                          ;
+;     CLR               ; 5                           ;
+;     ENA CLR           ; 52                          ;
 ;     ENA CLR SCLR      ; 15                          ;
 ;     SCLR              ; 10                          ;
 ;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 211                         ;
+; cycloneiii_lcell_comb ; 201                         ;
 ;     arith             ; 22                          ;
 ;         2 data inputs ; 22                          ;
-;     normal            ; 189                         ;
+;     normal            ; 179                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 9                           ;
-;         2 data inputs ; 29                          ;
-;         3 data inputs ; 28                          ;
-;         4 data inputs ; 122                         ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 18                          ;
+;         3 data inputs ; 27                          ;
+;         4 data inputs ; 126                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 10.00                       ;
-; Average LUT depth     ; 6.25                        ;
+; Average LUT depth     ; 5.57                        ;
 +-----------------------+-----------------------------+
 
 
@@ -367,146 +412,145 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Tue Oct 06 20:28:25 2020
+    Info: Processing started: Wed Oct 07 19:41:34 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CAN -c CAN
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file can_top.v
-    Info (12023): Found entity 1: can_top File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 1
+    Info (12023): Found entity 1: can_top File: C:/hdl_projects/CAN/can_top.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file baud_rate.v
-    Info (12023): Found entity 1: baud_rate File: C:/hdl_projects/Can/Custom_Can/baud_rate.v Line: 1
+    Info (12023): Found entity 1: baud_rate File: C:/hdl_projects/CAN/baud_rate.v Line: 1
 Info (12127): Elaborating entity "can_top" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at can_top.v(48): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 48
-Warning (10763): Verilog HDL warning at can_top.v(147): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 147
-Warning (10034): Output port "data_o" at can_top.v(31) has no driver File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-Warning (10034): Output port "rx_busy" at can_top.v(10) has no driver File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 10
-Warning (10034): Output port "tx_busy" at can_top.v(13) has no driver File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 13
-Warning (10034): Output port "bit_stuffed" at can_top.v(39) has no driver File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 39
-Info (10018): Can't recognize finite state machine "NEXT_TX_STATE" because it has a complex reset state
-Info (10018): Can't recognize finite state machine "TX_STATE" because it has a complex reset state
-Info (12128): Elaborating entity "baud_rate" for hierarchy "baud_rate:baud_rate_gen" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 407
-Info (13000): Registers with preset signals will power-up high File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 128
+Warning (10036): Verilog HDL or VHDL warning at can_top.v(399): object "atribute" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 399
+Warning (10036): Verilog HDL or VHDL warning at can_top.v(406): object "tx_reserved" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 406
+Warning (10230): Verilog HDL assignment warning at can_top.v(46): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/CAN/can_top.v Line: 46
+Warning (10034): Output port "data_o" at can_top.v(31) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 31
+Warning (10034): Output port "rx_busy" at can_top.v(9) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 9
+Warning (10034): Output port "tx_busy" at can_top.v(13) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 13
+Warning (10034): Output port "bit_stuffed" at can_top.v(39) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 39
+Info (12128): Elaborating entity "baud_rate" for hierarchy "baud_rate:baud_rate_gen" File: C:/hdl_projects/CAN/can_top.v Line: 437
+Info (13000): Registers with preset signals will power-up high File: C:/hdl_projects/CAN/can_top.v Line: 139
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "rx_busy" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 10
-    Warning (13410): Pin "tx_busy" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 13
-    Warning (13410): Pin "data_o[0]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "data_o[1]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "data_o[2]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "data_o[3]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "data_o[4]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "data_o[5]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "data_o[6]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "data_o[7]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
-    Warning (13410): Pin "test_can_state[0]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 35
-    Warning (13410): Pin "test_can_state[2]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 35
-    Warning (13410): Pin "test_can_tx_state[6]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 36
-    Warning (13410): Pin "test_bit_pol_count[3]" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 38
-    Warning (13410): Pin "bit_stuffed" is stuck at GND File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 39
+    Warning (13410): Pin "rx_busy" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 9
+    Warning (13410): Pin "tx_busy" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 13
+    Warning (13410): Pin "data_o[0]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "data_o[1]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "data_o[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "data_o[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "data_o[4]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "data_o[5]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "data_o[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "data_o[7]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
+    Warning (13410): Pin "test_can_state[0]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
+    Warning (13410): Pin "test_can_state[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
+    Warning (13410): Pin "test_can_tx_state[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
+    Warning (13410): Pin "test_bit_pol_count[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 38
+    Warning (13410): Pin "bit_stuffed" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 3 registers lost all their fanouts during netlist optimizations.
-Info (144001): Generated suppressed messages file C:/hdl_projects/Can/Custom_Can/output_files/CAN.map.smsg
+Info (17049): 18 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/hdl_projects/CAN/output_files/CAN.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 84 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "rx_i" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 9
-    Warning (15610): No output dependent on input pin "command_or_data" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 15
-    Warning (15610): No output dependent on input pin "address_sender[0]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 21
-    Warning (15610): No output dependent on input pin "address_sender[1]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 21
-    Warning (15610): No output dependent on input pin "address_sender[2]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 21
-    Warning (15610): No output dependent on input pin "address_sender[3]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 21
-    Warning (15610): No output dependent on input pin "address_sender[4]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 21
-    Warning (15610): No output dependent on input pin "address_sender[5]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 21
-    Warning (15610): No output dependent on input pin "address_recipient[0]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 22
-    Warning (15610): No output dependent on input pin "address_recipient[1]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 22
-    Warning (15610): No output dependent on input pin "address_recipient[2]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 22
-    Warning (15610): No output dependent on input pin "address_recipient[3]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 22
-    Warning (15610): No output dependent on input pin "address_recipient[4]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 22
-    Warning (15610): No output dependent on input pin "address_recipient[5]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 22
-    Warning (15610): No output dependent on input pin "sign[0]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 23
-    Warning (15610): No output dependent on input pin "sign[1]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 23
-    Warning (15610): No output dependent on input pin "data_l_i[0]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 26
-    Warning (15610): No output dependent on input pin "data_l_i[1]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 26
-    Warning (15610): No output dependent on input pin "data_l_i[2]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 26
-    Warning (15610): No output dependent on input pin "data_l_i[3]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 26
-    Warning (15610): No output dependent on input pin "data_b_i[0]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[1]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[2]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[3]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[4]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[5]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[6]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[7]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[8]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[9]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[10]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[11]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[12]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[13]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[14]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[15]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[16]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[17]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[18]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[19]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[20]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[21]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[22]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[23]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[24]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[25]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[26]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[27]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[28]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[29]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[30]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[31]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[32]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[33]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[34]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[35]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[36]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[37]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[38]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[39]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[40]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[41]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[42]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[43]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[44]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[45]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[46]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[47]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[48]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[49]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[50]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[51]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[52]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[53]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[54]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[55]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[56]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[57]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[58]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[59]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[60]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[61]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[62]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-    Warning (15610): No output dependent on input pin "data_b_i[63]" File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 29
-Info (21057): Implemented 331 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "rx_i" File: C:/hdl_projects/CAN/can_top.v Line: 8
+    Warning (15610): No output dependent on input pin "command_or_data" File: C:/hdl_projects/CAN/can_top.v Line: 15
+    Warning (15610): No output dependent on input pin "address_sender[0]" File: C:/hdl_projects/CAN/can_top.v Line: 21
+    Warning (15610): No output dependent on input pin "address_sender[1]" File: C:/hdl_projects/CAN/can_top.v Line: 21
+    Warning (15610): No output dependent on input pin "address_sender[2]" File: C:/hdl_projects/CAN/can_top.v Line: 21
+    Warning (15610): No output dependent on input pin "address_sender[3]" File: C:/hdl_projects/CAN/can_top.v Line: 21
+    Warning (15610): No output dependent on input pin "address_sender[4]" File: C:/hdl_projects/CAN/can_top.v Line: 21
+    Warning (15610): No output dependent on input pin "address_sender[5]" File: C:/hdl_projects/CAN/can_top.v Line: 21
+    Warning (15610): No output dependent on input pin "address_recipient[0]" File: C:/hdl_projects/CAN/can_top.v Line: 22
+    Warning (15610): No output dependent on input pin "address_recipient[1]" File: C:/hdl_projects/CAN/can_top.v Line: 22
+    Warning (15610): No output dependent on input pin "address_recipient[2]" File: C:/hdl_projects/CAN/can_top.v Line: 22
+    Warning (15610): No output dependent on input pin "address_recipient[3]" File: C:/hdl_projects/CAN/can_top.v Line: 22
+    Warning (15610): No output dependent on input pin "address_recipient[4]" File: C:/hdl_projects/CAN/can_top.v Line: 22
+    Warning (15610): No output dependent on input pin "address_recipient[5]" File: C:/hdl_projects/CAN/can_top.v Line: 22
+    Warning (15610): No output dependent on input pin "sign[0]" File: C:/hdl_projects/CAN/can_top.v Line: 23
+    Warning (15610): No output dependent on input pin "sign[1]" File: C:/hdl_projects/CAN/can_top.v Line: 23
+    Warning (15610): No output dependent on input pin "data_l_i[0]" File: C:/hdl_projects/CAN/can_top.v Line: 26
+    Warning (15610): No output dependent on input pin "data_l_i[1]" File: C:/hdl_projects/CAN/can_top.v Line: 26
+    Warning (15610): No output dependent on input pin "data_l_i[2]" File: C:/hdl_projects/CAN/can_top.v Line: 26
+    Warning (15610): No output dependent on input pin "data_l_i[3]" File: C:/hdl_projects/CAN/can_top.v Line: 26
+    Warning (15610): No output dependent on input pin "data_b_i[0]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[1]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[2]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[3]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[4]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[5]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[6]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[7]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[8]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[9]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[10]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[11]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[12]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[13]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[14]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[15]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[16]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[17]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[18]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[19]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[20]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[21]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[22]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[23]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[24]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[25]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[26]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[27]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[28]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[29]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[30]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[31]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[32]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[33]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[34]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[35]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[36]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[37]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[38]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[39]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[40]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[41]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[42]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[43]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[44]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[45]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[46]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[47]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[48]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[49]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[50]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[51]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[52]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[53]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[54]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[55]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[56]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[57]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[58]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[59]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[60]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[61]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[62]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+    Warning (15610): No output dependent on input pin "data_b_i[63]" File: C:/hdl_projects/CAN/can_top.v Line: 29
+Info (21057): Implemented 335 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 86 input pins
     Info (21059): Implemented 37 output pins
-    Info (21061): Implemented 208 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 108 warnings
-    Info: Peak virtual memory: 4822 megabytes
-    Info: Processing ended: Tue Oct 06 20:28:34 2020
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:21
+    Info (21061): Implemented 212 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 109 warnings
+    Info: Peak virtual memory: 4767 megabytes
+    Info: Processing ended: Wed Oct 07 19:41:42 2020
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:16
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in C:/hdl_projects/Can/Custom_Can/output_files/CAN.map.smsg.
+The suppressed messages can be found in C:/hdl_projects/CAN/output_files/CAN.map.smsg.
 
 

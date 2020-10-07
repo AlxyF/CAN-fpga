@@ -1,7 +1,7 @@
 /*<simulation_settings>
-<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CAN -c CAN --vector_source="C:/hdl_projects/Can/Custom_Can/Waveform1.vwf" --testbench_file="C:/hdl_projects/Can/Custom_Can/simulation/qsim/Waveform1.vwf.vt"</ftestbench_cmd>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CAN -c CAN --vector_source="C:/hdl_projects/Can/Waveform1.vwf" --testbench_file=""C:/hdl_projects/Can/simulation/qsim/Waveform1.vwf.vt"</ftestbench_cmd>
 <ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CAN -c CAN --vector_source="C:/hdl_projects/Can/Custom_Can/Waveform1.vwf" --testbench_file="C:/hdl_projects/Can/Custom_Can/simulation/qsim/Waveform1.vwf.vt"</ttestbench_cmd>
-<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/hdl_projects/Can/Custom_Can/simulation/qsim/" CAN -c CAN</fnetlist_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/hdl_projects/Can/simulation/qsim/" CAN -c CAN</fnetlist_cmd>
 <tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=verilog --output_directory="C:/hdl_projects/Can/Custom_Can/simulation/qsim/" CAN -c CAN</tnetlist_cmd>
 <modelsim_script>onerror {exit -code 1}
 vlib work
@@ -22,6 +22,7 @@ run -all
 quit -f
 
 
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -40,6 +41,7 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
 
 
 </modelsim_script_timing>

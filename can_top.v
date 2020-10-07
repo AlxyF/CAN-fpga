@@ -8,7 +8,7 @@ module can_top
 	input  rx_i,
 	output rx_busy,
 	
-	input  tx_send,
+	//input  tx_send,
 	output tx_o,
 	output tx_busy,
 	
@@ -40,9 +40,7 @@ module can_top
 	output test_last_bit
 );
 // <test>
-//<input>
-reg tx_message_type = 1'b0;
-//</input>
+
 assign test_clk_can   			= clk_can;
 assign test_can_tx_state 		= TX_STATE;
 assign test_can_state   	 	= CAN_STATE;
@@ -58,8 +56,7 @@ wire 			clk_can;
 reg [63:0] 	data_to_send;
 
 // constant regs
-localparam [5:0] local_address  = 6'b101011;//6'h2A;		
-localparam [5:0] remote_address = 6'b010110;
+
 
 localparam CAN_IDLE = 0;
 localparam CAN_RX   = 1;
@@ -93,13 +90,7 @@ reg 		 	last_bit;
 reg 			bit_stuff_bit; 
 //</Bit stuff>
 
-//<CRC>
-reg [14:0] 	crc_reg;
-wire 			crc_next;
-wire [14:0] crc_tmp;
-assign crc_next = tx_o ^ crc_reg[14];
-assign crc_tmp  = {crc_reg[13:0], 1'b0};
-//</CRC>
+
 
 // 0xAx - MAC-lvl, 0xB-x - LLC-lvl
 localparam TX_IDLE          		= 8'h00;
@@ -132,7 +123,7 @@ always @( posedge clk_can or posedge rst_i ) begin
 	if ( rst_i ) begin
 		TX_STATE             <= TX_IDLE;
 		NEXT_TX_STATE 			<= TX_IDLE;
-		crc_reg					<= 15'd0;
+		//crc_reg					<= 15'd0;
 		bit_count_reg 			<= 8'd0;		
 		count 					<= 7'd0;	
 	   bit_pol_count 			<= 3'd1;
@@ -148,8 +139,8 @@ always @( posedge clk_can or posedge rst_i ) begin
 			TX_IDLE: 			begin	
 										count 			<= 3'd0;
 										bit_count_reg 	<= 8'd0;
-										crc_reg			<= 15'd0;
-										if ( )
+										//crc_reg			<= 15'd0;
+										//if ( )
 										TX_STATE			<= TX_START_OF_FRAME;								
 									end																		
 			// <MAC-level>
@@ -279,8 +270,8 @@ always @( posedge clk_can or posedge rst_i ) begin
 			TX_HANDSHAKING_P:		begin
 											if ( count == 7'd1 ) begin
 												count					<= 7'd0;
-												TX_STATE 			<= TX_RESERVED;
-												NEXT_TX_STATE 		<= TX_RESERVED;	
+												TX_STATE 			<= TX_ATRIBUTE_RESERVED;
+												NEXT_TX_STATE 		<= TX_ATRIBUTE_RESERVED;	
 											end else begin
 												count 				<= count + 1'b1;
 											end
@@ -301,8 +292,8 @@ always @( posedge clk_can or posedge rst_i ) begin
 			TX_EXPAND_COUNT:		begin
 											if ( count == 7'd3 ) begin
 												count					<= 7'd0;
-												TX_STATE 			<= TX_RTR;
-												NEXT_TX_STATE 		<= TX_RTR;	
+												TX_STATE 			<= TX_CMD_DATA_SIGN;
+												NEXT_TX_STATE 		<= TX_CMD_DATA_SIGN;	
 											end else begin
 												count 				<= count + 1'b1;
 											end
@@ -344,22 +335,7 @@ always @( posedge clk_can or posedge rst_i ) begin
 										end
 			// </LLC-level>
 			endcase		
-			// <CRC>
-			if ( 	TX_STATE != TX_IDLE 				&&
-					TX_STATE !=	TX_START_OF_FRAME &&
-					TX_STATE != TX_BIT_STUFF 		&&
-					TX_STATE !=	TX_CRC 				&&
-					TX_STATE !=	TX_CRC_DELIMITER  &&
-					TX_STATE !=	TX_ACK_SLOT 		&& 
-					TX_STATE !=	TX_ACK_DELIMITER 	&& 
-					TX_STATE !=	TX_END_OF_FRAME ) begin	
-				if ( crc_next ) begin 
-					crc_reg <= crc_tmp ^ 15'h4599;
-				end else begin
-					crc_reg <= crc_tmp;
-				end				
-			end
-			// </CRC>		
+		
 			// <bit stuff check>
 			if (  TX_STATE !=	TX_IDLE 				&& 
 					TX_STATE != TX_CRC_DELIMITER 	&& 
@@ -386,29 +362,75 @@ always @( posedge clk_can or posedge rst_i ) begin
 	end
 end
 
+
+//<CRC>
+reg [14:0] 	crc_reg;
+wire 			crc_next;
+wire [14:0] crc_tmp;
+assign crc_next = tx_o ^ crc_reg[14];
+assign crc_tmp  = {crc_reg[13:0], 1'b0};
+//</CRC>
+
+always @( posedge clk_can or posedge rst_i ) begin
+	if ( rst_i ) begin
+		crc_reg <= 15'h0;
+	end else begin
+				// <CRC>
+			if ( 	TX_STATE != TX_IDLE 				&&
+					TX_STATE !=	TX_START_OF_FRAME &&
+					TX_STATE != TX_BIT_STUFF 		&&
+					TX_STATE !=	TX_CRC 				&&
+					TX_STATE !=	TX_CRC_DELIMITER  &&
+					TX_STATE !=	TX_ACK_SLOT 		&& 
+					TX_STATE !=	TX_ACK_DELIMITER 	&& 
+					TX_STATE !=	TX_END_OF_FRAME ) begin	
+				if ( crc_next ) begin 
+					crc_reg <= crc_tmp ^ 15'h4599;
+				end else begin
+					crc_reg <= crc_tmp;
+				end				
+			end
+			// </CRC>
+	end
+end
+
+//<input>
+reg tx_message_type = 1'b0;
+reg [5:0] local_address  = 6'b000101;//6'h2A;		
+reg [5:0] remote_address = 6'b100010;
+reg [1:0] handshake = 2'b10;
+reg [1:0] atribute  = 2'b10;
+reg [3:0] expand_count  = 4'b1011;
+reg [7:0] cmd_data_sign = 8'b1111_0101;
+reg rtr = 1'b0;
+reg [3:0] dlc = 4'b1001;
+reg [63:0] tx_data = 64'b0011000100110010001100110011010000110101001101100011011100111000;
+//reg [31:0] dsad = "1das1";
+reg [1:0] tx_reserved = 2'b00;
+//</input>
 assign tx_o = TX_STATE == TX_START_OF_FRAME 		? 1'b0 									:												
 				( TX_STATE == TX_MESSAGE_TYPE 		? tx_message_type 					:
-				( TX_STATE == TX_ADDRESS_LOCAL 		? local_address[3'd5 - count] 	:	
-				( TX_STATE == TX_ADDRESS_REMOTE 		? remote_address[3'd5 - count] 	:
+				( TX_STATE == TX_ADDRESS_LOCAL 		? local_address	[7'd5 - count] :	
+				( TX_STATE == TX_ADDRESS_REMOTE 		? remote_address	[7'd5 - count] :
 				( TX_STATE == TX_SRR 					? 1'b1 									:
 				( TX_STATE == TX_IDE 					? 1'b1 									:
-				( TX_STATE == TX_HANDSHAKING_P 		?											:
-				( TX_STATE == TX_ATRIBUTE_RESERVED 	?											:
-				( TX_STATE == TX_EXPAND_COUNT 		?											:
-				( TX_STATE == TX_CMD_DATA_SIGN 		?											:
-				( TX_STATE == TX_RTR 					?											:
-				( TX_STATE == TX_RESERVED 				?											:
-				( TX_STATE == TX_DLC 					?											:
-				( TX_STATE == TX_DATA 					?											:
-				( TX_STATE == TX_CRC 					? crc_reg[7'd14 - count] : 1'b0  :
-				( TX_STATE == TX_CRC_DELIMITER 		?											:
-				( TX_STATE == TX_ACK_SLOT 				?											:
-				( TX_STATE == TX_ACK_DELIMITER 		?											:
-				( TX_STATE == TX_END_OF_FRAME 		?											:
-				( TX_STATE == BIT_STUFF					?											:
-				))))));
+				( TX_STATE == TX_HANDSHAKING_P 		? handshake			[7'd1 - count]	:
+				( TX_STATE == TX_ATRIBUTE_RESERVED 	? handshake			[7'd1 - count]	:
+				( TX_STATE == TX_EXPAND_COUNT 		? expand_count		[7'd3 - count] :
+				( TX_STATE == TX_CMD_DATA_SIGN 		? cmd_data_sign	[7'd7 - count]	:
+				( TX_STATE == TX_RTR 					? rtr										:
+				( TX_STATE == TX_RESERVED 				? 1'b0									:
+				( TX_STATE == TX_DLC 					? dlc					[7'd3 - count]	:
+				( TX_STATE == TX_DATA 					? tx_data			[7'd63 - count]:
+				( TX_STATE == TX_CRC 					? crc_reg         [7'd14 - count]:
+				( TX_STATE == TX_CRC_DELIMITER 		? 1'b1									:
+				( TX_STATE == TX_ACK_SLOT 				? 1'b1									:
+				( TX_STATE == TX_ACK_DELIMITER 		? 1'b1									:
+				( TX_STATE == TX_END_OF_FRAME 		? 1'b1									:
+				( TX_STATE == TX_BIT_STUFF				? bit_stuff_bit						:
+				1'b1 )))))))))))))))))));
 							
-TX_STATE == TX_BIT_STUFF ? bit_stuff_bit
+
 
 baud_rate baud_rate_gen
 (

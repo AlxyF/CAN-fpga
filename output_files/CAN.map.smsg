@@ -1,1 +1,3 @@
-Info (10281): Verilog HDL Declaration information at can_top.v(44): object "tx_message_type" differs only in case from object "TX_MESSAGE_TYPE" in the same scope File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 44
+Info (10281): Verilog HDL Declaration information at can_top.v(106): object "TX_MESSAGE_TYPE" differs only in case from object "tx_message_type" in the same scope File: C:/hdl_projects/CAN/can_top.v Line: 106
+Info (10281): Verilog HDL Declaration information at can_top.v(118): object "TX_DATA" differs only in case from object "tx_data" in the same scope File: C:/hdl_projects/CAN/can_top.v Line: 118
+Info (10281): Verilog HDL Declaration information at can_top.v(116): object "TX_RESERVED" differs only in case from object "tx_reserved" in the same scope File: C:/hdl_projects/CAN/can_top.v Line: 116
