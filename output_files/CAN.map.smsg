@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at can_top.v(126): always construct contains both blocking and non-blocking assignments File: C:/hdl_projects/CAN/can_top.v Line: 126
+Info (10281): Verilog HDL Declaration information at can_top.v(44): object "tx_message_type" differs only in case from object "TX_MESSAGE_TYPE" in the same scope File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 44

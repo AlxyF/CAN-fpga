@@ -1,5 +1,5 @@
 Fitter report for CAN
-Thu Oct 01 15:00:33 2020
+Tue Oct 06 18:31:42 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -58,18 +58,18 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Failed - Thu Oct 01 15:00:33 2020           ;
+; Fitter Status                      ; Failed - Tue Oct 06 18:31:42 2020           ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_top                                     ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE6E22C8                                 ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 88 / 6,272 ( 1 % )                          ;
-;     Total combinational functions  ; 85 / 6,272 ( 1 % )                          ;
-;     Dedicated logic registers      ; 46 / 6,272 ( < 1 % )                        ;
-; Total registers                    ; 46                                          ;
-; Total pins                         ; 120 / 92 ( 130 % )                          ;
+; Total logic elements               ; 206 / 6,272 ( 3 % )                         ;
+;     Total combinational functions  ; 205 / 6,272 ( 3 % )                         ;
+;     Dedicated logic registers      ; 77 / 6,272 ( 1 % )                          ;
+; Total registers                    ; 77                                          ;
+; Total pins                         ; 124 / 92 ( 135 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 276,480 ( 0 % )                         ;
 ; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                              ;
@@ -141,15 +141,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 4           ;
+; Maximum used               ; 12          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processors 2-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -159,8 +159,8 @@ https://fpgasoftware.intel.com/eula.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 384 ) ; 0.00 % ( 0 / 384 )         ; 0.00 % ( 0 / 384 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 384 ) ; 0.00 % ( 0 / 384 )         ; 0.00 % ( 0 / 384 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 543 ) ; 0.00 % ( 0 / 543 )         ; 0.00 % ( 0 / 543 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 543 ) ; 0.00 % ( 0 / 543 )         ; 0.00 % ( 0 / 543 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -183,58 +183,58 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 374 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 533 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 10 )     ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
 
-+--------------------------------------------------------------------+
-; Fitter Resource Usage Summary                                      ;
-+---------------------------------------------+----------------------+
-; Resource                                    ; Usage                ;
-+---------------------------------------------+----------------------+
-; Total logic elements                        ; 88 / 6,272 ( 1 % )   ;
-;     -- Combinational with no register       ; 42                   ;
-;     -- Register only                        ; 3                    ;
-;     -- Combinational with a register        ; 43                   ;
-;                                             ;                      ;
-; Logic element usage by number of LUT inputs ;                      ;
-;     -- 4 input functions                    ; 42                   ;
-;     -- 3 input functions                    ; 10                   ;
-;     -- <=2 input functions                  ; 33                   ;
-;     -- Register only                        ; 3                    ;
-;                                             ;                      ;
-; Logic elements by mode                      ;                      ;
-;     -- normal mode                          ; 65                   ;
-;     -- arithmetic mode                      ; 20                   ;
-;                                             ;                      ;
-; Total registers*                            ; 46 / 6,684 ( < 1 % ) ;
-;     -- Dedicated logic registers            ; 46 / 6,272 ( < 1 % ) ;
-;     -- I/O registers                        ; 0 / 412 ( 0 % )      ;
-;                                             ;                      ;
-; Total LABs                                  ; Not available        ;
-; Virtual pins                                ; 0                    ;
-; I/O pins                                    ; 120 / 92 ( 130 % )   ;
-;     -- Clock pins                           ; 0 / 3 ( 0 % )        ;
-;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )        ;
-;                                             ;                      ;
-; M9Ks                                        ; 0 / 30 ( 0 % )       ;
-; Total block memory bits                     ; 0 / 276,480 ( 0 % )  ;
-; Total block memory implementation bits      ; 0 / 276,480 ( 0 % )  ;
-; Embedded Multiplier 9-bit elements          ; 0 / 30 ( 0 % )       ;
-; PLLs                                        ; 0 / 2 ( 0 % )        ;
-; Global signals                              ; 3                    ;
-;     -- Global clocks                        ; 3 / 10 ( 30 % )      ;
-; JTAGs                                       ; 0 / 1 ( 0 % )        ;
-; CRC blocks                                  ; 0 / 1 ( 0 % )        ;
-; ASMI blocks                                 ; 0 / 1 ( 0 % )        ;
-; Oscillator blocks                           ; 0 / 1 ( 0 % )        ;
-; Impedance control blocks                    ; 0 / 4 ( 0 % )        ;
-; Maximum fan-out                             ; 32                   ;
-; Highest non-global fan-out                  ; 25                   ;
-; Total fan-out                               ; 580                  ;
-; Average fan-out                             ; 1.51                 ;
-+---------------------------------------------+----------------------+
++-------------------------------------------------------------------+
+; Fitter Resource Usage Summary                                     ;
++---------------------------------------------+---------------------+
+; Resource                                    ; Usage               ;
++---------------------------------------------+---------------------+
+; Total logic elements                        ; 206 / 6,272 ( 3 % ) ;
+;     -- Combinational with no register       ; 129                 ;
+;     -- Register only                        ; 1                   ;
+;     -- Combinational with a register        ; 76                  ;
+;                                             ;                     ;
+; Logic element usage by number of LUT inputs ;                     ;
+;     -- 4 input functions                    ; 124                 ;
+;     -- 3 input functions                    ; 29                  ;
+;     -- <=2 input functions                  ; 52                  ;
+;     -- Register only                        ; 1                   ;
+;                                             ;                     ;
+; Logic elements by mode                      ;                     ;
+;     -- normal mode                          ; 183                 ;
+;     -- arithmetic mode                      ; 22                  ;
+;                                             ;                     ;
+; Total registers*                            ; 77 / 6,684 ( 1 % )  ;
+;     -- Dedicated logic registers            ; 77 / 6,272 ( 1 % )  ;
+;     -- I/O registers                        ; 0 / 412 ( 0 % )     ;
+;                                             ;                     ;
+; Total LABs                                  ; Not available       ;
+; Virtual pins                                ; 0                   ;
+; I/O pins                                    ; 124 / 92 ( 135 % )  ;
+;     -- Clock pins                           ; 0 / 3 ( 0 % )       ;
+;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )       ;
+;                                             ;                     ;
+; M9Ks                                        ; 0 / 30 ( 0 % )      ;
+; Total block memory bits                     ; 0 / 276,480 ( 0 % ) ;
+; Total block memory implementation bits      ; 0 / 276,480 ( 0 % ) ;
+; Embedded Multiplier 9-bit elements          ; 0 / 30 ( 0 % )      ;
+; PLLs                                        ; 0 / 2 ( 0 % )       ;
+; Global signals                              ; 3                   ;
+;     -- Global clocks                        ; 3 / 10 ( 30 % )     ;
+; JTAGs                                       ; 0 / 1 ( 0 % )       ;
+; CRC blocks                                  ; 0 / 1 ( 0 % )       ;
+; ASMI blocks                                 ; 0 / 1 ( 0 % )       ;
+; Oscillator blocks                           ; 0 / 1 ( 0 % )       ;
+; Impedance control blocks                    ; 0 / 4 ( 0 % )       ;
+; Maximum fan-out                             ; 64                  ;
+; Highest non-global fan-out                  ; 40                  ;
+; Total fan-out                               ; 1139                ;
+; Average fan-out                             ; 2.10                ;
++---------------------------------------------+---------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
 
@@ -326,7 +326,7 @@ https://fpgasoftware.intel.com/eula.
 ; data_l_i[1]          ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
 ; data_l_i[2]          ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
 ; data_l_i[3]          ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
-; rst_i                ; Unassigned ; --       ; 35                    ; 0                  ; yes    ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
+; rst_i                ; Unassigned ; --       ; 66                    ; 0                  ; yes    ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
 ; rx_i                 ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
 ; sign[0]              ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
 ; sign[1]              ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; no        ;
@@ -368,6 +368,10 @@ https://fpgasoftware.intel.com/eula.
 ; test_can_tx_state[1]  ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
 ; test_can_tx_state[2]  ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
 ; test_can_tx_state[3]  ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
+; test_can_tx_state[4]  ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
+; test_can_tx_state[5]  ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
+; test_can_tx_state[6]  ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
+; test_can_tx_state[7]  ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
 ; test_clk_can          ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
 ; test_last_bit         ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
 ; tx_busy               ; Unassigned ; --       ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
@@ -404,7 +408,7 @@ https://fpgasoftware.intel.com/eula.
 ; 6        ; 0 / 10 ( 0 % ) ; 2.5V          ; --           ;
 ; 7        ; 0 / 13 ( 0 % ) ; 2.5V          ; --           ;
 ; 8        ; 0 / 12 ( 0 % ) ; 2.5V          ; --           ;
-; Unknown  ; 125            ; --            ;              ;
+; Unknown  ; 129            ; --            ;              ;
 +----------+----------------+---------------+--------------+
 
 
@@ -671,6 +675,10 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; test_can_tx_state[1]  ; Incomplete set of assignments ;
 ; test_can_tx_state[2]  ; Incomplete set of assignments ;
 ; test_can_tx_state[3]  ; Incomplete set of assignments ;
+; test_can_tx_state[4]  ; Incomplete set of assignments ;
+; test_can_tx_state[5]  ; Incomplete set of assignments ;
+; test_can_tx_state[6]  ; Incomplete set of assignments ;
+; test_can_tx_state[7]  ; Incomplete set of assignments ;
 ; bit_count[0]          ; Incomplete set of assignments ;
 ; bit_count[1]          ; Incomplete set of assignments ;
 ; bit_count[2]          ; Incomplete set of assignments ;
@@ -685,8 +693,8 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; test_bit_pol_count[3] ; Incomplete set of assignments ;
 ; bit_stuffed           ; Incomplete set of assignments ;
 ; test_last_bit         ; Incomplete set of assignments ;
-; clk_i                 ; Incomplete set of assignments ;
 ; type                  ; Incomplete set of assignments ;
+; clk_i                 ; Incomplete set of assignments ;
 ; rst_i                 ; Incomplete set of assignments ;
 ; rx_i                  ; Missing location assignment   ;
 ; rx_busy               ; Missing location assignment   ;
@@ -791,6 +799,10 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; test_can_tx_state[1]  ; Missing location assignment   ;
 ; test_can_tx_state[2]  ; Missing location assignment   ;
 ; test_can_tx_state[3]  ; Missing location assignment   ;
+; test_can_tx_state[4]  ; Missing location assignment   ;
+; test_can_tx_state[5]  ; Missing location assignment   ;
+; test_can_tx_state[6]  ; Missing location assignment   ;
+; test_can_tx_state[7]  ; Missing location assignment   ;
 ; bit_count[0]          ; Missing location assignment   ;
 ; bit_count[1]          ; Missing location assignment   ;
 ; bit_count[2]          ; Missing location assignment   ;
@@ -805,8 +817,8 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; test_bit_pol_count[3] ; Missing location assignment   ;
 ; bit_stuffed           ; Missing location assignment   ;
 ; test_last_bit         ; Missing location assignment   ;
-; clk_i                 ; Missing location assignment   ;
 ; type                  ; Missing location assignment   ;
+; clk_i                 ; Missing location assignment   ;
 ; rst_i                 ; Missing location assignment   ;
 +-----------------------+-------------------------------+
 
@@ -816,7 +828,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +------------------------------+-------------+---------------------------+---------------+-------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node   ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name              ; Entity Name ; Library Name ;
 +------------------------------+-------------+---------------------------+---------------+-------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------+-------------+--------------+
-; |can_top                     ; 0 (0)       ; 46 (35)                   ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 120  ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |can_top                         ; can_top     ; work         ;
+; |can_top                     ; 0 (0)       ; 77 (66)                   ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 124  ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |can_top                         ; can_top     ; work         ;
 ;    |baud_rate:baud_rate_gen| ; 0 (0)       ; 11 (11)                   ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |can_top|baud_rate:baud_rate_gen ; baud_rate   ; work         ;
 +------------------------------+-------------+---------------------------+---------------+-------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -930,6 +942,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; test_can_tx_state[1]  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; test_can_tx_state[2]  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; test_can_tx_state[3]  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; test_can_tx_state[4]  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; test_can_tx_state[5]  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; test_can_tx_state[6]  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; test_can_tx_state[7]  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; bit_count[0]          ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; bit_count[1]          ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; bit_count[2]          ; Output   ; --            ; --            ; --                    ; --  ; --   ;
@@ -944,8 +960,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; test_bit_pol_count[3] ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; bit_stuffed           ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; test_last_bit         ; Output   ; --            ; --            ; --                    ; --  ; --   ;
-; clk_i                 ; Input    ; 0             ; --            ; --                    ; --  ; --   ;
 ; type                  ; Input    ; 0             ; --            ; --                    ; --  ; --   ;
+; clk_i                 ; Input    ; 0             ; --            ; --                    ; --  ; --   ;
 ; rst_i                 ; Input    ; 0             ; --            ; --                    ; --  ; --   ;
 +-----------------------+----------+---------------+---------------+-----------------------+-----+------+
 
@@ -1039,8 +1055,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; data_b_i[61]         ;                   ;         ;
 ; data_b_i[62]         ;                   ;         ;
 ; data_b_i[63]         ;                   ;         ;
-; clk_i                ;                   ;         ;
 ; type                 ;                   ;         ;
+; clk_i                ;                   ;         ;
 ; rst_i                ;                   ;         ;
 +----------------------+-------------------+---------+
 
@@ -1050,17 +1066,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 ; Name                                   ; Location   ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------------------------------------+------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; CAN_STATE.CAN_TX                       ; Unassigned ; 25      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; NEXT_TX_STATE~21                       ; Unassigned ; 2       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; TX_STATE.TX_IDLE                       ; Unassigned ; 23      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; TX_STATE.TX_START                      ; Unassigned ; 7       ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; address_count[2]~9                     ; Unassigned ; 5       ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; address_count[4]~11                    ; Unassigned ; 5       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; baud_rate:baud_rate_gen|baud_clk_o_reg ; Unassigned ; 32      ; Clock        ; yes    ; Global Clock         ; Not Available    ; --                        ;
-; baud_rate:baud_rate_gen|count[7]~12    ; Unassigned ; 10      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; CAN_STATE.CAN_TX                       ; Unassigned ; 40      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; NEXT_TX_STATE.TX_CRC~2                 ; Unassigned ; 2       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; TX_STATE.TX_CRC~3                      ; Unassigned ; 3       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; WideNor0                               ; Unassigned ; 15      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; baud_rate:baud_rate_gen|baud_clk_o_reg ; Unassigned ; 63      ; Clock        ; yes    ; Global Clock         ; Not Available    ; --                        ;
+; baud_rate:baud_rate_gen|count[3]~12    ; Unassigned ; 10      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
 ; bit_pol_count[0]~6                     ; Unassigned ; 3       ; Clock enable ; no     ; --                   ; --               ; --                        ;
 ; clk_i                                  ; Unassigned ; 14      ; Clock        ; yes    ; Global Clock         ; Not Available    ; --                        ;
-; rst_i                                  ; Unassigned ; 32      ; Async. clear ; yes    ; Global Clock         ; Not Available    ; --                        ;
+; count[1]~15                            ; Unassigned ; 7       ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; count[3]~19                            ; Unassigned ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; crc_reg[0]~1                           ; Unassigned ; 15      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; rst_i                                  ; Unassigned ; 64      ; Async. clear ; yes    ; Global Clock         ; Not Available    ; --                        ;
 +----------------------------------------+------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
@@ -1069,9 +1086,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 ; Name                                   ; Location   ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------------------------------------+------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; baud_rate:baud_rate_gen|baud_clk_o_reg ; Unassigned ; 32      ; 0                                    ; Global Clock         ; Not Available    ; --                        ;
+; baud_rate:baud_rate_gen|baud_clk_o_reg ; Unassigned ; 63      ; 0                                    ; Global Clock         ; Not Available    ; --                        ;
 ; clk_i                                  ; Unassigned ; 14      ; 0                                    ; Global Clock         ; Not Available    ; --                        ;
-; rst_i                                  ; Unassigned ; 32      ; 0                                    ; Global Clock         ; Not Available    ; --                        ;
+; rst_i                                  ; Unassigned ; 64      ; 0                                    ; Global Clock         ; Not Available    ; --                        ;
 +----------------------------------------+------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
@@ -1132,9 +1149,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 ; Pin/Rules             ; IO_000001    ; IO_000002    ; IO_000003    ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007    ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012    ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019    ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000033 ; IO_000034    ; IO_000042    ;
 +-----------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
-; Total Pass            ; 0            ; 0            ; 0            ; 0            ; 0            ; 2         ; 0            ; 0            ; 2         ; 2         ; 0            ; 0            ; 0            ; 0            ; 2            ; 0            ; 0            ; 87           ; 0            ; 0            ; 0            ; 33           ; 0            ; 0            ; 0            ; 0            ; 0            ; 2         ; 0            ; 0            ;
-; Total Unchecked       ; 0            ; 0            ; 0            ; 0            ; 0            ; 118       ; 0            ; 0            ; 118       ; 118       ; 0            ; 33           ; 0            ; 0            ; 85           ; 0            ; 33           ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 118       ; 0            ; 0            ;
-; Total Inapplicable    ; 120          ; 120          ; 120          ; 120          ; 120          ; 0         ; 120          ; 120          ; 0         ; 0         ; 120          ; 87           ; 120          ; 120          ; 33           ; 120          ; 87           ; 33           ; 120          ; 120          ; 120          ; 87           ; 120          ; 120          ; 120          ; 120          ; 120          ; 0         ; 120          ; 120          ;
+; Total Pass            ; 0            ; 0            ; 0            ; 0            ; 0            ; 2         ; 0            ; 0            ; 2         ; 2         ; 0            ; 0            ; 0            ; 0            ; 2            ; 0            ; 0            ; 87           ; 0            ; 0            ; 0            ; 37           ; 0            ; 0            ; 0            ; 0            ; 0            ; 2         ; 0            ; 0            ;
+; Total Unchecked       ; 0            ; 0            ; 0            ; 0            ; 0            ; 122       ; 0            ; 0            ; 122       ; 122       ; 0            ; 37           ; 0            ; 0            ; 85           ; 0            ; 37           ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 122       ; 0            ; 0            ;
+; Total Inapplicable    ; 124          ; 124          ; 124          ; 124          ; 124          ; 0         ; 124          ; 124          ; 0         ; 0         ; 124          ; 87           ; 124          ; 124          ; 37           ; 124          ; 87           ; 37           ; 124          ; 124          ; 124          ; 87           ; 124          ; 124          ; 124          ; 124          ; 124          ; 0         ; 124          ; 124          ;
 ; Total Fail            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
 ; rx_i                  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; rx_busy               ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
@@ -1239,6 +1256,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; test_can_tx_state[1]  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; test_can_tx_state[2]  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; test_can_tx_state[3]  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
+; test_can_tx_state[4]  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
+; test_can_tx_state[5]  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
+; test_can_tx_state[6]  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
+; test_can_tx_state[7]  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; bit_count[0]          ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; bit_count[1]          ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; bit_count[2]          ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
@@ -1253,8 +1274,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; test_bit_pol_count[3] ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; bit_stuffed           ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
 ; test_last_bit         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
-; clk_i                 ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; type                  ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ; Unchecked ; Unchecked ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked    ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Unchecked ; Inapplicable ; Inapplicable ;
+; clk_i                 ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; rst_i                 ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 +-----------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 
@@ -1299,7 +1320,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Fitter Messages ;
 +-----------------+
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (119006): Selected device EP4CE6E22C8 for design "CAN"
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -1316,30 +1337,29 @@ Info (169124): Fitter converted 5 user pins into dedicated programming pins
     Info (169125): Pin ~ALTERA_DATA0~ is reserved at location 13
     Info (169125): Pin ~ALTERA_nCEO~ is reserved at location 101
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
-Critical Warning (169085): No exact pin location assignment(s) for 120 pins of 120 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
+Critical Warning (169085): No exact pin location assignment(s) for 124 pins of 124 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'CAN.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332144): No user constrained base clocks found in the design
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info (332130): Timing requirements not specified -- quality metrics such as performance may be sacrificed to reduce compilation time.
-Info (176353): Automatically promoted node clk_i~input (placed in PIN 23 (CLK1, DIFFCLK_0n)) File: C:/hdl_projects/CAN/can_top.v Line: 6
+Info (176353): Automatically promoted node clk_i~input (placed in PIN 23 (CLK1, DIFFCLK_0n)) File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 7
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G2
-Info (176353): Automatically promoted node baud_rate:baud_rate_gen|baud_clk_o_reg  File: C:/hdl_projects/CAN/baud_rate.v Line: 20
+Info (176353): Automatically promoted node baud_rate:baud_rate_gen|baud_clk_o_reg  File: C:/hdl_projects/Can/Custom_Can/baud_rate.v Line: 20
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
     Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
-        Info (176357): Destination node baud_rate:baud_rate_gen|baud_clk_o_reg~1 File: C:/hdl_projects/CAN/baud_rate.v Line: 20
-        Info (176357): Destination node test_clk_can~output File: C:/hdl_projects/CAN/can_top.v Line: 33
-Info (176353): Automatically promoted node rst_i~input (placed in PIN 24 (CLK2, DIFFCLK_1p)) File: C:/hdl_projects/CAN/can_top.v Line: 5
+        Info (176357): Destination node baud_rate:baud_rate_gen|baud_clk_o_reg~0 File: C:/hdl_projects/Can/Custom_Can/baud_rate.v Line: 20
+        Info (176357): Destination node test_clk_can~output File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 34
+Info (176353): Automatically promoted node rst_i~input (placed in PIN 24 (CLK2, DIFFCLK_1p)) File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 6
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G4
     Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
-        Info (176357): Destination node baud_rate:baud_rate_gen|baud_clk_o_reg~0 File: C:/hdl_projects/CAN/baud_rate.v Line: 20
-        Info (176357): Destination node bit_stuff_bit~0 File: C:/hdl_projects/CAN/can_top.v Line: 112
-        Info (176357): Destination node baud_rate:baud_rate_gen|count[7]~12 File: C:/hdl_projects/CAN/baud_rate.v Line: 20
+        Info (176357): Destination node baud_rate:baud_rate_gen|baud_clk_o_reg~0 File: C:/hdl_projects/Can/Custom_Can/baud_rate.v Line: 20
+        Info (176357): Destination node baud_rate:baud_rate_gen|count[3]~12 File: C:/hdl_projects/Can/Custom_Can/baud_rate.v Line: 20
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
 Info (176214): Statistics of I/O pins that need to be placed that use the same VCCIO and VREF, before I/O pin placement
-    Info (176211): Number of I/O pins in group: 118 (unused VREF, 2.5V VCCIO, 85 input, 33 output, 0 bidirectional)
+    Info (176211): Number of I/O pins in group: 122 (unused VREF, 2.5V VCCIO, 85 input, 37 output, 0 bidirectional)
         Info (176212): I/O standards used: 2.5 V.
 Info (176215): I/O bank details before I/O pin placement
     Info (176214): Statistics of I/O banks
@@ -1361,35 +1381,36 @@ Info (176215): I/O bank details after I/O pin placement
         Info (176213): I/O bank number 6 does not use VREF pins and has undetermined VCCIO pins. 1 total pin(s) used --  9 pins available
         Info (176213): I/O bank number 7 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  13 pins available
         Info (176213): I/O bank number 8 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  12 pins available
-Error (176205): Can't place 118 pins with 2.5 V I/O standard because Fitter has only 85 such free pins available for general purpose I/O placement
+Error (176205): Can't place 122 pins with 2.5 V I/O standard because Fitter has only 85 such free pins available for general purpose I/O placement
 Error (176204): Can't place pins due to device constraints
 Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
 Error (171000): Can't fit design in device
-Warning (169069): Following 13 pins have nothing, GND, or VCC driving datain port -- changes to this connectivity may change fitting results
-    Info (169070): Pin rx_busy has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 9
-    Info (169070): Pin tx_busy has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 12
-    Info (169070): Pin data_o[0] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin data_o[1] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin data_o[2] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin data_o[3] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin data_o[4] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin data_o[5] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin data_o[6] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin data_o[7] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 30
-    Info (169070): Pin test_can_state[0] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Info (169070): Pin test_can_state[2] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Info (169070): Pin test_bit_pol_count[3] has GND driving its datain port File: C:/hdl_projects/CAN/can_top.v Line: 37
-Info (144001): Generated suppressed messages file C:/hdl_projects/CAN/output_files/CAN.fit.smsg
+Warning (169069): Following 14 pins have nothing, GND, or VCC driving datain port -- changes to this connectivity may change fitting results
+    Info (169070): Pin rx_busy has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 10
+    Info (169070): Pin tx_busy has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 13
+    Info (169070): Pin data_o[0] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin data_o[1] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin data_o[2] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin data_o[3] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin data_o[4] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin data_o[5] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin data_o[6] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin data_o[7] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 31
+    Info (169070): Pin test_can_state[0] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 35
+    Info (169070): Pin test_can_state[2] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 35
+    Info (169070): Pin test_can_tx_state[6] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 36
+    Info (169070): Pin test_bit_pol_count[3] has GND driving its datain port File: C:/hdl_projects/Can/Custom_Can/can_top.v Line: 38
+Info (144001): Generated suppressed messages file C:/hdl_projects/Can/Custom_Can/output_files/CAN.fit.smsg
 Error: Quartus Prime Fitter was unsuccessful. 3 errors, 6 warnings
-    Error: Peak virtual memory: 5155 megabytes
-    Error: Processing ended: Thu Oct 01 15:00:34 2020
-    Error: Elapsed time: 00:00:04
-    Error: Total CPU time (on all processors): 00:00:01
+    Error: Peak virtual memory: 5310 megabytes
+    Error: Processing ended: Tue Oct 06 18:31:42 2020
+    Error: Elapsed time: 00:00:03
+    Error: Total CPU time (on all processors): 00:00:02
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in C:/hdl_projects/CAN/output_files/CAN.fit.smsg.
+The suppressed messages can be found in C:/hdl_projects/Can/Custom_Can/output_files/CAN.fit.smsg.
 
 

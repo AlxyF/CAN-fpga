@@ -1,15 +1,15 @@
-Fitter Status : Failed - Thu Oct 01 15:00:33 2020
+Fitter Status : Failed - Tue Oct 06 18:31:42 2020
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : CAN
 Top-level Entity Name : can_top
 Family : Cyclone IV E
 Device : EP4CE6E22C8
 Timing Models : Final
-Total logic elements : 88 / 6,272 ( 1 % )
-    Total combinational functions : 85 / 6,272 ( 1 % )
-    Dedicated logic registers : 46 / 6,272 ( < 1 % )
-Total registers : 46
-Total pins : 120 / 92 ( 130 % )
+Total logic elements : 206 / 6,272 ( 3 % )
+    Total combinational functions : 205 / 6,272 ( 3 % )
+    Dedicated logic registers : 77 / 6,272 ( 1 % )
+Total registers : 77
+Total pins : 124 / 92 ( 135 % )
 Total virtual pins : 0
 Total memory bits : 0 / 276,480 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )

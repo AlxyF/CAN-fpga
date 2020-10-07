@@ -1,0 +1,57 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/hdl_projects/Can/Custom_Can/simulation/qsim
+vcan_top
+Z1 !s110 1602005322
+!i10b 1
+!s100 ^RFNKKfC5YVi1TMmB]dZh3
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IC9^J]hab7kN8HeO88U@i:3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1602005321
+8CAN.vo
+FCAN.vo
+!i122 82
+L0 32 6370
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1602005322.000000
+!s107 CAN.vo|
+!s90 -work|work|CAN.vo|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+vcan_top_vlg_vec_tst
+R1
+!i10b 1
+!s100 6gZzn]8F^S0zIUM9eeFKU0
+R2
+I@B:gf2RTL8=1VhJhWhOYE3
+R3
+R0
+w1602005320
+8Waveform1.vwf.vt
+FWaveform1.vwf.vt
+!i122 83
+L0 30 69
+R4
+r1
+!s85 0
+31
+R5
+!s107 Waveform1.vwf.vt|
+!s90 -work|work|Waveform1.vwf.vt|
+!i113 1
+R6
+R7

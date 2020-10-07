@@ -32,6 +32,18 @@
 					"strict" : false
 				},
 				{
+					"name" : "test_can_tx_state[4]",
+					"strict" : false
+				},
+				{
+					"name" : "test_can_tx_state[5]",
+					"strict" : false
+				},
+				{
+					"name" : "test_can_tx_state[7]",
+					"strict" : false
+				},
+				{
 					"name" : "bit_count[0]",
 					"strict" : false
 				},
@@ -76,23 +88,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "bit_stuffed",
-					"strict" : false
-				},
-				{
 					"name" : "test_last_bit",
 					"strict" : false
 				},
 				{
-					"name" : "clk_i",
-					"strict" : false
-				},
-				{
-					"name" : "type",
-					"strict" : false
-				},
-				{
 					"name" : "rst_i",
+					"strict" : false
+				},
+				{
+					"name" : "clk_i",
 					"strict" : false
 				}
 			]

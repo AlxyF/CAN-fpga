@@ -1,0 +1,529 @@
+// Copyright (C) 2020  Intel Corporation. All rights reserved.
+// Your use of Intel Corporation's design tools, logic functions 
+// and other software and tools, and any partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Intel Program License 
+// Subscription Agreement, the Intel Quartus Prime License Agreement,
+// the Intel FPGA IP License Agreement, or other applicable license
+// agreement, including, without limitation, that your use is for
+// the sole purpose of programming logic devices manufactured by
+// Intel and sold by Intel or its authorized distributors.  Please
+// refer to the applicable agreement for further details, at
+// https://fpgasoftware.intel.com/eula.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "10/06/2020 18:54:53"
+                                                                                
+// Verilog Test Bench (with test vectors) for design :                          can_top
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module can_top_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg [5:0] address_recipient;
+reg [5:0] address_sender;
+reg clk_i;
+reg command_or_data;
+reg [63:0] data_b_i;
+reg [3:0] data_l_i;
+reg rst_i;
+reg rx_i;
+reg [1:0] sign;
+reg type;
+// wires                                               
+wire [7:0] bit_count;
+wire bit_stuffed;
+wire [7:0] data_o;
+wire rx_busy;
+wire [3:0] test_bit_pol_count;
+wire [2:0] test_can_state;
+wire [7:0] test_can_tx_state;
+wire test_clk_can;
+wire test_last_bit;
+wire tx_busy;
+wire tx_o;
+
+// assign statements (if any)                          
+can_top i1 (
+// port map - connection between master ports and signals/registers   
+	.address_recipient(address_recipient),
+	.address_sender(address_sender),
+	.bit_count(bit_count),
+	.bit_stuffed(bit_stuffed),
+	.clk_i(clk_i),
+	.command_or_data(command_or_data),
+	.data_b_i(data_b_i),
+	.data_l_i(data_l_i),
+	.data_o(data_o),
+	.rst_i(rst_i),
+	.rx_busy(rx_busy),
+	.rx_i(rx_i),
+	.sign(sign),
+	.test_bit_pol_count(test_bit_pol_count),
+	.test_can_state(test_can_state),
+	.test_can_tx_state(test_can_tx_state),
+	.test_clk_can(test_clk_can),
+	.test_last_bit(test_last_bit),
+	.tx_busy(tx_busy),
+	.tx_o(tx_o),
+	.\type (type)
+);
+initial 
+begin 
+#1000000 $finish;
+end 
+// address_recipient[ 5 ]
+initial
+begin
+	address_recipient[5] = 1'b0;
+end 
+// address_recipient[ 4 ]
+initial
+begin
+	address_recipient[4] = 1'b0;
+end 
+// address_recipient[ 3 ]
+initial
+begin
+	address_recipient[3] = 1'b0;
+end 
+// address_recipient[ 2 ]
+initial
+begin
+	address_recipient[2] = 1'b0;
+end 
+// address_recipient[ 1 ]
+initial
+begin
+	address_recipient[1] = 1'b0;
+end 
+// address_recipient[ 0 ]
+initial
+begin
+	address_recipient[0] = 1'b0;
+end 
+// address_sender[ 5 ]
+initial
+begin
+	address_sender[5] = 1'b0;
+end 
+// address_sender[ 4 ]
+initial
+begin
+	address_sender[4] = 1'b0;
+end 
+// address_sender[ 3 ]
+initial
+begin
+	address_sender[3] = 1'b0;
+end 
+// address_sender[ 2 ]
+initial
+begin
+	address_sender[2] = 1'b0;
+end 
+// address_sender[ 1 ]
+initial
+begin
+	address_sender[1] = 1'b0;
+end 
+// address_sender[ 0 ]
+initial
+begin
+	address_sender[0] = 1'b0;
+end 
+
+// clk_i
+always
+begin
+	clk_i = 1'b0;
+	clk_i = #50 1'b1;
+	#50;
+end 
+
+// command_or_data
+initial
+begin
+	command_or_data = 1'b0;
+end 
+// data_b_i[ 63 ]
+initial
+begin
+	data_b_i[63] = 1'b0;
+end 
+// data_b_i[ 62 ]
+initial
+begin
+	data_b_i[62] = 1'b0;
+end 
+// data_b_i[ 61 ]
+initial
+begin
+	data_b_i[61] = 1'b0;
+end 
+// data_b_i[ 60 ]
+initial
+begin
+	data_b_i[60] = 1'b0;
+end 
+// data_b_i[ 59 ]
+initial
+begin
+	data_b_i[59] = 1'b0;
+end 
+// data_b_i[ 58 ]
+initial
+begin
+	data_b_i[58] = 1'b0;
+end 
+// data_b_i[ 57 ]
+initial
+begin
+	data_b_i[57] = 1'b0;
+end 
+// data_b_i[ 56 ]
+initial
+begin
+	data_b_i[56] = 1'b0;
+end 
+// data_b_i[ 55 ]
+initial
+begin
+	data_b_i[55] = 1'b0;
+end 
+// data_b_i[ 54 ]
+initial
+begin
+	data_b_i[54] = 1'b0;
+end 
+// data_b_i[ 53 ]
+initial
+begin
+	data_b_i[53] = 1'b0;
+end 
+// data_b_i[ 52 ]
+initial
+begin
+	data_b_i[52] = 1'b0;
+end 
+// data_b_i[ 51 ]
+initial
+begin
+	data_b_i[51] = 1'b0;
+end 
+// data_b_i[ 50 ]
+initial
+begin
+	data_b_i[50] = 1'b0;
+end 
+// data_b_i[ 49 ]
+initial
+begin
+	data_b_i[49] = 1'b0;
+end 
+// data_b_i[ 48 ]
+initial
+begin
+	data_b_i[48] = 1'b0;
+end 
+// data_b_i[ 47 ]
+initial
+begin
+	data_b_i[47] = 1'b0;
+end 
+// data_b_i[ 46 ]
+initial
+begin
+	data_b_i[46] = 1'b0;
+end 
+// data_b_i[ 45 ]
+initial
+begin
+	data_b_i[45] = 1'b0;
+end 
+// data_b_i[ 44 ]
+initial
+begin
+	data_b_i[44] = 1'b0;
+end 
+// data_b_i[ 43 ]
+initial
+begin
+	data_b_i[43] = 1'b0;
+end 
+// data_b_i[ 42 ]
+initial
+begin
+	data_b_i[42] = 1'b0;
+end 
+// data_b_i[ 41 ]
+initial
+begin
+	data_b_i[41] = 1'b0;
+end 
+// data_b_i[ 40 ]
+initial
+begin
+	data_b_i[40] = 1'b0;
+end 
+// data_b_i[ 39 ]
+initial
+begin
+	data_b_i[39] = 1'b0;
+end 
+// data_b_i[ 38 ]
+initial
+begin
+	data_b_i[38] = 1'b0;
+end 
+// data_b_i[ 37 ]
+initial
+begin
+	data_b_i[37] = 1'b0;
+end 
+// data_b_i[ 36 ]
+initial
+begin
+	data_b_i[36] = 1'b0;
+end 
+// data_b_i[ 35 ]
+initial
+begin
+	data_b_i[35] = 1'b0;
+end 
+// data_b_i[ 34 ]
+initial
+begin
+	data_b_i[34] = 1'b0;
+end 
+// data_b_i[ 33 ]
+initial
+begin
+	data_b_i[33] = 1'b0;
+end 
+// data_b_i[ 32 ]
+initial
+begin
+	data_b_i[32] = 1'b0;
+end 
+// data_b_i[ 31 ]
+initial
+begin
+	data_b_i[31] = 1'b0;
+end 
+// data_b_i[ 30 ]
+initial
+begin
+	data_b_i[30] = 1'b0;
+end 
+// data_b_i[ 29 ]
+initial
+begin
+	data_b_i[29] = 1'b0;
+end 
+// data_b_i[ 28 ]
+initial
+begin
+	data_b_i[28] = 1'b0;
+end 
+// data_b_i[ 27 ]
+initial
+begin
+	data_b_i[27] = 1'b0;
+end 
+// data_b_i[ 26 ]
+initial
+begin
+	data_b_i[26] = 1'b0;
+end 
+// data_b_i[ 25 ]
+initial
+begin
+	data_b_i[25] = 1'b0;
+end 
+// data_b_i[ 24 ]
+initial
+begin
+	data_b_i[24] = 1'b0;
+end 
+// data_b_i[ 23 ]
+initial
+begin
+	data_b_i[23] = 1'b0;
+end 
+// data_b_i[ 22 ]
+initial
+begin
+	data_b_i[22] = 1'b0;
+end 
+// data_b_i[ 21 ]
+initial
+begin
+	data_b_i[21] = 1'b0;
+end 
+// data_b_i[ 20 ]
+initial
+begin
+	data_b_i[20] = 1'b0;
+end 
+// data_b_i[ 19 ]
+initial
+begin
+	data_b_i[19] = 1'b0;
+end 
+// data_b_i[ 18 ]
+initial
+begin
+	data_b_i[18] = 1'b0;
+end 
+// data_b_i[ 17 ]
+initial
+begin
+	data_b_i[17] = 1'b0;
+end 
+// data_b_i[ 16 ]
+initial
+begin
+	data_b_i[16] = 1'b0;
+end 
+// data_b_i[ 15 ]
+initial
+begin
+	data_b_i[15] = 1'b0;
+end 
+// data_b_i[ 14 ]
+initial
+begin
+	data_b_i[14] = 1'b0;
+end 
+// data_b_i[ 13 ]
+initial
+begin
+	data_b_i[13] = 1'b0;
+end 
+// data_b_i[ 12 ]
+initial
+begin
+	data_b_i[12] = 1'b0;
+end 
+// data_b_i[ 11 ]
+initial
+begin
+	data_b_i[11] = 1'b0;
+end 
+// data_b_i[ 10 ]
+initial
+begin
+	data_b_i[10] = 1'b0;
+end 
+// data_b_i[ 9 ]
+initial
+begin
+	data_b_i[9] = 1'b0;
+end 
+// data_b_i[ 8 ]
+initial
+begin
+	data_b_i[8] = 1'b0;
+end 
+// data_b_i[ 7 ]
+initial
+begin
+	data_b_i[7] = 1'b0;
+end 
+// data_b_i[ 6 ]
+initial
+begin
+	data_b_i[6] = 1'b0;
+end 
+// data_b_i[ 5 ]
+initial
+begin
+	data_b_i[5] = 1'b0;
+end 
+// data_b_i[ 4 ]
+initial
+begin
+	data_b_i[4] = 1'b0;
+end 
+// data_b_i[ 3 ]
+initial
+begin
+	data_b_i[3] = 1'b0;
+end 
+// data_b_i[ 2 ]
+initial
+begin
+	data_b_i[2] = 1'b0;
+end 
+// data_b_i[ 1 ]
+initial
+begin
+	data_b_i[1] = 1'b0;
+end 
+// data_b_i[ 0 ]
+initial
+begin
+	data_b_i[0] = 1'b0;
+end 
+// data_l_i[ 3 ]
+initial
+begin
+	data_l_i[3] = 1'b0;
+end 
+// data_l_i[ 2 ]
+initial
+begin
+	data_l_i[2] = 1'b0;
+end 
+// data_l_i[ 1 ]
+initial
+begin
+	data_l_i[1] = 1'b0;
+end 
+// data_l_i[ 0 ]
+initial
+begin
+	data_l_i[0] = 1'b0;
+end 
+
+// rst_i
+initial
+begin
+	rst_i = 1'b1;
+	rst_i = #20000 1'b0;
+end 
+
+// rx_i
+initial
+begin
+	rx_i = 1'b0;
+end 
+// sign[ 1 ]
+initial
+begin
+	sign[1] = 1'b0;
+end 
+// sign[ 0 ]
+initial
+begin
+	sign[0] = 1'b0;
+end 
+
+// type
+initial
+begin
+	type = 1'b0;
+end 
+endmodule
+

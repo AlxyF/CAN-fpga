@@ -1,0 +1,145 @@
+Determining the location of the ModelSim executable...
+
+Using: C:\intelFPGA\20.1\modelsim_ase\win32aloem
+
+To specify a ModelSim executable directory, select: Tools -> Options -> EDA Tool Options
+Note: if both ModelSim-Altera and ModelSim executables are available, ModelSim-Altera will be used.
+
+**** Generating the ModelSim Testbench ****
+
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CAN -c CAN --vector_source="C:/hdl_projects/Can/Custom_Can/Waveform1.vwf" --testbench_file="C:/hdl_projects/Can/Custom_Can/simulation/qsim/Waveform1.vwf.vt"
+
+Info: *******************************************************************
+Info: Running Quartus Prime EDA Netlist Writer
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Copyright (C) 2020  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Tue Oct 06 20:28:39 2020
+Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CAN -c CAN --vector_source=C:/hdl_projects/Can/Custom_Can/Waveform1.vwf --testbench_file=C:/hdl_projects/Can/Custom_Can/simulation/qsim/Waveform1.vwf.vt
+Info (119006): Selected device EP4CE6E22C8 for design "CAN"
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+
+count[4]" in vector source file when writing test bench files
+
+Completed successfully. 
+
+Completed successfully. 
+
+**** Generating the functional simulation netlist ****
+
+quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/hdl_projects/Can/Custom_Can/simulation/qsim/" CAN -c CAN
+
+Info: *******************************************************************
+Info: Running Quartus Prime EDA Netlist Writer
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Copyright (C) 2020  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Tue Oct 06 20:28:40 2020
+Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/hdl_projects/Can/Custom_Can/simulation/qsim/ CAN -c CAN
+Info (119006): Selected device EP4CE6E22C8 for design "CAN"
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (204019): Generated file CAN.vo in folder "C:/hdl_projects/Can/Custom_Can/simulation/qsim//" for EDA simulation tool
+Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4653 megabytes
+    Info: Processing ended: Tue Oct 06 20:28:41 2020
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+Completed successfully. 
+
+**** Generating the ModelSim .do script ****
+
+C:/hdl_projects/Can/Custom_Can/simulation/qsim/CAN.do generated.
+
+Completed successfully. 
+
+**** Running the ModelSim simulation ****
+
+C:/intelFPGA/20.1/modelsim_ase/win32aloem/vsim -c -do CAN.do
+
+Reading pref.tcl
+
+# 2020.1
+
+
+# do CAN.do
+# ** Warning: (vlib-34) Library already exists at "work".
+
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:28:42 on Oct 06,2020
+# vlog -work work CAN.vo 
+# -- Compiling module can_top
+# 
+# Top level modules:
+# 	can_top
+# End time: 20:28:42 on Oct 06,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:28:42 on Oct 06,2020
+# vlog -work work Waveform1.vwf.vt 
+# -- Compiling module can_top_vlg_vec_tst
+# 
+# Top level modules:
+# 	can_top_vlg_vec_tst
+
+# End time: 20:28:42 on Oct 06,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+
+# vsim -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.can_top_vlg_vec_tst 
+# Start time: 20:28:42 on Oct 06,2020
+# Loading work.can_top_vlg_vec_tst
+# Loading work.can_top
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# Loading cycloneive_ver.cycloneive_lcell_comb
+# Loading altera_ver.dffeas
+# Loading altera_ver.PRIM_GDFF_LOW
+# after#25
+
+# ** Note: $finish    : Waveform1.vwf.vt(81)
+#    Time: 1 us  Iteration: 0  Instance: /can_top_vlg_vec_tst
+# End time: 20:28:42 on Oct 06,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+
+Completed successfully. 
+
+**** Converting ModelSim VCD to vector waveform ****
+
+Reading C:/hdl_projects/Can/Custom_Can/Waveform1.vwf...
+
+Reading C:/hdl_projects/Can/Custom_Can/simulation/qsim/CAN.msim.vcd...
+
+Processing channel transitions... 
+
+Writing the resulting VWF to C:/hdl_projects/Can/Custom_Can/simulation/qsim/CAN_20201006202842.sim.vwf
+
+Finished VCD to VWF conversion.
+
+Completed successfully. 
+
+All completed.

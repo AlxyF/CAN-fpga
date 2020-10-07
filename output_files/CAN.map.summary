@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Fri Oct 02 16:54:34 2020
+Analysis & Synthesis Status : Successful - Tue Oct 06 20:28:34 2020
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : CAN
 Top-level Entity Name : can_top
 Family : Cyclone IV E
-Total logic elements : 153
-    Total combinational functions : 138
-    Dedicated logic registers : 72
-Total registers : 72
-Total pins : 120
+Total logic elements : 205
+    Total combinational functions : 204
+    Dedicated logic registers : 75
+Total registers : 75
+Total pins : 123
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0
