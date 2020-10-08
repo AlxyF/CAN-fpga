@@ -12,6 +12,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "test_can_state[0]",
+					"strict" : false
+				},
+				{
 					"name" : "test_can_state[1]",
 					"strict" : false
 				},
@@ -44,35 +48,35 @@
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[0]",
+					"name" : "test_bit_count[0]",
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[1]",
+					"name" : "test_bit_count[1]",
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[2]",
+					"name" : "test_bit_count[2]",
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[3]",
+					"name" : "test_bit_count[3]",
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[4]",
+					"name" : "test_bit_count[4]",
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[5]",
+					"name" : "test_bit_count[5]",
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[6]",
+					"name" : "test_bit_count[6]",
 					"strict" : false
 				},
 				{
-					"name" : "bit_count[7]",
+					"name" : "test_bit_count[7]",
 					"strict" : false
 				},
 				{
@@ -85,10 +89,6 @@
 				},
 				{
 					"name" : "test_bit_pol_count[2]",
-					"strict" : false
-				},
-				{
-					"name" : "test_last_bit",
 					"strict" : false
 				},
 				{

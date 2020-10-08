@@ -23,6 +23,7 @@ quit -f
 
 
 
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -41,6 +42,7 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
 
 
 
@@ -272,7 +274,7 @@ SIGNAL("bit_stuffed")
 	PARENT = "";
 }
 
-SIGNAL("bit_count")
+SIGNAL("test_bit_count")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = BUS;
@@ -282,84 +284,84 @@ SIGNAL("bit_count")
 	PARENT = "";
 }
 
-SIGNAL("bit_count[7]")
+SIGNAL("test_bit_count[7]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
-SIGNAL("bit_count[6]")
+SIGNAL("test_bit_count[6]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
-SIGNAL("bit_count[5]")
+SIGNAL("test_bit_count[5]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
-SIGNAL("bit_count[4]")
+SIGNAL("test_bit_count[4]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
-SIGNAL("bit_count[3]")
+SIGNAL("test_bit_count[3]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
-SIGNAL("bit_count[2]")
+SIGNAL("test_bit_count[2]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
-SIGNAL("bit_count[1]")
+SIGNAL("test_bit_count[1]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
-SIGNAL("bit_count[0]")
+SIGNAL("test_bit_count[0]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "bit_count";
+	PARENT = "test_bit_count";
 }
 
 TRANSITION_LIST("test_can_tx_state[7]")
@@ -521,7 +523,7 @@ TRANSITION_LIST("bit_stuffed")
 	}
 }
 
-TRANSITION_LIST("bit_count[7]")
+TRANSITION_LIST("test_bit_count[7]")
 {
 	NODE
 	{
@@ -530,7 +532,7 @@ TRANSITION_LIST("bit_count[7]")
 	}
 }
 
-TRANSITION_LIST("bit_count[6]")
+TRANSITION_LIST("test_bit_count[6]")
 {
 	NODE
 	{
@@ -539,7 +541,7 @@ TRANSITION_LIST("bit_count[6]")
 	}
 }
 
-TRANSITION_LIST("bit_count[5]")
+TRANSITION_LIST("test_bit_count[5]")
 {
 	NODE
 	{
@@ -548,7 +550,7 @@ TRANSITION_LIST("bit_count[5]")
 	}
 }
 
-TRANSITION_LIST("bit_count[4]")
+TRANSITION_LIST("test_bit_count[4]")
 {
 	NODE
 	{
@@ -557,7 +559,7 @@ TRANSITION_LIST("bit_count[4]")
 	}
 }
 
-TRANSITION_LIST("bit_count[3]")
+TRANSITION_LIST("test_bit_count[3]")
 {
 	NODE
 	{
@@ -566,7 +568,7 @@ TRANSITION_LIST("bit_count[3]")
 	}
 }
 
-TRANSITION_LIST("bit_count[2]")
+TRANSITION_LIST("test_bit_count[2]")
 {
 	NODE
 	{
@@ -575,7 +577,7 @@ TRANSITION_LIST("bit_count[2]")
 	}
 }
 
-TRANSITION_LIST("bit_count[1]")
+TRANSITION_LIST("test_bit_count[1]")
 {
 	NODE
 	{
@@ -584,7 +586,7 @@ TRANSITION_LIST("bit_count[1]")
 	}
 }
 
-TRANSITION_LIST("bit_count[0]")
+TRANSITION_LIST("test_bit_count[0]")
 {
 	NODE
 	{
@@ -780,7 +782,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count";
+	CHANNEL = "test_bit_count";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 19;
@@ -790,7 +792,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[7]";
+	CHANNEL = "test_bit_count[7]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 20;
@@ -800,7 +802,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[6]";
+	CHANNEL = "test_bit_count[6]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 21;
@@ -810,7 +812,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[5]";
+	CHANNEL = "test_bit_count[5]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 22;
@@ -820,7 +822,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[4]";
+	CHANNEL = "test_bit_count[4]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 23;
@@ -830,7 +832,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[3]";
+	CHANNEL = "test_bit_count[3]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 24;
@@ -840,7 +842,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[2]";
+	CHANNEL = "test_bit_count[2]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 25;
@@ -850,7 +852,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[1]";
+	CHANNEL = "test_bit_count[1]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 26;
@@ -860,7 +862,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "bit_count[0]";
+	CHANNEL = "test_bit_count[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 27;

@@ -19,7 +19,7 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "10/07/2020 19:41:49"
+// Generated on "10/08/2020 15:04:13"
                                                                                 
 // Verilog Test Bench (with test vectors) for design :                          can_top
 // 
@@ -30,20 +30,13 @@
 module can_top_vlg_vec_tst();
 // constants                                           
 // general purpose registers
-reg [5:0] address_recipient;
-reg [5:0] address_sender;
 reg clk_i;
-reg command_or_data;
-reg [63:0] data_b_i;
-reg [3:0] data_l_i;
 reg rst_i;
 reg rx_i;
-reg [1:0] sign;
 // wires                                               
-wire [7:0] bit_count;
 wire bit_stuffed;
-wire [7:0] data_o;
 wire rx_busy;
+wire [7:0] test_bit_count;
 wire [3:0] test_bit_pol_count;
 wire [2:0] test_can_state;
 wire [7:0] test_can_tx_state;
@@ -55,19 +48,12 @@ wire tx_o;
 // assign statements (if any)                          
 can_top i1 (
 // port map - connection between master ports and signals/registers   
-	.address_recipient(address_recipient),
-	.address_sender(address_sender),
-	.bit_count(bit_count),
 	.bit_stuffed(bit_stuffed),
 	.clk_i(clk_i),
-	.command_or_data(command_or_data),
-	.data_b_i(data_b_i),
-	.data_l_i(data_l_i),
-	.data_o(data_o),
 	.rst_i(rst_i),
 	.rx_busy(rx_busy),
 	.rx_i(rx_i),
-	.sign(sign),
+	.test_bit_count(test_bit_count),
 	.test_bit_pol_count(test_bit_pol_count),
 	.test_can_state(test_can_state),
 	.test_can_tx_state(test_can_tx_state),

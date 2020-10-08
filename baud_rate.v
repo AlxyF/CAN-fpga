@@ -1,9 +1,9 @@
 module baud_rate
 #(
 	parameter FREQ_I = 50_000_000,
-	parameter FREQ_O = 1_000_000,
+	parameter FREQ_O = 50_000,
 	
-	parameter END_COUNT = 4 // FREQ_I/(FREQ_O*2) - 1
+	parameter END_COUNT = FREQ_I/(FREQ_O*2) - 1
 )(	
 	input rst_i,
 	input clk_i,
