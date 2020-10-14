@@ -92,11 +92,135 @@
 					"strict" : false
 				},
 				{
+					"name" : "test_rx_state[0]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_state[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_state[2]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_state[3]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_state[4]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_state[5]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_state[7]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[3]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[4]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[5]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[6]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[7]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[8]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[9]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_quant_count[10]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[3]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[4]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[5]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[6]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_count[7]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_pol_count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_pol_count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_pol_count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_bit_stuffed",
+					"strict" : false
+				},
+				{
 					"name" : "rst_i",
 					"strict" : false
 				},
 				{
 					"name" : "clk_i",
+					"strict" : false
+				},
+				{
+					"name" : "rx_i",
 					"strict" : false
 				}
 			]

@@ -31,8 +31,26 @@ assign test_tx_state      = TX_STATE;
 assign test_bit_count     = bit_count_reg;  
 assign test_bit_pol_count = bit_pol_count;
 
-
 reg [6:0] count;
+//<CRC>
+wire [14:0] crc;
+wire crc_en;
+assign crc_en = ( TX_STATE == TX_IDLE 				|| 
+						TX_STATE == TX_START_OF_FRAME ||
+						TX_STATE == TX_BIT_STUFF 		||
+						TX_STATE == TX_CRC ) ? 1'b0 : 1'b1;
+						
+reg crc_rst_i;
+can_crc can_crc_instance
+(
+	.clk_can_i	(clk_can_i),
+	.rst_i		(rst_i),
+	.data_i		(tx_o),
+	.en_i			(crc_en),
+	.crc_reg_o	(crc),
+	.crc_rst_i  (crc_rst_i)
+);
+//</CRC>
 
 //<Bit stuff>
 reg [7:0] 	bit_count_reg;					
@@ -83,6 +101,7 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 	   bit_pol_count 			<= 3'd1;
 		bit_stuff_bit			<= 1'b0;
 		last_bit					<= 1'b0;
+		crc_rst_i 				<= 1'b0;
 	end else begin
 		if ( TX_STATE != TX_IDLE  ) begin
 			last_bit 		<= tx_o;
@@ -92,9 +111,10 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 		TX_IDLE: 			begin	
 									count 			<= 3'd0;
 									bit_count_reg 	<= 8'd0;
-									//crc_reg			<= 15'd0;
 									if ( tx_start_i ) begin									
 										TX_STATE			<= TX_START_OF_FRAME;
+										
+										
 									end
 								end																		
 		// <MAC-level>
@@ -107,7 +127,8 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 		// 1 bit 
 		TX_START_OF_FRAME:begin											
 									TX_STATE 	  	<= TX_MESSAGE_TYPE;
-									NEXT_TX_STATE 	<= TX_MESSAGE_TYPE;								
+									NEXT_TX_STATE 	<= TX_MESSAGE_TYPE;
+									crc_rst_i      <= 1'b0;							
 								end					
 		
 		//	IDE and SRR are placed between 18 and 17 bit of 29 bit extended arbitration field
@@ -144,6 +165,7 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 									if ( count == 7'd14 ) begin
 										count 			<= 7'd0;
 										TX_STATE 		<= TX_CRC_DELIMITER;
+										crc_rst_i      <= 1'b1;
 									end else begin
 										count 			<= count + 1'b1;
 									end		
@@ -266,7 +288,7 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 										if ( count == 7'd63 ) begin
 											count					<= 7'd0;
 											TX_STATE 			<= TX_CRC;
-											NEXT_TX_STATE 		<= TX_CRC;	
+											NEXT_TX_STATE 		<= TX_CRC;
 										end else begin
 											count 				<= count + 1'b1;
 										end		
@@ -311,37 +333,6 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 	end
 end
 
-
-//<CRC>
-reg [14:0] 	crc_reg;
-wire 			crc_next;
-wire [14:0] crc_tmp;
-assign crc_next = tx_o ^ crc_reg[14];
-assign crc_tmp  = {crc_reg[13:0], 1'b0};
-
-always @( posedge clk_can_i or posedge rst_i ) begin
-	if ( rst_i ) begin
-		crc_reg <= 15'h0;
-	end else begin
-			if ( 	TX_STATE != TX_IDLE 				&&
-					TX_STATE !=	TX_START_OF_FRAME &&
-					TX_STATE != TX_BIT_STUFF 		&&
-					TX_STATE !=	TX_CRC 				
-			) begin	
-				if ( crc_next ) begin 
-					crc_reg <= crc_tmp ^ 15'h4599;
-				end else begin
-					crc_reg <= crc_tmp;
-				end				
-			end else begin
-				if ( TX_STATE == TX_IDLE ) begin
-					crc_reg <= 15'd0;
-				end
-			end	
-	end
-end
-// </CRC>
-
 //<acknowledgement>
 reg tx_acknowledged_o_reg;
 assign tx_acknowledged_o = tx_acknowledged_o_reg;
@@ -358,6 +349,7 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 	end
 end
 //</acknowledgement>
+
 reg [1:0] atribute = 2'b10;
 reg rtr = 1'b0;
 assign tx_o = TX_STATE == TX_START_OF_FRAME 		? 1'b0 									:												
@@ -374,7 +366,7 @@ assign tx_o = TX_STATE == TX_START_OF_FRAME 		? 1'b0 									:
 				( TX_STATE == TX_RESERVED 				? 1'b0									:
 				( TX_STATE == TX_DLC 					? dlc					[7'd3 - count]	:
 				( TX_STATE == TX_DATA 					? tx_data			[7'd63 - count]:
-				( TX_STATE == TX_CRC 					? crc_reg         [7'd14 - count]:
+				( TX_STATE == TX_CRC 					? crc		         [7'd14 - count]:
 				( TX_STATE == TX_CRC_DELIMITER 		? 1'b1									:
 				( TX_STATE == TX_ACK_SLOT 				? 1'b1									:
 				( TX_STATE == TX_ACK_DELIMITER 		? 1'b1									:

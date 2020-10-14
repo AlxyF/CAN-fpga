@@ -29,7 +29,13 @@ module can_top
 	output [7:0] test_bit_count,
 	output [3:0] test_bit_pol_count,
 	output reg bit_stuffed,
-	output test_last_bit
+	output test_last_bit,
+    
+    output [7:0]  test_rx_state,
+    output [11:0] test_rx_quant_count,
+    output [7:0]  test_rx_bit_count,
+    output [3:0]  test_rx_bit_pol_count,
+    output        test_rx_bit_stuffed  
 );
 
 
@@ -54,11 +60,13 @@ reg [63:0] tx_data 				= 64'b001100010011001000110011001101000011010100110110001
 //</input>
 
 reg 	 tx_start;
+reg 	 rx_start;
 
 localparam 	CAN_IDLE 		= 0;
-localparam 	CAN_RX   		= 1;
-localparam  CAN_START_TX   = 2;
-localparam 	CAN_TX   		= 3;
+localparam 	CAN_START_RX   = 1;
+localparam  CAN_RX			= 2;
+localparam  CAN_START_TX   = 3;
+localparam 	CAN_TX   		= 4;
 
 reg[3:0] 	CAN_STATE;	
 		
@@ -69,16 +77,22 @@ always @( posedge clk_can or posedge rst_i ) begin
 	end else begin
 		case ( CAN_STATE )
 		CAN_IDLE:		begin
-								CAN_STATE <= CAN_START_TX;							
+								CAN_STATE <= CAN_START_RX;							
+							end
+		CAN_START_RX:	begin
+								CAN_STATE 	<= CAN_RX;
+								rx_start 	<= 1'b1;								
 							end
 		CAN_RX:			begin
-			
+								CAN_STATE	<= CAN_IDLE;
+								//rx_start 	<= 1'b0;
 							end
 		CAN_START_TX:	begin
 								CAN_STATE 	<= CAN_TX;
 								tx_start 	<= 1'b1;
 							end
 		CAN_TX:			begin
+								
 								tx_start  	<= 1'b0;
 							end
 		endcase
@@ -101,12 +115,12 @@ can_tx can_tx_instance
 	
 	.message_type			(tx_message_type),
 	.local_address			(tx_local_address),
-	.remote_address		(tx_remote_address),
+	.remote_address		    (tx_remote_address),
 	.handshake				(tx_handshake),
 	.expand_count			(tx_expand_count),
 	.cmd_data_sign			(tx_cmd_data_sign),
-	.dlc						(tx_dlc),
-	.tx_data					(tx_data),
+	.dlc					(tx_dlc),
+	.tx_data				(tx_data),
 	
 	//test
 	.test_tx_state  		(test_can_tx_state),
@@ -118,14 +132,26 @@ can_tx can_tx_instance
 can_rx can_rx_instance
 (
 	.rst_i	  		(rst_i),
+    .rx_i           (rx_i),
+    .clk_i          (clk_i),
 	.clk_can_i 		(clk_can),
+    .can_clk_sync_o (can_clk_sync),
+    .rx_start_i     (rx_start),
+    
+    //test
+    .test_rx_state      (test_rx_state),
+    .test_quant_count   (test_rx_quant_count),
+    .test_bit_count     (test_rx_bit_count),
+    .test_bit_pol_count (test_rx_bit_pol_count),
+    .test_rx_bit_stuffed (test_rx_bit_stuffed)
 );
 							
-baud_rate baud_rate_gen
+can_clk can_clk_instance
 (
 	.rst_i 			(rst_i),
 	.clk_i 			(clk_i),
-	.baud_clk_o 	(clk_can)
+    .sync_i         (1'b0),
+	.can_clk_o 	    (clk_can)
 );
 	
 

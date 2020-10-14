@@ -1,1 +1,4 @@
 Info (10281): Verilog HDL Declaration information at can_tx.v(19): object "tx_data" differs only in case from object "TX_DATA" in the same scope File: C:/hdl_projects/CAN/can_tx.v Line: 19
+Info (10281): Verilog HDL Declaration information at can_rx.v(61): object "rx_message_type" differs only in case from object "RX_MESSAGE_TYPE" in the same scope File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 61
+Info (10281): Verilog HDL Declaration information at can_rx.v(63): object "rx_address_local" differs only in case from object "RX_ADDRESS_LOCAL" in the same scope File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 63
+Info (10281): Verilog HDL Declaration information at can_rx.v(22): object "rx_data" differs only in case from object "RX_DATA" in the same scope File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 22

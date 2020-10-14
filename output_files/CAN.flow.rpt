@@ -1,5 +1,5 @@
 Flow report for CAN
-Thu Oct 08 17:19:58 2020
+Wed Oct 14 20:58:00 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -41,22 +41,22 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Oct 08 17:19:55 2020       ;
+; Flow Status                        ; Successful - Wed Oct 14 20:58:00 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_top                                     ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE6E22C8                                 ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 221 / 6,272 ( 4 % )                         ;
-;     Total combinational functions  ; 219 / 6,272 ( 3 % )                         ;
-;     Dedicated logic registers      ; 85 / 6,272 ( 1 % )                          ;
-; Total registers                    ; 85                                          ;
-; Total pins                         ; 32 / 92 ( 35 % )                            ;
+; Total logic elements               ; 383                                         ;
+;     Total combinational functions  ; 378                                         ;
+;     Dedicated logic registers      ; 149                                         ;
+; Total registers                    ; 149                                         ;
+; Total pins                         ; 65                                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0 / 276,480 ( 0 % )                         ;
-; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                              ;
-; Total PLLs                         ; 0 / 2 ( 0 % )                               ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/08/2020 17:19:40 ;
+; Start date & time ; 10/14/2020 20:57:51 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; CAN                 ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 30902513708070.160216677914508         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 30902513708070.160269827113816         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; can_top     ; Top        ;
@@ -94,11 +94,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4769 MB             ; 00:00:16                           ;
-; Fitter               ; 00:00:04     ; 1.0                     ; 5501 MB             ; 00:00:05                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 4688 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4765 MB             ; 00:00:01                           ;
-; Total                ; 00:00:16     ; --                      ; --                  ; 00:00:23                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4769 MB             ; 00:00:17                           ;
+; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:17                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -108,9 +105,6 @@ https://fpgasoftware.intel.com/eula.
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; DESKTOP-N4TIN40  ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; DESKTOP-N4TIN40  ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; DESKTOP-N4TIN40  ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; DESKTOP-N4TIN40  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -118,9 +112,6 @@ https://fpgasoftware.intel.com/eula.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off CAN -c CAN
-quartus_fit --read_settings_files=off --write_settings_files=off CAN -c CAN
-quartus_asm --read_settings_files=off --write_settings_files=off CAN -c CAN
-quartus_sta CAN -c CAN
 
 
 
