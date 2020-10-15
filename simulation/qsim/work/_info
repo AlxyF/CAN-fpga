@@ -10,48 +10,71 @@ z2
 cModel Technology
 dC:/hdl_projects/Can/Custom_Can/simulation/qsim
 vcan_top
-Z0 !s110 1602697405
+Z0 !s110 1602778495
 !i10b 1
-!s100 W>blhH4T@dF;5JZT_AIX@0
+!s100 mZ>`@MV<dT:B9>?R@zS<[1
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IQYo=]@39TX1Nfo@HGFK>f1
+ICRf6BV9zZk[l7HW?>VS^:0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dC:/hdl_projects/CAN/simulation/qsim
-w1602697404
-8CAN.vo
-FCAN.vo
-!i122 142
-L0 32 10230
-Z4 OV;L;2020.1;71
+w1602778494
+Z4 8CAN.vo
+Z5 FCAN.vo
+!i122 184
+L0 32 10783
+Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1602697405.000000
-!s107 CAN.vo|
-!s90 -work|work|CAN.vo|
+Z7 !s108 1602778495.000000
+Z8 !s107 CAN.vo|
+Z9 !s90 -work|work|CAN.vo|
 !i113 1
-Z6 o-work work
-Z7 tCvgOpt 0
+Z10 o-work work
+Z11 tCvgOpt 0
 vcan_top_vlg_vec_tst
 R0
 !i10b 1
-!s100 _Na2Md>8P:`?3Um=<7GdL3
+!s100 M`:29kD1E8J7=Z2`L0_S=0
 R1
-I1bk<n_3Xm_jTbV35nXIR?0
+IKIQ2HUBB93>ORYkdC3WE`3
 R2
 R3
-w1602697403
+w1602778493
 8Waveform1.vwf.vt
 FWaveform1.vwf.vt
-!i122 143
-L0 30 79
-R4
+!i122 185
+L0 30 81
+R6
 r1
 !s85 0
 31
-R5
+R7
 !s107 Waveform1.vwf.vt|
 !s90 -work|work|Waveform1.vwf.vt|
 !i113 1
+R10
+R11
+vhard_block
+!s110 1602773711
+!i10b 1
+!s100 H_ie1khY5RgYCUHf1hVJD1
+R1
+IE6A?3gV?gm6BYD5a4=Baf0
+R2
+R3
+w1602773710
+R4
+R5
+!i122 174
+L0 11665 34
 R6
-R7
+r1
+!s85 0
+31
+!s108 1602773711.000000
+R8
+R9
+!i113 1
+R10
+R11

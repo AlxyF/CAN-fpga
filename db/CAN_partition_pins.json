@@ -4,6 +4,10 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "rx_busy",
+					"strict" : false
+				},
+				{
 					"name" : "tx_o",
 					"strict" : false
 				},
@@ -212,7 +216,39 @@
 					"strict" : false
 				},
 				{
-					"name" : "rst_i",
+					"name" : "test_rx_count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_count[3]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_count[4]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_count[5]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_count[6]",
+					"strict" : false
+				},
+				{
+					"name" : "test_rx_rx",
+					"strict" : false
+				},
+				{
+					"name" : "rx_i",
 					"strict" : false
 				},
 				{
@@ -220,7 +256,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "rx_i",
+					"name" : "rst_i",
 					"strict" : false
 				}
 			]

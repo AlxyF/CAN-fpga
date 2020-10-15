@@ -1,5 +1,5 @@
 Analysis & Synthesis report for CAN
-Wed Oct 14 20:58:00 2020
+Thu Oct 15 20:09:15 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -60,16 +60,16 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Oct 14 20:58:00 2020       ;
+; Analysis & Synthesis Status        ; Successful - Thu Oct 15 20:09:15 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_top                                     ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 383                                         ;
-;     Total combinational functions  ; 378                                         ;
-;     Dedicated logic registers      ; 149                                         ;
-; Total registers                    ; 149                                         ;
-; Total pins                         ; 65                                          ;
+; Total logic elements               ; 401                                         ;
+;     Total combinational functions  ; 396                                         ;
+;     Dedicated logic registers      ; 152                                         ;
+; Total registers                    ; 152                                         ;
+; Total pins                         ; 73                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -199,30 +199,30 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 383         ;
+; Estimated Total logic elements              ; 401         ;
 ;                                             ;             ;
-; Total combinational functions               ; 378         ;
+; Total combinational functions               ; 396         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 245         ;
-;     -- 3 input functions                    ; 50          ;
-;     -- <=2 input functions                  ; 83          ;
+;     -- 4 input functions                    ; 253         ;
+;     -- 3 input functions                    ; 58          ;
+;     -- <=2 input functions                  ; 85          ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 333         ;
+;     -- normal mode                          ; 351         ;
 ;     -- arithmetic mode                      ; 45          ;
 ;                                             ;             ;
-; Total registers                             ; 149         ;
-;     -- Dedicated logic registers            ; 149         ;
+; Total registers                             ; 152         ;
+;     -- Dedicated logic registers            ; 152         ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
-; I/O pins                                    ; 65          ;
+; I/O pins                                    ; 73          ;
 ;                                             ;             ;
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; rst_i~input ;
-; Maximum fan-out                             ; 136         ;
-; Total fan-out                               ; 1934        ;
-; Average fan-out                             ; 2.94        ;
+; Maximum fan-out                             ; 138         ;
+; Total fan-out                               ; 2064        ;
+; Average fan-out                             ; 2.97        ;
 +---------------------------------------------+-------------+
 
 
@@ -231,10 +231,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node       ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name ; Library Name ;
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-------------+--------------+
-; |can_top                         ; 378 (2)             ; 149 (3)                   ; 0           ; 0            ; 0       ; 0         ; 65   ; 0            ; |can_top                                                 ; can_top     ; work         ;
+; |can_top                         ; 396 (3)             ; 152 (4)                   ; 0           ; 0            ; 0       ; 0         ; 73   ; 0            ; |can_top                                                 ; can_top     ; work         ;
 ;    |can_clk:can_clk_instance|    ; 15 (15)             ; 11 (11)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_clk:can_clk_instance                        ; can_clk     ; work         ;
-;    |can_rx:can_rx_instance|      ; 187 (187)           ; 68 (68)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_rx:can_rx_instance                          ; can_rx      ; work         ;
-;    |can_tx:can_tx_instance|      ; 174 (158)           ; 67 (52)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_tx:can_tx_instance                          ; can_tx      ; work         ;
+;    |can_rx:can_rx_instance|      ; 203 (203)           ; 70 (70)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_rx:can_rx_instance                          ; can_rx      ; work         ;
+;    |can_tx:can_tx_instance|      ; 175 (159)           ; 67 (52)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_tx:can_tx_instance                          ; can_tx      ; work         ;
 ;       |can_crc:can_crc_instance| ; 16 (16)             ; 15 (15)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_tx:can_tx_instance|can_crc:can_crc_instance ; can_crc     ; work         ;
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -367,10 +367,9 @@ Encoding Type:  One-Hot
 +-------------------------------------------------------+----------------------------------------+
 ; Register name                                         ; Reason for Removal                     ;
 +-------------------------------------------------------+----------------------------------------+
-; rx_start                                              ; Stuck at VCC due to stuck port data_in ;
-; CAN_STATE~4                                           ; Lost fanout                            ;
 ; CAN_STATE~5                                           ; Lost fanout                            ;
-; CAN_STATE~7                                           ; Lost fanout                            ;
+; CAN_STATE~6                                           ; Lost fanout                            ;
+; CAN_STATE~8                                           ; Lost fanout                            ;
 ; can_rx:can_rx_instance|NEXT_RX_STATE~4                ; Lost fanout                            ;
 ; can_rx:can_rx_instance|NEXT_RX_STATE~5                ; Lost fanout                            ;
 ; can_rx:can_rx_instance|NEXT_RX_STATE~6                ; Lost fanout                            ;
@@ -402,14 +401,14 @@ Encoding Type:  One-Hot
 ; can_tx:can_tx_instance|TX_STATE~10                    ; Lost fanout                            ;
 ; can_tx:can_tx_instance|TX_STATE~11                    ; Lost fanout                            ;
 ; CAN_STATE.CAN_START_TX                                ; Stuck at GND due to stuck port data_in ;
-; CAN_STATE.CAN_TX                                      ; Stuck at GND due to stuck port data_in ;
 ; tx_start                                              ; Stuck at GND due to stuck port data_in ;
 ; can_tx:can_tx_instance|TX_STATE.TX_START_OF_FRAME     ; Stuck at GND due to stuck port data_in ;
+; CAN_STATE.CAN_TX                                      ; Stuck at GND due to stuck port data_in ;
 ; can_tx:can_tx_instance|NEXT_TX_STATE.TX_MESSAGE_TYPE  ; Stuck at GND due to stuck port data_in ;
 ; can_tx:can_tx_instance|TX_STATE.TX_MESSAGE_TYPE       ; Stuck at GND due to stuck port data_in ;
 ; can_tx:can_tx_instance|NEXT_TX_STATE.TX_ADDRESS_LOCAL ; Stuck at GND due to stuck port data_in ;
 ; can_tx:can_tx_instance|TX_STATE.TX_ADDRESS_LOCAL      ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 42                ;                                        ;
+; Total Number of Removed Registers = 41                ;                                        ;
 +-------------------------------------------------------+----------------------------------------+
 
 
@@ -418,7 +417,7 @@ Encoding Type:  One-Hot
 +------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------+
 ; Register name                                        ; Reason for Removal        ; Registers Removed due to This Register                                        ;
 +------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------+
-; CAN_STATE.CAN_START_TX                               ; Stuck at GND              ; CAN_STATE.CAN_TX, tx_start, can_tx:can_tx_instance|TX_STATE.TX_START_OF_FRAME ;
+; CAN_STATE.CAN_START_TX                               ; Stuck at GND              ; tx_start, can_tx:can_tx_instance|TX_STATE.TX_START_OF_FRAME, CAN_STATE.CAN_TX ;
 ;                                                      ; due to stuck port data_in ;                                                                               ;
 ; can_tx:can_tx_instance|NEXT_TX_STATE.TX_MESSAGE_TYPE ; Stuck at GND              ; can_tx:can_tx_instance|TX_STATE.TX_MESSAGE_TYPE,                              ;
 ;                                                      ; due to stuck port data_in ; can_tx:can_tx_instance|NEXT_TX_STATE.TX_ADDRESS_LOCAL,                        ;
@@ -431,12 +430,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 149   ;
+; Total registers                              ; 152   ;
 ; Number of registers using Synchronous Clear  ; 52    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 133   ;
+; Number of registers using Asynchronous Clear ; 134   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 47    ;
+; Number of registers using Clock Enable       ; 92    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -457,19 +456,18 @@ Encoding Type:  One-Hot
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |can_top|can_tx:can_tx_instance|bit_pol_count[1]                      ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|can_crc:can_crc_instance|crc_reg_o[7] ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |can_top|can_clk:can_clk_instance|count[5]                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_pol_count[0]                      ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_count_reg[3]                      ;
-; 4:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|quant_count[9]                        ;
-; 16:1               ; 7 bits    ; 70 LEs        ; 7 LEs                ; 63 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|count[6]                              ;
-; 16:1               ; 7 bits    ; 70 LEs        ; 7 LEs                ; 63 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|count[1]                              ;
-; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|Selector37                            ;
-; 17:1               ; 5 bits    ; 55 LEs        ; 20 LEs               ; 35 LEs                 ; No         ; |can_top|can_rx:can_rx_instance|Selector22                            ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|can_crc:can_crc_instance|crc_reg_o[9] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |can_top|can_clk:can_clk_instance|count[8]                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_pol_count[0]                      ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_count_reg[1]                      ;
+; 7:1                ; 11 bits   ; 44 LEs        ; 11 LEs               ; 33 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|quant_count[9]                        ;
+; 16:1               ; 7 bits    ; 70 LEs        ; 7 LEs                ; 63 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|count[4]                              ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|count[4]                              ;
+; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|Selector28                            ;
 ; 19:1               ; 3 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|TX_STATE                              ;
 ; 20:1               ; 4 bits    ; 52 LEs        ; 24 LEs               ; 28 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|TX_STATE                              ;
-; 23:1               ; 3 bits    ; 45 LEs        ; 12 LEs               ; 33 LEs                 ; No         ; |can_top|can_rx:can_rx_instance|RX_STATE                              ;
-; 25:1               ; 5 bits    ; 80 LEs        ; 30 LEs               ; 50 LEs                 ; No         ; |can_top|can_rx:can_rx_instance|RX_STATE                              ;
+; 13:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; No         ; |can_top|can_rx:can_rx_instance|NEXT_RX_STATE                         ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 4 LEs                ; 18 LEs                 ; No         ; |can_top|can_rx:can_rx_instance|RX_STATE                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------+
 
 
@@ -521,6 +519,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port      ; Type   ; Severity ; Details                                                                             ;
 +-----------+--------+----------+-------------------------------------------------------------------------------------+
+; clk_can_i ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; crc_reg_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +-----------+--------+----------+-------------------------------------------------------------------------------------+
 
@@ -614,27 +613,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 65                          ;
-; cycloneiii_ff         ; 149                         ;
-;     CLR               ; 71                          ;
-;     CLR SCLR          ; 19                          ;
+; boundary_port         ; 73                          ;
+; cycloneiii_ff         ; 152                         ;
+;     CLR               ; 38                          ;
+;     CLR SCLR          ; 8                           ;
 ;     ENA               ; 4                           ;
-;     ENA CLR           ; 21                          ;
-;     ENA CLR SCLR      ; 22                          ;
+;     ENA CLR           ; 55                          ;
+;     ENA CLR SCLR      ; 33                          ;
 ;     SCLR              ; 11                          ;
-;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 383                         ;
+;     plain             ; 3                           ;
+; cycloneiii_lcell_comb ; 401                         ;
 ;     arith             ; 45                          ;
 ;         2 data inputs ; 45                          ;
-;     normal            ; 338                         ;
+;     normal            ; 356                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 12                          ;
-;         2 data inputs ; 30                          ;
-;         3 data inputs ; 50                          ;
-;         4 data inputs ; 245                         ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 34                          ;
+;         3 data inputs ; 58                          ;
+;         4 data inputs ; 253                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 10.00                       ;
-; Average LUT depth     ; 5.17                        ;
+; Average LUT depth     ; 4.91                        ;
 +-----------------------+-----------------------------+
 
 
@@ -653,7 +652,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Wed Oct 14 20:57:50 2020
+    Info: Processing started: Thu Oct 15 20:09:06 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CAN -c CAN
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -669,36 +668,40 @@ Info (12021): Found 1 design units, including 1 entities, in source file can_crc
     Info (12023): Found entity 1: can_crc File: C:/hdl_projects/CAN/can_crc.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file can_clk.v
     Info (12023): Found entity 1: can_clk File: C:/hdl_projects/CAN/can_clk.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(110): created implicit net for "tx_lost" File: C:/hdl_projects/CAN/can_top.v Line: 110
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(111): created implicit net for "tx_acknowledged" File: C:/hdl_projects/CAN/can_top.v Line: 111
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(138): created implicit net for "can_clk_sync" File: C:/hdl_projects/CAN/can_top.v Line: 138
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(119): created implicit net for "tx_lost" File: C:/hdl_projects/CAN/can_top.v Line: 119
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(120): created implicit net for "tx_acknowledged" File: C:/hdl_projects/CAN/can_top.v Line: 120
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(147): created implicit net for "can_clk_sync" File: C:/hdl_projects/CAN/can_top.v Line: 147
 Info (12127): Elaborating entity "can_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at can_top.v(55): object "tx_atribute" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 55
-Warning (10230): Verilog HDL assignment warning at can_top.v(44): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/CAN/can_top.v Line: 44
-Warning (10034): Output port "rx_busy" at can_top.v(9) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 9
+Warning (10036): Verilog HDL or VHDL warning at can_top.v(61): object "tx_atribute" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 61
+Warning (10230): Verilog HDL assignment warning at can_top.v(48): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/CAN/can_top.v Line: 48
 Warning (10034): Output port "tx_busy" at can_top.v(13) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 13
 Warning (10034): Output port "bit_stuffed" at can_top.v(31) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 31
 Warning (10034): Output port "test_last_bit" at can_top.v(32) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 32
-Info (12128): Elaborating entity "can_tx" for hierarchy "can_tx:can_tx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 130
+Info (12128): Elaborating entity "can_tx" for hierarchy "can_tx:can_tx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 139
 Info (12128): Elaborating entity "can_crc" for hierarchy "can_tx:can_tx_instance|can_crc:can_crc_instance" File: C:/hdl_projects/CAN/can_tx.v Line: 52
-Info (12128): Elaborating entity "can_rx" for hierarchy "can_rx:can_rx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 147
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(61): object "rx_message_type" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 61
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(63): object "rx_address_local" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 63
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(69): object "bit_stuff_bit" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 69
-Warning (10034): Output port "remote_address" at can_rx.v(17) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 17
-Warning (10034): Output port "handshake" at can_rx.v(18) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 18
-Warning (10034): Output port "expand_count" at can_rx.v(19) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 19
-Warning (10034): Output port "cmd_data_sign" at can_rx.v(20) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 20
-Warning (10034): Output port "dlc" at can_rx.v(21) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 21
-Warning (10034): Output port "rx_data" at can_rx.v(22) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 22
-Warning (10034): Output port "rx_received_o" at can_rx.v(13) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 13
-Info (12128): Elaborating entity "can_clk" for hierarchy "can_clk:can_clk_instance" File: C:/hdl_projects/CAN/can_top.v Line: 155
+Info (12128): Elaborating entity "can_rx" for hierarchy "can_rx:can_rx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 159
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(73): object "rx_message_type" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 73
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(74): object "rx_address_local" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 74
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(75): object "rx_address_remote" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 75
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(76): object "rx_handshaking_p" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 76
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(77): object "rx_atribute_reserved" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 77
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(78): object "rx_expand_count" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 78
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(79): object "rx_cmd_data_sign" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 79
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(80): object "rx_dlc" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 80
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(81): object "rx_crc" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 81
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(88): object "bit_stuff_bit" assigned a value but never read File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 88
+Warning (10034): Output port "remote_address" at can_rx.v(18) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 18
+Warning (10034): Output port "handshake" at can_rx.v(19) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 19
+Warning (10034): Output port "expand_count" at can_rx.v(20) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 20
+Warning (10034): Output port "cmd_data_sign" at can_rx.v(21) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 21
+Warning (10034): Output port "dlc" at can_rx.v(22) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 22
+Warning (10034): Output port "rx_received_o" at can_rx.v(14) has no driver File: C:/hdl_projects/CAN/output_files/can_rx.v Line: 14
+Info (12128): Elaborating entity "can_clk" for hierarchy "can_clk:can_clk_instance" File: C:/hdl_projects/CAN/can_top.v Line: 167
 Warning (10036): Verilog HDL or VHDL warning at can_clk.v(16): object "baud_clk_o_reg" assigned a value but never read File: C:/hdl_projects/CAN/can_clk.v Line: 16
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13000): Registers with preset signals will power-up high File: C:/hdl_projects/CAN/can_tx.v Line: 106
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "rx_busy" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 9
     Warning (13410): Pin "tx_busy" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 13
     Warning (13410): Pin "test_can_state[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 27
     Warning (13410): Pin "test_can_tx_state[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 28
@@ -713,14 +716,14 @@ Info (17049): 33 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/hdl_projects/CAN/output_files/CAN.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 451 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 477 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
-    Info (21059): Implemented 62 output pins
-    Info (21061): Implemented 386 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 33 warnings
-    Info: Peak virtual memory: 4769 megabytes
-    Info: Processing ended: Wed Oct 14 20:58:00 2020
-    Info: Elapsed time: 00:00:10
+    Info (21059): Implemented 70 output pins
+    Info (21061): Implemented 404 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 37 warnings
+    Info: Peak virtual memory: 4770 megabytes
+    Info: Processing ended: Thu Oct 15 20:09:15 2020
+    Info: Elapsed time: 00:00:09
     Info: Total CPU time (on all processors): 00:00:17
 
 

@@ -19,7 +19,7 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "10/14/2020 20:43:23"
+// Generated on "10/15/2020 19:14:53"
                                                                                 
 // Verilog Test Bench (with test vectors) for design :                          can_top
 // 
@@ -45,6 +45,7 @@ wire test_last_bit;
 wire [7:0] test_rx_bit_count;
 wire [3:0] test_rx_bit_pol_count;
 wire test_rx_bit_stuffed;
+wire [6:0] test_rx_count;
 wire [11:0] test_rx_quant_count;
 wire [7:0] test_rx_state;
 wire tx_busy;
@@ -67,6 +68,7 @@ can_top i1 (
 	.test_rx_bit_count(test_rx_bit_count),
 	.test_rx_bit_pol_count(test_rx_bit_pol_count),
 	.test_rx_bit_stuffed(test_rx_bit_stuffed),
+	.test_rx_count(test_rx_count),
 	.test_rx_quant_count(test_rx_quant_count),
 	.test_rx_state(test_rx_state),
 	.tx_busy(tx_busy),

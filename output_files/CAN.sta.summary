@@ -2,76 +2,76 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1200mV 85C Model Setup 'baud_rate:baud_rate_gen|baud_clk_o_reg'
-Slack : -5.825
-TNS   : -311.363
+Type  : Slow 1200mV 85C Model Setup 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : -6.034
+TNS   : -289.898
 
 Type  : Slow 1200mV 85C Model Setup 'clk_i'
-Slack : -3.021
-TNS   : -22.481
+Slack : -5.561
+TNS   : -316.248
 
-Type  : Slow 1200mV 85C Model Hold 'baud_rate:baud_rate_gen|baud_clk_o_reg'
-Slack : 0.432
+Type  : Slow 1200mV 85C Model Hold 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 0.434
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk_i'
-Slack : 0.745
+Slack : 0.452
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_i'
 Slack : -3.000
-TNS   : -19.357
+TNS   : -121.960
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'baud_rate:baud_rate_gen|baud_clk_o_reg'
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'can_clk:can_clk_instance|can_clk_o_reg'
 Slack : -1.487
-TNS   : -111.525
+TNS   : -107.064
 
-Type  : Slow 1200mV 0C Model Setup 'baud_rate:baud_rate_gen|baud_clk_o_reg'
-Slack : -5.409
-TNS   : -288.566
+Type  : Slow 1200mV 0C Model Setup 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : -5.614
+TNS   : -268.431
 
 Type  : Slow 1200mV 0C Model Setup 'clk_i'
-Slack : -2.773
-TNS   : -19.893
+Slack : -5.060
+TNS   : -290.221
 
-Type  : Slow 1200mV 0C Model Hold 'baud_rate:baud_rate_gen|baud_clk_o_reg'
-Slack : 0.382
+Type  : Slow 1200mV 0C Model Hold 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 0.383
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'clk_i'
-Slack : 0.693
+Slack : 0.401
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_i'
 Slack : -3.000
-TNS   : -19.357
+TNS   : -121.960
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'baud_rate:baud_rate_gen|baud_clk_o_reg'
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'can_clk:can_clk_instance|can_clk_o_reg'
 Slack : -1.487
-TNS   : -111.525
+TNS   : -107.064
 
-Type  : Fast 1200mV 0C Model Setup 'baud_rate:baud_rate_gen|baud_clk_o_reg'
-Slack : -1.942
-TNS   : -91.995
+Type  : Fast 1200mV 0C Model Setup 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : -1.995
+TNS   : -84.160
 
 Type  : Fast 1200mV 0C Model Setup 'clk_i'
-Slack : -0.714
-TNS   : -2.914
+Slack : -1.773
+TNS   : -91.138
 
-Type  : Fast 1200mV 0C Model Hold 'baud_rate:baud_rate_gen|baud_clk_o_reg'
-Slack : 0.178
+Type  : Fast 1200mV 0C Model Hold 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 0.179
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'clk_i'
-Slack : 0.298
+Slack : 0.186
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_i'
 Slack : -3.000
-TNS   : -17.352
+TNS   : -106.620
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'baud_rate:baud_rate_gen|baud_clk_o_reg'
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'can_clk:can_clk_instance|can_clk_o_reg'
 Slack : -1.000
-TNS   : -75.000
+TNS   : -72.000
 
 ------------------------------------------------------------

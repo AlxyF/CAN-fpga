@@ -26,7 +26,7 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Wed Oct 14 20:43:22 2020
+    Info: Processing started: Thu Oct 15 19:14:52 2020
 Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CAN -c CAN --vector_source=C:/hdl_projects/Can/Waveform1.vwf --testbench_file=C:/hdl_projects/Can/simulation/qsim/Waveform1.vwf.vt
 Info (119006): Selected device EP4CE6E22C8 for design "CAN"
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -58,14 +58,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Wed Oct 14 20:43:23 2020
+    Info: Processing started: Thu Oct 15 19:14:53 2020
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/hdl_projects/Can/simulation/qsim/ CAN -c CAN
 Info (119006): Selected device EP4CE6E22C8 for design "CAN"
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file CAN.vo in folder "C:/hdl_projects/Can/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4651 megabytes
-    Info: Processing ended: Wed Oct 14 20:43:24 2020
+    Info: Processing ended: Thu Oct 15 19:14:54 2020
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
@@ -89,28 +89,28 @@ Reading pref.tcl
 # ** Warning: (vlib-34) Library already exists at "work".
 
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:43:25 on Oct 14,2020
+# Start time: 19:14:55 on Oct 15,2020
 # vlog -work work CAN.vo 
 # -- Compiling module can_top
 
 # 
 # Top level modules:
 # 	can_top
-# End time: 20:43:25 on Oct 14,2020, Elapsed time: 0:00:00
+# End time: 19:14:55 on Oct 15,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:43:25 on Oct 14,2020
+# Start time: 19:14:55 on Oct 15,2020
 # vlog -work work Waveform1.vwf.vt 
 
 # -- Compiling module can_top_vlg_vec_tst
 # 
 # Top level modules:
 # 	can_top_vlg_vec_tst
-# End time: 20:43:25 on Oct 14,2020, Elapsed time: 0:00:00
+# End time: 19:14:55 on Oct 15,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
 # vsim -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.can_top_vlg_vec_tst 
-# Start time: 20:43:25 on Oct 14,2020
+# Start time: 19:14:55 on Oct 15,2020
 # Loading work.can_top_vlg_vec_tst
 # Loading work.can_top
 # Loading cycloneive_ver.cycloneive_io_obuf
@@ -120,9 +120,9 @@ Reading pref.tcl
 # Loading altera_ver.PRIM_GDFF_LOW
 # after#25
 
-# ** Note: $finish    : Waveform1.vwf.vt(77)
+# ** Note: $finish    : Waveform1.vwf.vt(79)
 #    Time: 1 us  Iteration: 0  Instance: /can_top_vlg_vec_tst
-# End time: 20:43:25 on Oct 14,2020, Elapsed time: 0:00:00
+# End time: 19:14:55 on Oct 15,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
 Completed successfully. 
@@ -135,7 +135,7 @@ Reading C:/hdl_projects/CAN/simulation/qsim/CAN.msim.vcd...
 
 Processing channel transitions... 
 
-Writing the resulting VWF to C:/hdl_projects/CAN/simulation/qsim/CAN_20201014204325.sim.vwf
+Writing the resulting VWF to C:/hdl_projects/CAN/simulation/qsim/CAN_20201015191455.sim.vwf
 
 Finished VCD to VWF conversion.
 
