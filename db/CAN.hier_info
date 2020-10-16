@@ -6,9 +6,9 @@ rx_busy << can_rx:can_rx_instance.rx_busy_o
 tx_o << can_tx:can_tx_instance.tx_o
 tx_busy << <GND>
 test_clk_can << clk_can.DB_MAX_OUTPUT_PORT_TYPE
-test_can_state[0] << test_can_state.DB_MAX_OUTPUT_PORT_TYPE
-test_can_state[1] << test_can_state.DB_MAX_OUTPUT_PORT_TYPE
-test_can_state[2] << test_can_state[2].DB_MAX_OUTPUT_PORT_TYPE
+test_can_state[0] << WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+test_can_state[1] << WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+test_can_state[2] << WideOr0.DB_MAX_OUTPUT_PORT_TYPE
 test_can_tx_state[0] << can_tx:can_tx_instance.test_tx_state[0]
 test_can_tx_state[1] << can_tx:can_tx_instance.test_tx_state[1]
 test_can_tx_state[2] << can_tx:can_tx_instance.test_tx_state[2]
@@ -72,6 +72,7 @@ test_rx_count[4] << can_rx:can_rx_instance.test_rx_count
 test_rx_count[5] << can_rx:can_rx_instance.test_rx_count
 test_rx_count[6] << can_rx:can_rx_instance.test_rx_count
 test_rx_rx << can_rx:can_rx_instance.test_rx_rx
+test_sample << can_rx:can_rx_instance.test_sample
 
 
 |can_top|can_tx:can_tx_instance
@@ -300,10 +301,10 @@ crc_reg_o[14] <= crc_reg_o[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 |can_top|can_rx:can_rx_instance
 rst_i => rst_i.IN1
-clk_i => rx_bit_stuffed.CLK
 clk_i => bit_pol_count[0].CLK
 clk_i => bit_pol_count[1].CLK
 clk_i => bit_pol_count[2].CLK
+clk_i => rx_bit_stuffed.CLK
 clk_i => rx_i_last.CLK
 clk_i => can_clk_sync_o~reg0.CLK
 clk_i => rx_data[0]~reg0.CLK
@@ -370,6 +371,23 @@ clk_i => rx_data[60]~reg0.CLK
 clk_i => rx_data[61]~reg0.CLK
 clk_i => rx_data[62]~reg0.CLK
 clk_i => rx_data[63]~reg0.CLK
+clk_i => test_reg_on.CLK
+clk_i => crc_calc[0].CLK
+clk_i => crc_calc[1].CLK
+clk_i => crc_calc[2].CLK
+clk_i => crc_calc[3].CLK
+clk_i => crc_calc[4].CLK
+clk_i => crc_calc[5].CLK
+clk_i => crc_calc[6].CLK
+clk_i => crc_calc[7].CLK
+clk_i => crc_calc[8].CLK
+clk_i => crc_calc[9].CLK
+clk_i => crc_calc[10].CLK
+clk_i => crc_calc[11].CLK
+clk_i => crc_calc[12].CLK
+clk_i => crc_calc[13].CLK
+clk_i => crc_calc[14].CLK
+clk_i => aux_count.CLK
 clk_i => rx_busy_o~reg0.CLK
 clk_i => quant_count[0].CLK
 clk_i => quant_count[1].CLK
@@ -399,9 +417,17 @@ clk_i => bit_count_reg[4].CLK
 clk_i => bit_count_reg[5].CLK
 clk_i => bit_count_reg[6].CLK
 clk_i => bit_count_reg[7].CLK
+clk_i => test_rx_rx~reg0.CLK
 clk_i => NEXT_RX_STATE~1.DATAIN
 clk_i => RX_STATE~16.DATAIN
-clk_can_i => test_rx_rx~reg0.CLK
+clk_can_i => test_count[0].CLK
+clk_can_i => test_count[1].CLK
+clk_can_i => test_count[2].CLK
+clk_can_i => test_count[3].CLK
+clk_can_i => test_count[4].CLK
+clk_can_i => test_count[5].CLK
+clk_can_i => test_count[6].CLK
+clk_can_i => test_sample~reg0.CLK
 rx_start_i => RX_STATE.OUTPUTSELECT
 rx_start_i => RX_STATE.OUTPUTSELECT
 rx_start_i => RX_STATE.OUTPUTSELECT
@@ -439,6 +465,7 @@ rx_start_i => NEXT_RX_STATE.OUTPUTSELECT
 rx_start_i => NEXT_RX_STATE.OUTPUTSELECT
 rx_start_i => NEXT_RX_STATE.OUTPUTSELECT
 rx_start_i => NEXT_RX_STATE.OUTPUTSELECT
+rx_start_i => test_reg_on.OUTPUTSELECT
 rx_start_i => rx_data.OUTPUTSELECT
 rx_start_i => rx_data.OUTPUTSELECT
 rx_start_i => rx_data.OUTPUTSELECT
@@ -533,6 +560,22 @@ rx_start_i => quant_count[2].ENA
 rx_start_i => quant_count[1].ENA
 rx_start_i => quant_count[0].ENA
 rx_start_i => rx_busy_o~reg0.ENA
+rx_start_i => aux_count.ENA
+rx_start_i => crc_calc[14].ENA
+rx_start_i => crc_calc[13].ENA
+rx_start_i => crc_calc[12].ENA
+rx_start_i => crc_calc[11].ENA
+rx_start_i => crc_calc[10].ENA
+rx_start_i => crc_calc[9].ENA
+rx_start_i => crc_calc[8].ENA
+rx_start_i => crc_calc[7].ENA
+rx_start_i => crc_calc[6].ENA
+rx_start_i => crc_calc[5].ENA
+rx_start_i => crc_calc[4].ENA
+rx_start_i => crc_calc[3].ENA
+rx_start_i => crc_calc[2].ENA
+rx_start_i => crc_calc[1].ENA
+rx_start_i => crc_calc[0].ENA
 rx_busy_o <= rx_busy_o~reg0.DB_MAX_OUTPUT_PORT_TYPE
 can_clk_sync_o <= can_clk_sync_o~reg0.DB_MAX_OUTPUT_PORT_TYPE
 rx_received_o <= <GND>
@@ -671,6 +714,7 @@ test_rx_count[3] <= count[3].DB_MAX_OUTPUT_PORT_TYPE
 test_rx_count[4] <= count[4].DB_MAX_OUTPUT_PORT_TYPE
 test_rx_count[5] <= count[5].DB_MAX_OUTPUT_PORT_TYPE
 test_rx_count[6] <= count[6].DB_MAX_OUTPUT_PORT_TYPE
+test_sample <= test_sample~reg0.DB_MAX_OUTPUT_PORT_TYPE
 test_rx_rx <= test_rx_rx~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 

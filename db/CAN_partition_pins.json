@@ -24,6 +24,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "test_can_state[2]",
+					"strict" : false
+				},
+				{
 					"name" : "test_can_tx_state[0]",
 					"strict" : false
 				},
@@ -245,6 +249,10 @@
 				},
 				{
 					"name" : "test_rx_rx",
+					"strict" : false
+				},
+				{
+					"name" : "test_sample",
 					"strict" : false
 				},
 				{

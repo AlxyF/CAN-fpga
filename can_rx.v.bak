@@ -1,7 +1,7 @@
 module can_rx
 #(
     parameter CLK_FREQ      = 50_000_000,
-    parameter CAN_CLK_FREQ  = 5_000_000,
+    parameter CAN_CLK_FREQ  = 1_000_000,
     parameter QUANTS        = CLK_FREQ/CAN_CLK_FREQ
 )(
     input rst_i,
@@ -32,6 +32,7 @@ module can_rx
     output        test_rx_bit_stuffed,
     
     output [6:0]  test_rx_count,
+    output reg test_sample,
     output reg test_rx_rx
 );
 // <test>
@@ -42,9 +43,29 @@ assign test_bit_pol_count  = bit_pol_count;
 assign test_rx_bit_stuffed = rx_bit_stuffed;
 assign test_rx_count       = count;
 
-always @( posedge clk_can_i ) begin
-    if ( quant_count == SAMPLE ) begin
-        test_rx_rx <= rx_i;
+//assign test_sample = ( quant_count == SAMPLE ) ? 1'b1 : 1'b0;
+reg test_reg_on = 1'b0;
+reg [6:0] test_count = 7'd0;
+always @( posedge clk_can_i ) begin   
+    if ( test_reg_on == 1'b1 ) begin
+        if ( test_count == 7'd6 ) begin
+            test_sample <= 1'b0;
+        end else begin
+            test_sample <= rx_address_remote[7'd5- test_count];
+            test_count <= test_count + 1'b1;
+        end
+    end else begin
+        test_sample <= 1'b0;
+    end
+end
+
+always @( posedge clk_i ) begin
+    if ( RX_STATE != RX_IDLE ) begin
+        if ( quant_count == SAMPLE ) begin
+            test_rx_rx <= rx_i;
+        end
+    end else begin
+        test_rx_rx <= 1'b1;
     end
 end
 // </test>
@@ -89,8 +110,9 @@ reg 	  bit_stuff_bit;
 reg       rx_bit_stuffed;
 
 reg rx_i_last;
+reg aux_count;
 
-reg [10:0] quant_count = 0;
+reg [10:0] quant_count;
 
 localparam SAMPLE = QUANTS/2;
 // 0xAx - MAC-lvl, 0xB-x - LLC-lvl
@@ -126,21 +148,29 @@ always @( posedge clk_i or posedge rst_i ) begin
         NEXT_RX_STATE           <= RX_IDLE;
         //rx_lost_o_reg           <= 1'b0;
         //rx_bit_stuffed          <= 1'b0;
+        
+        rx_address_local        <= 6'd0;
+        rx_address_remote       <= 6'd0;
+        
         bit_count_reg           <= 8'd0;        
         count                   <= 7'd0;    
         bit_stuff_bit           <= 1'b0;
         last_bit                <= 1'b0;
         crc_rst_i               <= 1'b0;
-        quant_count             <= 11'd0;
+        quant_count             <= 11'd1;
         rx_busy_o               <= 1'b0;
+        aux_count     <= 1'b0;
     end else begin
     if ( rx_start_i ) begin
-        quant_count      <= quant_count + 1'b1;
+        if ( RX_STATE != RX_IDLE ) begin
+            quant_count      <= quant_count + 1'b1;
+        end
         case ( RX_STATE )
         RX_IDLE:            begin   
                                 bit_count_reg       <= 8'd0;
                                 if ( rx_i == 1'b0 && rx_i_last == 1'b1 ) begin
                                     RX_STATE        <= RX_START_OF_FRAME;
+                                    quant_count     <= 11'd1;
                                     rx_busy_o       <= 1'b1;
                                 end
                             end                                                                     
@@ -149,51 +179,67 @@ always @( posedge clk_i or posedge rst_i ) begin
         // every 5 consequent same polarity bit add one reversed(not for CRC delimiter, ACK field and EOF)
         // 1 bit
         RX_BIT_STUFF:       begin
-                                if ( quant_count == QUANTS ) begin
-                                    RX_STATE        <= NEXT_RX_STATE;         
+                                if ( aux_count == 1'b1 ) begin
+                                    if ( quant_count == 11'd0 ) begin
+                                        RX_STATE            <= NEXT_RX_STATE;
+                                        aux_count <= 1'b0;
+                                    end
+                                end else begin
+                                    if ( quant_count == SAMPLE ) begin
+                                        aux_count <= 1'b1;
+                                    end 
                                 end
                             end             
         // 1 bit 
         RX_START_OF_FRAME:  begin
-                                crc_rst_i           <= 1'b0;        
-                                if ( quant_count == QUANTS - 1'b1 ) begin
-                                    RX_STATE        <= RX_MESSAGE_TYPE;
-                                    NEXT_RX_STATE   <= RX_MESSAGE_TYPE;
-                                    quant_count     <= 11'd0;
+                                crc_rst_i <= 1'b0; 
+                                if ( aux_count == 1'b1 ) begin  
+                                    if ( quant_count == 11'd0 ) begin
+                                        RX_STATE        <= RX_MESSAGE_TYPE;
+                                        NEXT_RX_STATE   <= RX_MESSAGE_TYPE;
+                                        aux_count       <= 1'b0;
+                                end else begin
+                                    if ( quant_count == SAMPLE ) begin
+                                        aux_count <= 1'b1;
+                                    end 
                                 end
-                            end                 
+                            end               
         
         //  IDE and SRR are placed between 18 and 17 bit of 29 bit extended arbitration field
         // 1 bit
         RX_SRR:             begin
-                                 if ( quant_count == QUANTS ) begin
-                                    RX_STATE        <= RX_IDE;
-                                    NEXT_RX_STATE   <= RX_IDE;
-                                    quant_count     <= 11'd0;
-                                 end
+                                if ( aux_count == 1'b1 ) begin
+                                     if ( quant_count == 11'd0 ) begin
+                                        RX_STATE        <= RX_IDE;
+                                        NEXT_RX_STATE   <= RX_IDE;
+                                        aux_count       <= 1'b0;
+                                     end
+                                end else begin
+                                    if ( quant_count == SAMPLE ) begin
+                                        aux_count       <= 1'b1;
+                                    end 
+                                end
                             end
         // 1 bit
         RX_IDE:             begin
-                                if ( quant_count == QUANTS ) begin
+                                if ( quant_count == 11'd0 ) begin
                                     RX_STATE        <= RX_ADDRESS_REMOTE;
                                     NEXT_RX_STATE   <= RX_ADDRESS_REMOTE;
-                                    quant_count     <= 11'd0;
                                 end
                             end
         // -- RTR-bit is 0 in the Data Frame, in the Remote Frame is 1 there and there is no Data Field 
         // in Remote Frame The DLC field indicates the data length of the requested message (not the transmitted one)
         // 1 bit
         RX_RTR:             begin
-                                if ( quant_count == QUANTS ) begin
+                                if ( quant_count == 11'd0 ) begin
                                     RX_STATE        <= RX_RESERVED;
                                     NEXT_RX_STATE   <= RX_RESERVED;
-                                    quant_count     <= 11'd0;
                                 end
                             end
         // -- r1, r0 Reserved bits which must be set dominant (0), but accepted as either dominant or recessive 
         RX_RESERVED:        begin
                                 if ( count == 7'd2 ) begin
-                                    if ( quant_count == QUANTS ) begin             
+                                    if ( quant_count == 11'd0 ) begin             
                                         RX_STATE        <= RX_DLC;
                                         NEXT_RX_STATE   <= RX_DLC;
                                         count           <= 7'd0;
@@ -223,9 +269,8 @@ always @( posedge clk_i or posedge rst_i ) begin
         // -- must be 1
         // 1 bit
         RX_CRC_DELIMITER:   begin
-                                if ( quant_count == QUANTS ) begin
+                                if ( quant_count == 11'd0 ) begin
                                     RX_STATE        <= RX_ACK_SLOT;
-                                    quant_count     <= 11'd0;
                                 end
                             end
         // -- Each node that receives the frame, without an error, transmits a 0 and thus overrides the 1 of the transmitter. 
@@ -234,25 +279,26 @@ always @( posedge clk_i or posedge rst_i ) begin
         // but another node that did receive a valid frame may override this with a dominant.
         // 1 bit
         RX_ACK_SLOT:        begin
-                                if ( quant_count == QUANTS ) begin
+                                if ( quant_count == 11'd0 ) begin
                                     RX_STATE        <= RX_ACK_DELIMITER;
-                                    quant_count     <= 11'd0;
                                 end
                             end
         // 1 bit(1)
         RX_ACK_DELIMITER:   begin
-                                if ( quant_count == QUANTS ) begin
+                                if ( quant_count == 11'd0 ) begin
                                     RX_STATE        <= RX_END_OF_FRAME;
-                                    quant_count     <= 11'd0;
                                 end
                             end
         // 7 bits(1)
         RX_END_OF_FRAME:    begin
                                 if ( count == 7'd7 ) begin
-                                    if ( quant_count == QUANTS ) begin        
+                                    if ( quant_count == 11'd0 ) begin        
                                         RX_STATE        <= RX_IDLE;
                                         count           <= 7'd0;
                                         rx_busy_o       <= 1'b0;
+                                        //
+                                        test_reg_on <= 1'b1;
+                                        //
                                     end
                                 end else begin
                                     if ( quant_count == SAMPLE ) begin
@@ -269,7 +315,7 @@ always @( posedge clk_i or posedge rst_i ) begin
                                 if ( quant_count == SAMPLE ) begin
                                     rx_message_type             <= rx_i;                                     
                                 end else begin
-                                    if ( quant_count == QUANTS ) begin
+                                    if ( quant_count == 11'd0 ) begin
                                         RX_STATE        <= RX_ADDRESS_LOCAL;
                                         NEXT_RX_STATE   <= RX_ADDRESS_LOCAL;
                                     end
@@ -278,7 +324,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //      Address local 6 bit
         RX_ADDRESS_LOCAL:   begin                              
                                 if ( count == 7'd6 ) begin
-                                    if ( quant_count == QUANTS ) begin
+                                    if ( quant_count == 11'd0 ) begin
                                         RX_STATE        <= RX_ADDRESS_REMOTE;
                                         NEXT_RX_STATE   <= RX_ADDRESS_REMOTE;
                                         count           <= 7'd0;   
@@ -293,7 +339,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //      Address remote 6 bit                
         RX_ADDRESS_REMOTE:  begin
                                 if ( count == 7'd6 ) begin
-                                    if ( quant_count == QUANTS) begin  
+                                    if ( quant_count == 11'd0) begin  
                                         RX_STATE            <= RX_HANDSHAKING_P;
                                         NEXT_RX_STATE       <= RX_HANDSHAKING_P;
                                         count               <= 7'd0;    
@@ -322,7 +368,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //      DataFrame: pointer, CommandFrame: handshaking 2 bit
         RX_HANDSHAKING_P:       begin
                                     if ( count == 7'd2 ) begin
-                                        if ( quant_count == QUANTS ) begin
+                                        if ( quant_count == 11'd0 ) begin
                                             RX_STATE            <= RX_ATRIBUTE_RESERVED;
                                             NEXT_RX_STATE       <= RX_ATRIBUTE_RESERVED;
                                             count               <= 7'd0;
@@ -337,7 +383,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //      DataFrame: reserved 2'b00, CommandFrame: 2'b10 2 bit
         RX_ATRIBUTE_RESERVED:begin
                                 if ( count == 7'd2 ) begin
-                                    if ( quant_count == QUANTS ) begin                                   
+                                    if ( quant_count == 11'd0 ) begin                                   
                                         RX_STATE            <= RX_EXPAND_COUNT;
                                         NEXT_RX_STATE       <= RX_EXPAND_COUNT;
                                         count               <= 7'd0;
@@ -352,7 +398,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //      DataFrame: frame count, CommandFrame: expand command field 4 bit        
         RX_EXPAND_COUNT:    begin
                                 if ( count == 7'd4 ) begin
-                                    if ( quant_count == QUANTS ) begin                                           
+                                    if ( quant_count == 11'd0 ) begin                                           
                                         RX_STATE            <= RX_CMD_DATA_SIGN;
                                         NEXT_RX_STATE       <= RX_CMD_DATA_SIGN;
                                         count               <= 7'd0;
@@ -367,7 +413,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //      DataFrame: type of data, CommandFrame: type of command 8 bit
         RX_CMD_DATA_SIGN:   begin
                                 if ( count == 7'd8 ) begin
-                                    if ( quant_count == QUANTS ) begin 
+                                    if ( quant_count == 11'd0 ) begin 
                                         RX_STATE            <= RX_RTR;
                                         NEXT_RX_STATE       <= RX_RTR;
                                         count               <= 7'd0;
@@ -382,7 +428,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //      DLC 4 bit
         RX_DLC:             begin
                                 if ( count == 7'd4 ) begin
-                                    if ( quant_count == QUANTS ) begin                                         
+                                    if ( quant_count == 11'd0 ) begin                                         
                                         RX_STATE            <= RX_DATA;
                                         NEXT_RX_STATE       <= RX_DATA;
                                         count               <= 7'd0;
@@ -397,7 +443,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         //          Data 0 or 64 bit
         RX_DATA:             begin
                                 if ( count == 7'd64 ) begin
-                                    if ( quant_count == QUANTS ) begin                                        
+                                    if ( quant_count == 11'd0 ) begin                                        
                                         RX_STATE            <= RX_CRC;
                                         NEXT_RX_STATE       <= RX_CRC;
                                         count               <= 7'd0;
@@ -413,10 +459,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         endcase     
         
 
-        // new bit data quant reset
-        if ( rx_i != rx_i_last) begin
-            quant_count     <= 11'd0;
-        end
+
         // can clk sync
         if ( rx_i == 1'b0 && rx_i_last == 1'b1 ) begin
             can_clk_sync_o  <= 1'b1; 
@@ -427,7 +470,7 @@ always @( posedge clk_i or posedge rst_i ) begin
         
         // <bit stuff check>
 
-        if ( quant_count == QUANTS ) begin
+        if ( quant_count == 11'd0 ) begin
             if ( rx_bit_stuffed ) begin
                 RX_STATE    <= RX_BIT_STUFF;                   
             end
@@ -449,6 +492,12 @@ always @( posedge clk_i or posedge rst_i ) begin
             quant_count     <= 11'd0;
         end
         // </quant count>
+        
+        // new bit data quant reset
+        if ( rx_i != rx_i_last && RX_STATE != RX_IDLE ) begin
+            quant_count     <= 11'd0;
+        end
+        //
         // <sync>
         rx_i_last <= rx_i; 
         // </sync>
@@ -457,30 +506,34 @@ always @( posedge clk_i or posedge rst_i ) begin
         end
 end
 
-always @( posedge clk_i) begin
-        if ( quant_count == SAMPLE ) begin
-            if (  RX_STATE != RX_IDLE           && 
-                  RX_STATE != RX_CRC_DELIMITER  && 
-                  RX_STATE != RX_ACK_SLOT       && 
-                  RX_STATE != RX_ACK_DELIMITER  && 
-                  RX_STATE != RX_END_OF_FRAME ) begin
-                if ( rx_i == last_bit ) begin   
-                    bit_pol_count           <= bit_pol_count + 1'b1;
-                    if ( bit_pol_count == 3'd5 ) begin                       
-                        bit_pol_count   <= 3'd1;
-                    end                    
-                end else begin                      
-                    bit_pol_count   <= 3'd1;                                
+always @( posedge clk_i or posedge rst_i ) begin
+        if ( rst_i ) begin
+            rx_bit_stuffed <= 1'b0;
+        end else begin
+            if ( quant_count == SAMPLE ) begin
+                if (  RX_STATE != RX_IDLE           && 
+                      RX_STATE != RX_CRC_DELIMITER  && 
+                      RX_STATE != RX_ACK_SLOT       && 
+                      RX_STATE != RX_ACK_DELIMITER  && 
+                      RX_STATE != RX_END_OF_FRAME ) begin
+                    if ( rx_i == last_bit ) begin   
+                        bit_pol_count       <= bit_pol_count + 1'b1;
+                        if ( bit_pol_count == 3'd5 ) begin                       
+                            bit_pol_count   <= 3'd1;
+                        end                    
+                    end else begin                      
+                        bit_pol_count   <= 3'd1;                                
+                    end
+                end
+            end else begin 
+                if ( quant_count == 11'd0 ) begin
+                     rx_bit_stuffed  <= 1'b0;
+            end else begin
+                if ( bit_pol_count == 3'd5 && RX_STATE != RX_BIT_STUFF ) begin                       
+                    rx_bit_stuffed  <= 1'b1;
                 end
             end
-        end else begin 
-            if ( quant_count == QUANTS ) begin
-                 rx_bit_stuffed  <= 1'b0;
-        end else begin
-            if ( bit_pol_count == 3'd5 && RX_STATE != RX_BIT_STUFF ) begin                       
-                rx_bit_stuffed  <= 1'b1;
-            end
-        end       
+        end
     end
 end
 

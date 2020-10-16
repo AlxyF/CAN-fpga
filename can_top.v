@@ -37,7 +37,8 @@ module can_top
     output [3:0]  test_rx_bit_pol_count,
     output        test_rx_bit_stuffed,
     output [6:0]  test_rx_count,
-    output test_rx_rx
+    output test_rx_rx,
+    output test_sample
 );
 
 
@@ -73,6 +74,8 @@ localparam  CAN_START_RX   = 1;
 localparam  CAN_RX         = 2;
 localparam  CAN_START_TX   = 3;
 localparam  CAN_TX         = 4;
+localparam  CAN_TEST_START = 5;
+localparam  CAN_TEST       = 6;
 
 reg[3:0]    CAN_STATE;  
         
@@ -83,7 +86,7 @@ always @( posedge clk_can or posedge rst_i ) begin
     end else begin
         case ( CAN_STATE )
         CAN_IDLE:       begin
-                                CAN_STATE <= CAN_START_RX;                          
+                                CAN_STATE <= CAN_TEST_START;                          
                         end
         CAN_START_RX:   begin
                             rx_start    <= 1'b1;
@@ -103,7 +106,20 @@ always @( posedge clk_can or posedge rst_i ) begin
         CAN_TX:         begin
                                 
                                 tx_start    <= 1'b0;
+                        end
+        CAN_TEST_START: begin
+                            rx_start    <= 1'b1;
+                            tx_start    <= 1'b1;
+                            if ( rx_busy == 1'b1 ) begin
+                                CAN_STATE   <= CAN_TEST;
                             end
+                        end
+        CAN_TEST:       begin
+                            tx_start    <= 1'b0;
+                            if ( rx_busy == 0 ) begin
+                                rx_start  <= 1'b0;
+                            end
+                        end
         endcase
     end
 end
@@ -117,9 +133,9 @@ can_tx can_tx_instance
     .clk_can_i              (clk_can),
     .tx_start_i             (tx_start),
     .tx_lost_o              (tx_lost),
-    .tx_acknowledged_o  (tx_acknowledged),
+    .tx_acknowledged_o      (tx_acknowledged),
     
-    .rx_i                       (rx_i),
+    .rx_i                   (1'b1),
     .tx_o                   (tx_o),
     
     .message_type           (tx_message_type),
@@ -155,7 +171,8 @@ can_rx can_rx_instance
     .test_bit_pol_count  (test_rx_bit_pol_count),
     .test_rx_bit_stuffed (test_rx_bit_stuffed),
     .test_rx_count       (test_rx_count),
-    .test_rx_rx          (test_rx_rx)
+    .test_rx_rx          (test_rx_rx),
+    .test_sample         (test_sample)
 );
                             
 can_clk can_clk_instance

@@ -2,9 +2,9 @@ module can_crc
 (	
 	input 				clk_can_i,
 	input 				rst_i,
-	input					en_i,
+	input			    en_i,
 	input 				data_i,
-	input					crc_rst_i,
+	input				crc_rst_i,
 	output reg [14:0]	crc_reg_o
 	
 );

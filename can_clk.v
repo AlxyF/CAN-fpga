@@ -1,7 +1,7 @@
 module can_clk
 #(
    parameter FREQ_I = 50_000_000,
-   parameter FREQ_O = 5_000_000,
+   parameter FREQ_O = 1_000_000,
    
    parameter END_COUNT = FREQ_I/(FREQ_O*2) - 1
 )( 
