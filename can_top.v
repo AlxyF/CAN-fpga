@@ -28,8 +28,8 @@ module can_top
     output [7:0] test_can_tx_state,
     output [7:0] test_bit_count,
     output [3:0] test_bit_pol_count,
-    output reg bit_stuffed,
-    output test_last_bit,
+    output reg   bit_stuffed,
+    output       test_last_bit,
     
     output [7:0]  test_rx_state,
     output [11:0] test_rx_quant_count,
@@ -77,26 +77,29 @@ localparam  CAN_TX         = 4;
 localparam  CAN_TEST_START = 5;
 localparam  CAN_TEST       = 6;
 
-reg[3:0]    CAN_STATE;  
+reg [3:0] CAN_STATE;  
         
-always @( posedge clk_can or posedge rst_i ) begin
-    if ( rst_i ) begin
+always @( posedge clk_i or negedge rst_i ) begin
+    if ( rst_i == 1'b0 ) begin
         CAN_STATE       <= CAN_IDLE;
-        tx_start            <= 1'b0;
+        tx_start        <= 1'b0;
+        rx_start        <= 1'b0;
     end else begin
         case ( CAN_STATE )
         CAN_IDLE:       begin
-                                CAN_STATE <= CAN_TEST_START;                          
+                            CAN_STATE <= CAN_START_TX;
+                            //rx_start  <= 1'b1;                          
                         end
         CAN_START_RX:   begin
-                            rx_start    <= 1'b1;
+                            rx_start  <= 1'b1;
                             if ( rx_busy == 1'b1 ) begin
                                 CAN_STATE   <= CAN_RX;
                             end
                         end
         CAN_RX:         begin                             
-                            if ( rx_busy == 0 ) begin
-                                rx_start  <= 1'b0;
+                            if ( rx_busy == 1'b0 ) begin
+                                rx_start    <= 1'b0;
+                                CAN_STATE   <= CAN_IDLE;
                             end
                         end
         CAN_START_TX:   begin
@@ -104,11 +107,11 @@ always @( posedge clk_can or posedge rst_i ) begin
                                 tx_start    <= 1'b1;
                             end
         CAN_TX:         begin
-                                
+                            if ( tx_busy == 1'b1 ) begin
                                 tx_start    <= 1'b0;
+                            end
                         end
-        CAN_TEST_START: begin
-                            rx_start    <= 1'b1;
+        CAN_TEST_START: begin                        
                             tx_start    <= 1'b1;
                             if ( rx_busy == 1'b1 ) begin
                                 CAN_STATE   <= CAN_TEST;
@@ -137,6 +140,7 @@ can_tx can_tx_instance
     
     .rx_i                   (1'b1),
     .tx_o                   (tx_o),
+    .tx_busy_o              (tx_busy),
     
     .message_type           (tx_message_type),
     .local_address          (tx_local_address),

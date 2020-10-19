@@ -9,26 +9,26 @@ module can_crc
 	
 );
 
-wire 			crc_next;
+wire 	    crc_next;
 wire [14:0] crc_tmp;
 assign crc_next = data_i ^ crc_reg_o[14];
 assign crc_tmp  = {crc_reg_o[13:0], 1'b0};
 
-always @( posedge clk_can_i or posedge rst_i ) begin
-	if ( rst_i ) begin
+always @( posedge clk_can_i or negedge rst_i or posedge crc_rst_i ) begin
+	if ( rst_i == 1'b0 || crc_rst_i ) begin
 		crc_reg_o <= 15'h0;
 	end else begin
-			if ( en_i ) begin	
-				if ( crc_next ) begin 
-					crc_reg_o <= crc_tmp ^ 15'h4599;
-				end else begin
-					crc_reg_o <= crc_tmp;
-				end				
-			end else begin
-				if ( crc_rst_i ) begin
-					crc_reg_o <= 15'd0;
-				end
-			end	
+        if ( en_i ) begin	
+            if ( crc_next ) begin 
+                crc_reg_o <= crc_tmp ^ 15'h4599;
+            end else begin
+                crc_reg_o <= crc_tmp;
+            end				
+        end else begin
+            if ( crc_rst_i ) begin
+                crc_reg_o <= 15'h0;
+            end
+        end	
 	end
 end
 

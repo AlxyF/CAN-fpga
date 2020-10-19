@@ -2,112 +2,100 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1200mV 85C Model Setup 'clk_i'
-Slack : -6.649
-TNS   : -530.375
-
 Type  : Slow 1200mV 85C Model Setup 'can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -5.516
-TNS   : -326.788
+Slack : -5.632
+TNS   : -294.440
 
-Type  : Slow 1200mV 85C Model Setup 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -1.000
-TNS   : -9.960
-
-Type  : Slow 1200mV 85C Model Hold 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -0.603
-TNS   : -5.745
+Type  : Slow 1200mV 85C Model Setup 'clk_i'
+Slack : -2.905
+TNS   : -22.186
 
 Type  : Slow 1200mV 85C Model Hold 'can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 0.434
+Slack : 0.435
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk_i'
-Slack : 0.452
+Slack : 0.453
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : -1.213
+TNS   : -17.250
+
+Type  : Slow 1200mV 85C Model Removal 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 1.519
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_i'
 Slack : -3.000
-TNS   : -150.213
+TNS   : -28.279
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'can_clk:can_clk_instance|can_clk_o_reg'
 Slack : -1.487
-TNS   : -126.395
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -1.487
-TNS   : -22.305
-
-Type  : Slow 1200mV 0C Model Setup 'clk_i'
-Slack : -6.148
-TNS   : -491.917
+TNS   : -108.551
 
 Type  : Slow 1200mV 0C Model Setup 'can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -5.167
-TNS   : -302.227
+Slack : -5.269
+TNS   : -273.016
 
-Type  : Slow 1200mV 0C Model Setup 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -0.899
-TNS   : -8.326
-
-Type  : Slow 1200mV 0C Model Hold 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -0.559
-TNS   : -5.353
+Type  : Slow 1200mV 0C Model Setup 'clk_i'
+Slack : -2.674
+TNS   : -18.774
 
 Type  : Slow 1200mV 0C Model Hold 'can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 0.384
+Slack : 0.387
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'clk_i'
-Slack : 0.401
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : -1.038
+TNS   : -14.520
+
+Type  : Slow 1200mV 0C Model Removal 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 1.396
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_i'
 Slack : -3.000
-TNS   : -150.213
+TNS   : -28.279
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'can_clk:can_clk_instance|can_clk_o_reg'
 Slack : -1.487
-TNS   : -126.395
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -1.487
-TNS   : -22.305
-
-Type  : Fast 1200mV 0C Model Setup 'clk_i'
-Slack : -2.366
-TNS   : -182.652
+TNS   : -108.551
 
 Type  : Fast 1200mV 0C Model Setup 'can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -1.788
-TNS   : -93.009
+Slack : -1.907
+TNS   : -87.367
 
-Type  : Fast 1200mV 0C Model Setup 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -0.023
-TNS   : -0.161
-
-Type  : Fast 1200mV 0C Model Hold 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -0.049
-TNS   : -0.229
+Type  : Fast 1200mV 0C Model Setup 'clk_i'
+Slack : -0.725
+TNS   : -2.545
 
 Type  : Fast 1200mV 0C Model Hold 'can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 0.179
+Slack : 0.176
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'clk_i'
-Slack : 0.187
+Slack : 0.186
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 0.009
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 0.643
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_i'
 Slack : -3.000
-TNS   : -130.161
+TNS   : -25.100
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'can_clk:can_clk_instance|can_clk_o_reg'
 Slack : -1.000
-TNS   : -85.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'can_rx:can_rx_instance|quant_count[0]'
-Slack : -1.000
-TNS   : -15.000
+TNS   : -73.000
 
 ------------------------------------------------------------

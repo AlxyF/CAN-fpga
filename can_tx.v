@@ -20,6 +20,7 @@ module can_tx
 	
 	input  rx_i,
 	output tx_o,
+    output reg tx_busy_o,
 	
 	//test
 	output [7:0] test_tx_state,
@@ -88,11 +89,11 @@ localparam TX_ACK_SLOT				= 8'hA8;
 localparam TX_ACK_DELIMITER		    = 8'hA9;
 localparam TX_END_OF_FRAME			= 8'hAA;
 
-reg[7:0] TX_STATE;
+reg[7:0] TX_STATE = TX_IDLE;
 reg[7:0] NEXT_TX_STATE;
 						
-always @( posedge clk_can_i or posedge rst_i ) begin
-	if ( rst_i ) begin
+always @( posedge clk_can_i or negedge rst_i ) begin
+	if ( rst_i == 1'b0 ) begin
 		TX_STATE                <= TX_IDLE;
 		NEXT_TX_STATE 			<= TX_IDLE;
 		tx_lost_o_reg			<= 1'b0;
@@ -100,8 +101,9 @@ always @( posedge clk_can_i or posedge rst_i ) begin
 		count 					<= 7'd0;	
         bit_pol_count 			<= 3'd1;
 		bit_stuff_bit			<= 1'b0;
-        last_bit			    <= 1'b0;
+        last_bit			    <= 1'b1;
 		crc_rst_i 				<= 1'b0;
+        tx_busy_o               <= 1'b0;
 	end else begin
 		if ( TX_STATE != TX_IDLE  ) begin
 			last_bit 		<= tx_o;
@@ -112,7 +114,8 @@ always @( posedge clk_can_i or posedge rst_i ) begin
                                 count 			<= 3'd0;
                                 bit_count_reg 	<= 8'd0;
                                 if ( tx_start_i ) begin									
-                                    TX_STATE		<= TX_START_OF_FRAME;                                                                               
+                                    TX_STATE		<= TX_START_OF_FRAME;
+                                    tx_busy_o       <= 1'b1;                                    
                                 end
 							end																		
 		// <MAC-level>
@@ -190,6 +193,7 @@ always @( posedge clk_can_i or posedge rst_i ) begin
                                 if ( count == 7'd6 ) begin
                                     count 			<= 7'd0;
                                     TX_STATE 		<= TX_IDLE;
+                                    tx_busy_o       <= 1'b0;
                                 end else begin
                                     count 			<= count + 1'b1;
                                 end	
@@ -334,8 +338,8 @@ end
 reg tx_acknowledged_o_reg;
 assign tx_acknowledged_o = tx_acknowledged_o_reg;
 
-always @( posedge clk_can_i or posedge rst_i ) begin
-	if ( rst_i ) begin
+always @( posedge clk_can_i or negedge rst_i ) begin
+	if ( rst_i == 1'b0 ) begin
 		tx_acknowledged_o_reg <= 1'b0;
 	end else begin
 		if ( TX_STATE == TX_ACK_SLOT ) begin
@@ -369,6 +373,7 @@ assign tx_o = TX_STATE == TX_START_OF_FRAME 		? 1'b0 									:
 				( TX_STATE == TX_ACK_DELIMITER 		? 1'b1									:
 				( TX_STATE == TX_END_OF_FRAME 		? 1'b1									:
 				( TX_STATE == TX_BIT_STUFF				? bit_stuff_bit						:
-				1'b1 )))))))))))))))))));
+                ( TX_STATE == TX_IDLE ? 1'b1 :
+				1'b1 ))))))))))))))))))));
 
 endmodule
