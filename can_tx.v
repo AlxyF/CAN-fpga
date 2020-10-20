@@ -94,7 +94,7 @@ reg[7:0] NEXT_TX_STATE;
 						
 always @( posedge clk_can_i or negedge rst_i ) begin
 	if ( rst_i == 1'b0 ) begin
-		TX_STATE                <= TX_IDLE;
+		TX_STATE                <= 8'h0;
 		NEXT_TX_STATE 			<= TX_IDLE;
 		tx_lost_o_reg			<= 1'b0;
 		bit_count_reg 			<= 8'd0;		

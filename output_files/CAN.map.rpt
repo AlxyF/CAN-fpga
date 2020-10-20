@@ -1,5 +1,5 @@
 Analysis & Synthesis report for CAN
-Mon Oct 19 17:43:17 2020
+Tue Oct 20 21:09:51 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -59,15 +59,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Oct 19 17:43:17 2020       ;
+; Analysis & Synthesis Status        ; Successful - Tue Oct 20 21:09:51 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_top                                     ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 216                                         ;
-;     Total combinational functions  ; 205                                         ;
-;     Dedicated logic registers      ; 90                                          ;
-; Total registers                    ; 90                                          ;
+; Total logic elements               ; 493                                         ;
+;     Total combinational functions  ; 459                                         ;
+;     Dedicated logic registers      ; 196                                         ;
+; Total registers                    ; 196                                         ;
 ; Total pins                         ; 74                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -198,20 +198,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 216         ;
+; Estimated Total logic elements              ; 493         ;
 ;                                             ;             ;
-; Total combinational functions               ; 205         ;
+; Total combinational functions               ; 459         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 141         ;
-;     -- 3 input functions                    ; 21          ;
-;     -- <=2 input functions                  ; 43          ;
+;     -- 4 input functions                    ; 281         ;
+;     -- 3 input functions                    ; 77          ;
+;     -- <=2 input functions                  ; 101         ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 181         ;
-;     -- arithmetic mode                      ; 24          ;
+;     -- normal mode                          ; 406         ;
+;     -- arithmetic mode                      ; 53          ;
 ;                                             ;             ;
-; Total registers                             ; 90          ;
-;     -- Dedicated logic registers            ; 90          ;
+; Total registers                             ; 196         ;
+;     -- Dedicated logic registers            ; 196         ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 74          ;
@@ -219,9 +219,9 @@ https://fpgasoftware.intel.com/eula.
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; rst_i~input ;
-; Maximum fan-out                             ; 76          ;
-; Total fan-out                               ; 1116        ;
-; Average fan-out                             ; 2.52        ;
+; Maximum fan-out                             ; 168         ;
+; Total fan-out                               ; 2423        ;
+; Average fan-out                             ; 3.02        ;
 +---------------------------------------------+-------------+
 
 
@@ -230,9 +230,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node       ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name ; Library Name ;
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-------------+--------------+
-; |can_top                         ; 205 (4)             ; 90 (4)                    ; 0           ; 0            ; 0       ; 0         ; 74   ; 0            ; |can_top                                                 ; can_top     ; work         ;
+; |can_top                         ; 459 (5)             ; 196 (4)                   ; 0           ; 0            ; 0       ; 0         ; 74   ; 0            ; |can_top                                                 ; can_top     ; work         ;
 ;    |can_clk:can_clk_instance|    ; 22 (22)             ; 13 (13)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_clk:can_clk_instance                        ; can_clk     ; work         ;
-;    |can_tx:can_tx_instance|      ; 179 (170)           ; 73 (58)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_tx:can_tx_instance                          ; can_tx      ; work         ;
+;    |can_rx:can_rx_instance|      ; 270 (261)           ; 112 (97)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_rx:can_rx_instance                          ; can_rx      ; work         ;
+;       |can_crc:can_crc_instance| ; 9 (9)               ; 15 (15)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_rx:can_rx_instance|can_crc:can_crc_instance ; can_crc     ; work         ;
+;    |can_tx:can_tx_instance|      ; 162 (153)           ; 67 (52)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_tx:can_tx_instance                          ; can_tx      ; work         ;
 ;       |can_crc:can_crc_instance| ; 9 (9)               ; 15 (15)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_top|can_tx:can_tx_instance|can_crc:can_crc_instance ; can_crc     ; work         ;
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -362,173 +364,71 @@ Encoding Type:  One-Hot
 +-------------------------------+------------------+-----------------+---------------------------+--------------------------+-------------------------------+---------------------------+----------------------------+---------------------------+--------------------------+--------------------------+---------------------------+----------------------+---------------------------+-----------------+----------------------+-----------------+-----------------+-----------------+----------------------------+-----------------------+------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                             ;
-+------------------------------------------------------------------+---------------------------------------------+
-; Register name                                                    ; Reason for Removal                          ;
-+------------------------------------------------------------------+---------------------------------------------+
-; CAN_STATE~5                                                      ; Lost fanout                                 ;
-; CAN_STATE~6                                                      ; Lost fanout                                 ;
-; CAN_STATE~7                                                      ; Lost fanout                                 ;
-; CAN_STATE~8                                                      ; Lost fanout                                 ;
-; can_rx:can_rx_instance|NEXT_RX_STATE~4                           ; Lost fanout                                 ;
-; can_rx:can_rx_instance|NEXT_RX_STATE~5                           ; Lost fanout                                 ;
-; can_rx:can_rx_instance|NEXT_RX_STATE~6                           ; Lost fanout                                 ;
-; can_rx:can_rx_instance|NEXT_RX_STATE~7                           ; Lost fanout                                 ;
-; can_rx:can_rx_instance|NEXT_RX_STATE~8                           ; Lost fanout                                 ;
-; can_rx:can_rx_instance|NEXT_RX_STATE~10                          ; Lost fanout                                 ;
-; can_rx:can_rx_instance|NEXT_RX_STATE~11                          ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~19                               ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~20                               ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~21                               ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~22                               ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~23                               ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~24                               ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~25                               ; Lost fanout                                 ;
-; can_rx:can_rx_instance|RX_STATE~26                               ; Lost fanout                                 ;
-; can_tx:can_tx_instance|NEXT_TX_STATE~19                          ; Lost fanout                                 ;
-; can_tx:can_tx_instance|NEXT_TX_STATE~20                          ; Lost fanout                                 ;
-; can_tx:can_tx_instance|NEXT_TX_STATE~21                          ; Lost fanout                                 ;
-; can_tx:can_tx_instance|NEXT_TX_STATE~22                          ; Lost fanout                                 ;
-; can_tx:can_tx_instance|NEXT_TX_STATE~23                          ; Lost fanout                                 ;
-; can_tx:can_tx_instance|NEXT_TX_STATE~25                          ; Lost fanout                                 ;
-; can_tx:can_tx_instance|NEXT_TX_STATE~26                          ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~4                                ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~5                                ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~6                                ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~7                                ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~8                                ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~9                                ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~10                               ; Lost fanout                                 ;
-; can_tx:can_tx_instance|TX_STATE~11                               ; Lost fanout                                 ;
-; CAN_STATE.CAN_TEST_START                                         ; Merged with CAN_STATE.CAN_START_RX          ;
-; CAN_STATE.CAN_START_RX                                           ; Stuck at GND due to stuck port data_in      ;
-; CAN_STATE.CAN_TEST                                               ; Stuck at GND due to stuck port data_in      ;
-; CAN_STATE.CAN_RX                                                 ; Stuck at GND due to stuck port data_in      ;
-; rx_start                                                         ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|crc_rst_i                                 ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|rx_busy_o                                 ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|quant_count[0]                            ; Stuck at VCC due to stuck port clock_enable ;
-; can_rx:can_rx_instance|bit_count_reg[0..7]                       ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|rx_i_last                                 ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|last_bit                                  ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|test_reg_on                               ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|crc_calc[0..14]                           ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|bit_pol_count[0..2]                       ; Stuck at GND due to stuck port clock_enable ;
-; can_rx:can_rx_instance|test_sample                               ; Stuck at VCC due to stuck port data_in      ;
-; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[0..14] ; Stuck at GND due to stuck port clock        ;
-; can_rx:can_rx_instance|RX_STATE.RX_IDLE                          ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_SRR                           ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_RTR                           ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_CRC                           ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_ACK_SLOT                      ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_END_OF_FRAME                  ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_ADDRESS_LOCAL                 ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_HANDSHAKING_P                 ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_EXPAND_COUNT                  ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_DLC                           ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_BIT_STUFF                     ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_IDE                           ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_CRC_DELIMITER                 ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_ADDRESS_REMOTE                ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_CMD_DATA_SIGN                 ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_RESERVED                      ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_ATRIBUTE_RESERVED             ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_ACK_DELIMITER                 ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_DATA                          ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_MESSAGE_TYPE                  ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|quant_count[1..11]                        ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|rx_bit_stuffed                            ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|count[0..6]                               ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_IDLE                     ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|aux_count                                 ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|RX_STATE.RX_START_OF_FRAME                ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_SRR                      ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_RTR                      ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_CRC                      ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_ADDRESS_LOCAL            ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_HANDSHAKING_P            ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_EXPAND_COUNT             ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_DLC                      ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_IDE                      ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_ADDRESS_REMOTE           ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_CMD_DATA_SIGN            ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_RESERVED                 ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_ATRIBUTE_RESERVED        ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_DATA                     ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|NEXT_RX_STATE.RX_MESSAGE_TYPE             ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|test_count[0..6]                          ; Stuck at GND due to stuck port data_in      ;
-; can_rx:can_rx_instance|test_rx_rx                                ; Stuck at VCC due to stuck port data_in      ;
-; Total Number of Removed Registers = 151                          ;                                             ;
-+------------------------------------------------------------------+---------------------------------------------+
++------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                             ;
++-------------------------------------------------------+----------------------------------------+
+; Register name                                         ; Reason for Removal                     ;
++-------------------------------------------------------+----------------------------------------+
+; CAN_STATE~5                                           ; Lost fanout                            ;
+; CAN_STATE~6                                           ; Lost fanout                            ;
+; CAN_STATE~7                                           ; Lost fanout                            ;
+; CAN_STATE~8                                           ; Lost fanout                            ;
+; can_rx:can_rx_instance|NEXT_RX_STATE~4                ; Lost fanout                            ;
+; can_rx:can_rx_instance|NEXT_RX_STATE~5                ; Lost fanout                            ;
+; can_rx:can_rx_instance|NEXT_RX_STATE~6                ; Lost fanout                            ;
+; can_rx:can_rx_instance|NEXT_RX_STATE~7                ; Lost fanout                            ;
+; can_rx:can_rx_instance|NEXT_RX_STATE~8                ; Lost fanout                            ;
+; can_rx:can_rx_instance|NEXT_RX_STATE~10               ; Lost fanout                            ;
+; can_rx:can_rx_instance|NEXT_RX_STATE~11               ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~19                    ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~20                    ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~21                    ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~22                    ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~23                    ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~24                    ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~25                    ; Lost fanout                            ;
+; can_rx:can_rx_instance|RX_STATE~26                    ; Lost fanout                            ;
+; can_tx:can_tx_instance|NEXT_TX_STATE~19               ; Lost fanout                            ;
+; can_tx:can_tx_instance|NEXT_TX_STATE~20               ; Lost fanout                            ;
+; can_tx:can_tx_instance|NEXT_TX_STATE~21               ; Lost fanout                            ;
+; can_tx:can_tx_instance|NEXT_TX_STATE~22               ; Lost fanout                            ;
+; can_tx:can_tx_instance|NEXT_TX_STATE~23               ; Lost fanout                            ;
+; can_tx:can_tx_instance|NEXT_TX_STATE~25               ; Lost fanout                            ;
+; can_tx:can_tx_instance|NEXT_TX_STATE~26               ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~4                     ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~5                     ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~6                     ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~7                     ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~8                     ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~9                     ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~10                    ; Lost fanout                            ;
+; can_tx:can_tx_instance|TX_STATE~11                    ; Lost fanout                            ;
+; CAN_STATE.CAN_START_TX                                ; Stuck at GND due to stuck port data_in ;
+; CAN_STATE.CAN_TX                                      ; Stuck at GND due to stuck port data_in ;
+; CAN_STATE.CAN_TEST_START                              ; Stuck at GND due to stuck port data_in ;
+; CAN_STATE.CAN_TEST                                    ; Stuck at GND due to stuck port data_in ;
+; tx_start                                              ; Stuck at GND due to stuck port data_in ;
+; can_tx:can_tx_instance|TX_STATE.TX_START_OF_FRAME     ; Stuck at GND due to stuck port data_in ;
+; can_tx:can_tx_instance|tx_busy_o                      ; Stuck at GND due to stuck port data_in ;
+; can_tx:can_tx_instance|NEXT_TX_STATE.TX_MESSAGE_TYPE  ; Stuck at GND due to stuck port data_in ;
+; can_tx:can_tx_instance|TX_STATE.TX_MESSAGE_TYPE       ; Stuck at GND due to stuck port data_in ;
+; can_tx:can_tx_instance|NEXT_TX_STATE.TX_ADDRESS_LOCAL ; Stuck at GND due to stuck port data_in ;
+; can_tx:can_tx_instance|TX_STATE.TX_ADDRESS_LOCAL      ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 45                ;                                        ;
++-------------------------------------------------------+----------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                                ;
-+---------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
-; Register name                         ; Reason for Removal             ; Registers Removed due to This Register                                            ;
-+---------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
-; CAN_STATE.CAN_START_RX                ; Stuck at GND                   ; rx_start, can_rx:can_rx_instance|crc_rst_i, can_rx:can_rx_instance|rx_busy_o,     ;
-;                                       ; due to stuck port data_in      ; can_rx:can_rx_instance|bit_count_reg[0], can_rx:can_rx_instance|bit_count_reg[1], ;
-;                                       ;                                ; can_rx:can_rx_instance|bit_count_reg[2], can_rx:can_rx_instance|bit_count_reg[3], ;
-;                                       ;                                ; can_rx:can_rx_instance|bit_count_reg[4], can_rx:can_rx_instance|bit_count_reg[5], ;
-;                                       ;                                ; can_rx:can_rx_instance|bit_count_reg[6], can_rx:can_rx_instance|bit_count_reg[7], ;
-;                                       ;                                ; can_rx:can_rx_instance|last_bit, can_rx:can_rx_instance|test_reg_on,              ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[14], can_rx:can_rx_instance|crc_calc[13],         ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[12], can_rx:can_rx_instance|crc_calc[11],         ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[10], can_rx:can_rx_instance|crc_calc[9],          ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[8], can_rx:can_rx_instance|crc_calc[7],           ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[6], can_rx:can_rx_instance|crc_calc[5],           ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[4], can_rx:can_rx_instance|crc_calc[3],           ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[2], can_rx:can_rx_instance|crc_calc[1],           ;
-;                                       ;                                ; can_rx:can_rx_instance|crc_calc[0], can_rx:can_rx_instance|bit_pol_count[0],      ;
-;                                       ;                                ; can_rx:can_rx_instance|test_sample,                                               ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[14],                    ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[13],                    ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[12],                    ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[11],                    ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[10],                    ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[9],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[8],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[7],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[6],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[5],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[4],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[3],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[2],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[1],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[0],                     ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_SRR, can_rx:can_rx_instance|RX_STATE.RX_RTR,   ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_ACK_SLOT,                                      ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_ADDRESS_LOCAL,                                 ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_BIT_STUFF,                                     ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_IDE,                                           ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_CRC_DELIMITER,                                 ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_RESERVED,                                      ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_ACK_DELIMITER,                                 ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_MESSAGE_TYPE,                                  ;
-;                                       ;                                ; can_rx:can_rx_instance|quant_count[8], can_rx:can_rx_instance|quant_count[11],    ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_IDLE,                                     ;
-;                                       ;                                ; can_rx:can_rx_instance|RX_STATE.RX_START_OF_FRAME,                                ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_SRR,                                      ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_RTR,                                      ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_CRC,                                      ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_ADDRESS_LOCAL,                            ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_HANDSHAKING_P,                            ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_EXPAND_COUNT,                             ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_DLC,                                      ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_IDE,                                      ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_ADDRESS_REMOTE,                           ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_CMD_DATA_SIGN,                            ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_RESERVED,                                 ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_ATRIBUTE_RESERVED,                        ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_DATA,                                     ;
-;                                       ;                                ; can_rx:can_rx_instance|NEXT_RX_STATE.RX_MESSAGE_TYPE,                             ;
-;                                       ;                                ; can_rx:can_rx_instance|test_count[3], can_rx:can_rx_instance|test_count[0],       ;
-;                                       ;                                ; can_rx:can_rx_instance|test_count[6]                                              ;
-; can_rx:can_rx_instance|quant_count[0] ; Stuck at VCC                   ; can_rx:can_rx_instance|bit_pol_count[1], can_rx:can_rx_instance|bit_pol_count[2], ;
-;                                       ; due to stuck port clock_enable ; can_rx:can_rx_instance|rx_bit_stuffed, can_rx:can_rx_instance|test_rx_rx          ;
-+---------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                       ;
++------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------+
+; Register name                                        ; Reason for Removal        ; Registers Removed due to This Register                                         ;
++------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------+
+; CAN_STATE.CAN_START_TX                               ; Stuck at GND              ; CAN_STATE.CAN_TX, tx_start, can_tx:can_tx_instance|TX_STATE.TX_START_OF_FRAME, ;
+;                                                      ; due to stuck port data_in ; can_tx:can_tx_instance|tx_busy_o                                               ;
+; can_tx:can_tx_instance|NEXT_TX_STATE.TX_MESSAGE_TYPE ; Stuck at GND              ; can_tx:can_tx_instance|TX_STATE.TX_MESSAGE_TYPE,                               ;
+;                                                      ; due to stuck port data_in ; can_tx:can_tx_instance|NEXT_TX_STATE.TX_ADDRESS_LOCAL,                         ;
+;                                                      ;                           ; can_tx:can_tx_instance|TX_STATE.TX_ADDRESS_LOCAL                               ;
++------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -536,12 +436,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 90    ;
-; Number of registers using Synchronous Clear  ; 15    ;
+; Total registers                              ; 196   ;
+; Number of registers using Synchronous Clear  ; 30    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 90    ;
+; Number of registers using Asynchronous Clear ; 196   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 25    ;
+; Number of registers using Clock Enable       ; 118   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -551,34 +451,37 @@ Encoding Type:  One-Hot
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; can_clk:can_clk_instance|can_clk_o_reg  ; 75      ;
+; can_clk:can_clk_instance|can_clk_o_reg  ; 77      ;
 ; can_tx:can_tx_instance|bit_pol_count[0] ; 5       ;
-; can_tx:can_tx_instance|last_bit         ; 4       ;
-; Total number of inverted registers = 3  ;         ;
+; can_rx:can_rx_instance|quant_count[0]   ; 5       ;
+; can_rx:can_rx_instance|test_rx_rx       ; 2       ;
+; can_rx:can_rx_instance|test_sample      ; 1       ;
+; can_tx:can_tx_instance|last_bit         ; 2       ;
+; Total number of inverted registers = 6  ;         ;
 +-----------------------------------------+---------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |can_top|can_tx:can_tx_instance|bit_pol_count[1]                      ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|can_crc:can_crc_instance|crc_reg_o[6] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_pol_count[0]                      ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[1] ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_count_reg[2]                      ;
-; 5:1                ; 11 bits   ; 33 LEs        ; 11 LEs               ; 22 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|quant_count[3]                        ;
-; 16:1               ; 7 bits    ; 70 LEs        ; 7 LEs                ; 63 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|count[4]                              ;
-; 8:1                ; 7 bits    ; 35 LEs        ; 7 LEs                ; 28 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|count[6]                              ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |can_top|Selector0                                                    ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |can_top|Selector3                                                    ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |can_top|Selector2                                                    ;
-; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|Selector29                            ;
-; 19:1               ; 3 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|TX_STATE                              ;
-; 20:1               ; 4 bits    ; 52 LEs        ; 24 LEs               ; 28 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|TX_STATE                              ;
-; 16:1               ; 3 bits    ; 30 LEs        ; 9 LEs                ; 21 LEs                 ; No         ; |can_top|can_rx:can_rx_instance|RX_STATE                              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |can_top|can_tx:can_tx_instance|bit_pol_count[1]                       ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|can_crc:can_crc_instance|crc_reg_o[11] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_pol_count[1]                       ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|can_crc:can_crc_instance|crc_reg_o[0]  ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |can_top|can_rx:can_rx_instance|bit_count_reg[0]                       ;
+; 5:1                ; 11 bits   ; 33 LEs        ; 11 LEs               ; 22 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|quant_count[2]                         ;
+; 16:1               ; 7 bits    ; 70 LEs        ; 7 LEs                ; 63 LEs                 ; Yes        ; |can_top|can_tx:can_tx_instance|count[6]                               ;
+; 8:1                ; 7 bits    ; 35 LEs        ; 7 LEs                ; 28 LEs                 ; Yes        ; |can_top|can_rx:can_rx_instance|count[4]                               ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |can_top|Selector0                                                     ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |can_top|Selector1                                                     ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |can_top|Selector2                                                     ;
+; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|Selector34                             ;
+; 19:1               ; 3 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|TX_STATE                               ;
+; 20:1               ; 4 bits    ; 52 LEs        ; 24 LEs               ; 28 LEs                 ; No         ; |can_top|can_tx:can_tx_instance|TX_STATE                               ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 9 LEs                ; 21 LEs                 ; No         ; |can_top|can_rx:can_rx_instance|RX_STATE                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------------+
@@ -715,23 +618,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 74                          ;
-; cycloneiii_ff         ; 90                          ;
-;     CLR               ; 57                          ;
+; cycloneiii_ff         ; 196                         ;
+;     CLR               ; 70                          ;
 ;     CLR SCLR          ; 8                           ;
-;     ENA CLR           ; 18                          ;
-;     ENA CLR SCLR      ; 7                           ;
-; cycloneiii_lcell_comb ; 210                         ;
-;     arith             ; 24                          ;
-;         2 data inputs ; 24                          ;
-;     normal            ; 186                         ;
-;         0 data inputs ; 2                           ;
-;         1 data inputs ; 7                           ;
-;         2 data inputs ; 15                          ;
-;         3 data inputs ; 21                          ;
-;         4 data inputs ; 141                         ;
+;     ENA CLR           ; 96                          ;
+;     ENA CLR SCLR      ; 22                          ;
+; cycloneiii_lcell_comb ; 469                         ;
+;     arith             ; 53                          ;
+;         2 data inputs ; 52                          ;
+;         3 data inputs ; 1                           ;
+;     normal            ; 416                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 16                          ;
+;         2 data inputs ; 42                          ;
+;         3 data inputs ; 76                          ;
+;         4 data inputs ; 281                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 9.00                        ;
-; Average LUT depth     ; 5.05                        ;
+; Average LUT depth     ; 4.61                        ;
 +-----------------------+-----------------------------+
 
 
@@ -750,7 +654,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Oct 19 17:43:09 2020
+    Info: Processing started: Tue Oct 20 21:09:42 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CAN -c CAN
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -767,101 +671,60 @@ Info (12021): Found 1 design units, including 1 entities, in source file can_clk
     Info (12023): Found entity 1: can_clk File: C:/hdl_projects/CAN/can_clk.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file can_rx.v
     Info (12023): Found entity 1: can_rx File: C:/hdl_projects/CAN/can_rx.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(138): created implicit net for "tx_lost" File: C:/hdl_projects/CAN/can_top.v Line: 138
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(139): created implicit net for "tx_acknowledged" File: C:/hdl_projects/CAN/can_top.v Line: 139
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(167): created implicit net for "can_clk_sync" File: C:/hdl_projects/CAN/can_top.v Line: 167
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(143): created implicit net for "tx_lost" File: C:/hdl_projects/CAN/can_top.v Line: 143
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(144): created implicit net for "tx_acknowledged" File: C:/hdl_projects/CAN/can_top.v Line: 144
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(173): created implicit net for "can_clk_sync" File: C:/hdl_projects/CAN/can_top.v Line: 173
 Info (12127): Elaborating entity "can_top" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at can_top.v(62): object "tx_atribute" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 62
 Warning (10230): Verilog HDL assignment warning at can_top.v(49): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/CAN/can_top.v Line: 49
 Warning (10034): Output port "bit_stuffed" at can_top.v(31) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 31
 Warning (10034): Output port "test_last_bit" at can_top.v(32) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 32
-Info (12128): Elaborating entity "can_tx" for hierarchy "can_tx:can_tx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 159
+Info (12128): Elaborating entity "can_tx" for hierarchy "can_tx:can_tx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 164
 Info (12128): Elaborating entity "can_crc" for hierarchy "can_tx:can_tx_instance|can_crc:can_crc_instance" File: C:/hdl_projects/CAN/can_tx.v Line: 53
-Info (12128): Elaborating entity "can_rx" for hierarchy "can_rx:can_rx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 180
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(104): object "rx_message_type" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 104
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(105): object "rx_address_local" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 105
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(106): object "rx_address_remote" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 106
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(107): object "rx_handshaking_p" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 107
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(108): object "rx_atribute_reserved" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 108
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(109): object "rx_expand_count" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 109
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(110): object "rx_cmd_data_sign" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 110
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(111): object "rx_dlc" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 111
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(112): object "rx_crc" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 112
-Warning (10036): Verilog HDL or VHDL warning at can_rx.v(119): object "bit_stuff_bit" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 119
+Info (12128): Elaborating entity "can_rx" for hierarchy "can_rx:can_rx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 186
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(110): object "rx_message_type" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 110
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(111): object "rx_address_local" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 111
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(112): object "rx_address_remote" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 112
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(113): object "rx_handshaking_p" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 113
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(114): object "rx_atribute_reserved" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 114
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(115): object "rx_expand_count" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 115
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(116): object "rx_cmd_data_sign" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 116
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(117): object "rx_dlc" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 117
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(118): object "rx_crc" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 118
+Warning (10036): Verilog HDL or VHDL warning at can_rx.v(125): object "bit_stuff_bit" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 125
 Warning (10034): Output port "remote_address" at can_rx.v(18) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 18
 Warning (10034): Output port "handshake" at can_rx.v(19) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 19
 Warning (10034): Output port "expand_count" at can_rx.v(20) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 20
 Warning (10034): Output port "cmd_data_sign" at can_rx.v(21) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 21
 Warning (10034): Output port "dlc" at can_rx.v(22) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 22
 Warning (10034): Output port "rx_received_o" at can_rx.v(14) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 14
-Info (12128): Elaborating entity "can_clk" for hierarchy "can_clk:can_clk_instance" File: C:/hdl_projects/CAN/can_top.v Line: 188
+Info (12128): Elaborating entity "can_clk" for hierarchy "can_clk:can_clk_instance" File: C:/hdl_projects/CAN/can_top.v Line: 194
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13000): Registers with preset signals will power-up high File: C:/hdl_projects/CAN/can_clk.v Line: 26
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "rx_busy" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 9
+    Warning (13410): Pin "tx_busy" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 13
+    Warning (13410): Pin "test_can_state[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 27
     Warning (13410): Pin "test_can_tx_state[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 28
     Warning (13410): Pin "test_bit_pol_count[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 30
     Warning (13410): Pin "bit_stuffed" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 31
     Warning (13410): Pin "test_last_bit" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 32
-    Warning (13410): Pin "test_rx_state[0]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Warning (13410): Pin "test_rx_state[1]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Warning (13410): Pin "test_rx_state[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Warning (13410): Pin "test_rx_state[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Warning (13410): Pin "test_rx_state[4]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Warning (13410): Pin "test_rx_state[5]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
     Warning (13410): Pin "test_rx_state[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Warning (13410): Pin "test_rx_state[7]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 34
-    Warning (13410): Pin "test_rx_quant_count[0]" is stuck at VCC File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[1]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[4]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[5]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[7]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[8]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[9]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[10]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_quant_count[11]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 35
-    Warning (13410): Pin "test_rx_bit_count[0]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_count[1]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_count[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_count[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_count[4]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_count[5]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_count[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_count[7]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 36
-    Warning (13410): Pin "test_rx_bit_pol_count[0]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 37
-    Warning (13410): Pin "test_rx_bit_pol_count[1]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 37
-    Warning (13410): Pin "test_rx_bit_pol_count[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 37
     Warning (13410): Pin "test_rx_bit_pol_count[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 37
-    Warning (13410): Pin "test_rx_bit_stuffed" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 38
-    Warning (13410): Pin "test_rx_count[0]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
-    Warning (13410): Pin "test_rx_count[1]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
-    Warning (13410): Pin "test_rx_count[2]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
-    Warning (13410): Pin "test_rx_count[3]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
-    Warning (13410): Pin "test_rx_count[4]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
-    Warning (13410): Pin "test_rx_count[5]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
-    Warning (13410): Pin "test_rx_count[6]" is stuck at GND File: C:/hdl_projects/CAN/can_top.v Line: 39
-    Warning (13410): Pin "test_rx_rx" is stuck at VCC File: C:/hdl_projects/CAN/can_top.v Line: 40
-    Warning (13410): Pin "test_sample" is stuck at VCC File: C:/hdl_projects/CAN/can_top.v Line: 42
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 34 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/hdl_projects/CAN/output_files/CAN.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "rx_i" File: C:/hdl_projects/CAN/can_top.v Line: 8
-Info (21057): Implemented 291 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 570 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 71 output pins
-    Info (21061): Implemented 217 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 76 warnings
-    Info: Peak virtual memory: 4763 megabytes
-    Info: Processing ended: Mon Oct 19 17:43:17 2020
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:16
+    Info (21061): Implemented 496 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 35 warnings
+    Info: Peak virtual memory: 4764 megabytes
+    Info: Processing ended: Tue Oct 20 21:09:51 2020
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:17
 
 
 +------------------------------------------+

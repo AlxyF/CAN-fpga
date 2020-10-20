@@ -69,6 +69,11 @@ reg [63:0] tx_data              = 64'b001100010011001000110011001101000011010100
 reg      tx_start;
 reg      rx_start;
 
+wire tx_o_tx;
+wire tx_o_rx;
+assign tx_o = CAN_STATE == CAN_TX ? tx_o_tx :
+            ( CAN_STATE == CAN_RX ? tx_o_rx : 1'b1 );
+
 localparam  CAN_IDLE       = 0;
 localparam  CAN_START_RX   = 1;
 localparam  CAN_RX         = 2;
@@ -87,7 +92,7 @@ always @( posedge clk_i or negedge rst_i ) begin
     end else begin
         case ( CAN_STATE )
         CAN_IDLE:       begin
-                            CAN_STATE <= CAN_START_TX;
+                            CAN_STATE <= CAN_START_RX;
                             //rx_start  <= 1'b1;                          
                         end
         CAN_START_RX:   begin
@@ -139,7 +144,7 @@ can_tx can_tx_instance
     .tx_acknowledged_o      (tx_acknowledged),
     
     .rx_i                   (1'b1),
-    .tx_o                   (tx_o),
+    .tx_o                   (tx_o_tx),
     .tx_busy_o              (tx_busy),
     
     .message_type           (tx_message_type),
@@ -162,6 +167,7 @@ can_rx can_rx_instance
 (
     .rst_i          (rst_i),
     .rx_i           (rx_i),
+    .tx_o           (tx_o_rx),
     .clk_i          (clk_i),
     .clk_can_i      (clk_can),
     .can_clk_sync_o (can_clk_sync),

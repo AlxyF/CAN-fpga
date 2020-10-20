@@ -23,6 +23,7 @@ module can_rx
     output reg [63:0]   rx_data,
     
     input  rx_i,
+    output tx_o,
     
     //test
     output [7:0]  test_rx_state,
@@ -78,6 +79,11 @@ always @( posedge clk_i or negedge rst_i ) begin
     end
 end
 // </test>
+
+// ack
+assign tx_o = ( RX_STATE == RX_ACK_SLOT ) ? 1'b0 : 1'b1;
+// /ack
+
 //<CRC>
 reg [14:0] crc_calc;
 wire [14:0] crc;
