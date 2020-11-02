@@ -1,22 +1,26 @@
 module can_tx
 #(
-	parameter smth = 0
+    parameter CLK_FREQ      = 50_000_000,
+    parameter CAN_CLK_FREQ  = 1_000_000,
+    parameter QUANTS        = CLK_FREQ/CAN_CLK_FREQ
 )(
 	input rst_i,
 	input clk_can_i,
+    input clk_i,
 	input tx_start_i,
 	
-	output tx_lost_o,
-	output tx_acknowledged_o,
+    output reg frame_sent_o,
+	output reg tx_lost_arbitrage_o,
+	output     tx_acknowledged_o,
 	
-	input message_type,
-	input [5:0] local_address,
-	input [5:0] remote_address,
-	input [1:0] handshake,
-	input [3:0] expand_count,
-	input [7:0] cmd_data_sign,
-	input [3:0] dlc,
-	input [63:0] tx_data,
+	input           message_type,
+	input [5:0]     local_address,
+	input [5:0]     remote_address,
+	input [1:0]     handshake,
+	input [3:0]     expand_count,
+	input [7:0]     cmd_data_sign,
+	input [3:0]     dlc,
+	input [63:0]    tx_data,
 	
 	input  rx_i,
 	output tx_o,
@@ -25,14 +29,18 @@ module can_tx
 	//test
 	output [7:0] test_tx_state,
 	output [7:0] test_bit_count,
-	output [2:0] test_bit_pol_count
+	output [2:0] test_bit_pol_count,
+    output reg test_arbi
 );
-//test
+//<test>
 assign test_tx_state      = TX_STATE;
 assign test_bit_count     = bit_count_reg;  
 assign test_bit_pol_count = bit_pol_count;
+//</test>
 
-reg [6:0] count;
+reg [6:0]  count;
+reg [11:0] quant_count;
+
 //<CRC>
 wire [14:0] crc;
 wire crc_en;
@@ -44,7 +52,7 @@ assign crc_en = ( TX_STATE == TX_IDLE 		    ||
 reg crc_rst_i;
 can_crc can_crc_instance
 (
-	.clk_can_i	(clk_can_i),
+	.crc_clk_i  (clk_can_i),
 	.rst_i		(rst_i),
 	.data_i		(tx_o),
 	.en_i		(crc_en),
@@ -61,11 +69,10 @@ reg 		bit_stuff_bit;
 //</bit stuff>
 
 // <arbitrage>
-reg 	tx_lost_o_reg;
-assign  tx_lost_o = tx_lost_o_reg;
+
 // </arbitrage>
 
-// 0xAx - MAC-lvl, 0xB-x - LLC-lvl
+// 0xAx - MAC, 0xB-x - LLC
 localparam TX_IDLE          		= 8'h00;
 localparam TX_BIT_STUFF    		    = 8'h0B;
  
@@ -96,7 +103,7 @@ always @( posedge clk_can_i or negedge rst_i ) begin
 	if ( rst_i == 1'b0 ) begin
 		TX_STATE                <= 8'h0;
 		NEXT_TX_STATE 			<= TX_IDLE;
-		tx_lost_o_reg			<= 1'b0;
+		
 		bit_count_reg 			<= 8'd0;		
 		count 					<= 7'd0;	
         bit_pol_count 			<= 3'd1;
@@ -104,18 +111,21 @@ always @( posedge clk_can_i or negedge rst_i ) begin
         last_bit			    <= 1'b1;
 		crc_rst_i 				<= 1'b0;
         tx_busy_o               <= 1'b0;
+        frame_sent_o            <= 1'b0;
 	end else begin
 		if ( TX_STATE != TX_IDLE  ) begin
 			last_bit 		<= tx_o;
 			bit_count_reg   <= bit_count_reg + 1'b1;		
 		end
 		case ( TX_STATE )
-		TX_IDLE: 			begin	
-                                count 			<= 3'd0;
-                                bit_count_reg 	<= 8'd0;
-                                if ( tx_start_i ) begin									
-                                    TX_STATE		<= TX_START_OF_FRAME;
-                                    tx_busy_o       <= 1'b1;                                    
+		TX_IDLE: 			begin                               
+                                if ( tx_start_i ) begin									                                   
+                                    tx_busy_o           <= 1'b1;
+
+                                    count               <= 7'd0;	
+                                    bit_count_reg 	    <= 8'd0;
+                                    frame_sent_o        <= 1'b0;
+                                    TX_STATE		    <= TX_START_OF_FRAME;
                                 end
 							end																		
 		// <MAC-level>
@@ -193,6 +203,7 @@ always @( posedge clk_can_i or negedge rst_i ) begin
                                 if ( count == 7'd6 ) begin
                                     count 			<= 7'd0;
                                     TX_STATE 		<= TX_IDLE;
+                                    frame_sent_o    <= 1'b1;
                                     tx_busy_o       <= 1'b0;
                                 end else begin
                                     count 			<= count + 1'b1;
@@ -320,22 +331,18 @@ always @( posedge clk_can_i or negedge rst_i ) begin
 			end
 		end
 		// </bit stuff check>
-		
-		//<arbitrage>
 		if ( TX_STATE != TX_IDLE &&
-			TX_STATE != TX_ACK_SLOT ) begin
+			 TX_STATE != TX_ACK_SLOT ) begin
 			if ( tx_o != rx_i ) begin
-				tx_lost_o_reg 	<= 1'b1;
+				//tx_lost_arbitrage_o 	<= 1'b1;
                 //TX_STATE  		<= TX_IDLE;
 			end
 		end
-		//</arbitrage>
-		
 	end
 end
 
 //<acknowledgement>
-reg tx_acknowledged_o_reg;
+reg    tx_acknowledged_o_reg;
 assign tx_acknowledged_o = tx_acknowledged_o_reg;
 
 always @( posedge clk_can_i or negedge rst_i ) begin
@@ -351,29 +358,59 @@ always @( posedge clk_can_i or negedge rst_i ) begin
 end
 //</acknowledgement>
 
-reg [1:0] atribute = 2'b10;
-reg rtr = 1'b0;
-assign tx_o = TX_STATE == TX_START_OF_FRAME 		? 1'b0 									:												
+localparam SAMPLE = QUANTS/2;
+localparam STATE_RES = 12'd0;
+
+//<arbitrage>
+always @( posedge clk_i or negedge rst_i ) begin
+    if ( rst_i == 1'b0 ) begin
+        tx_lost_arbitrage_o <= 1'b0;
+    end else begin
+        if ( TX_STATE == TX_IDLE ) begin
+            quant_count         <= STATE_RES;
+            tx_lost_arbitrage_o <= 1'b0;
+        end else begin
+            quant_count     <= quant_count + 1'b1;
+            if ( quant_count == SAMPLE ) begin
+                test_arbi <= rx_i;
+                    if ( TX_STATE != TX_ACK_SLOT ) begin
+                        if ( tx_o != rx_i ) begin
+                            tx_lost_arbitrage_o 	<= 1'b1;
+                        end
+                    end
+            end else begin
+                if ( quant_count == QUANTS ) begin
+                    quant_count <= STATE_RES;
+                end
+            end
+        end
+    end
+end
+//</arbitrage>
+
+localparam [1:0] atribute = 2'b10;
+localparam rtr = 1'b0;
+assign tx_o = TX_STATE == TX_START_OF_FRAME 		? 1'b0 								:												
 				( TX_STATE == TX_MESSAGE_TYPE 		? message_type 						:
-				( TX_STATE == TX_ADDRESS_LOCAL 		? local_address	[7'd5 - count] :	
-				( TX_STATE == TX_ADDRESS_REMOTE 		? remote_address	[7'd5 - count] :
-				( TX_STATE == TX_SRR 					? 1'b1 									:
-				( TX_STATE == TX_IDE 					? 1'b1 									:
+				( TX_STATE == TX_ADDRESS_LOCAL 		? local_address	    [7'd5 - count]  :	
+				( TX_STATE == TX_ADDRESS_REMOTE 	? remote_address	[7'd5 - count]  :
+				( TX_STATE == TX_SRR 				? 1'b1 								:
+				( TX_STATE == TX_IDE 				? 1'b1 								:
 				( TX_STATE == TX_HANDSHAKING_P 		? handshake			[7'd1 - count]	:
 				( TX_STATE == TX_ATRIBUTE_RESERVED 	? atribute			[7'd1 - count]	:
-				( TX_STATE == TX_EXPAND_COUNT 		? expand_count		[7'd3 - count] :
-				( TX_STATE == TX_CMD_DATA_SIGN 		? cmd_data_sign	[7'd7 - count]	:
-				( TX_STATE == TX_RTR 					? rtr										:
-				( TX_STATE == TX_RESERVED 				? 1'b0									:
-				( TX_STATE == TX_DLC 					? dlc					[7'd3 - count]	:
-				( TX_STATE == TX_DATA 					? tx_data			[7'd63 - count]:
-				( TX_STATE == TX_CRC 					? crc		         [7'd14 - count]:
-				( TX_STATE == TX_CRC_DELIMITER 		? 1'b1									:
-				( TX_STATE == TX_ACK_SLOT 				? 1'b1									:
-				( TX_STATE == TX_ACK_DELIMITER 		? 1'b1									:
-				( TX_STATE == TX_END_OF_FRAME 		? 1'b1									:
-				( TX_STATE == TX_BIT_STUFF				? bit_stuff_bit						:
-                ( TX_STATE == TX_IDLE ? 1'b1 :
-				1'b1 ))))))))))))))))))));
+				( TX_STATE == TX_EXPAND_COUNT 		? expand_count		[7'd3 - count]  :
+				( TX_STATE == TX_CMD_DATA_SIGN 		? cmd_data_sign	    [7'd7 - count]	:
+				( TX_STATE == TX_RTR 				? rtr								:
+				( TX_STATE == TX_RESERVED 			? 1'b0							    :
+				( TX_STATE == TX_DLC 				? dlc				[7'd3 - count]	:
+				( TX_STATE == TX_DATA 				? tx_data			[7'd63 - count] :
+				( TX_STATE == TX_CRC 				? crc		        [7'd14 - count] :
+				( TX_STATE == TX_CRC_DELIMITER 		? 1'b1							    :
+				( TX_STATE == TX_ACK_SLOT 			? 1'b1								:
+				( TX_STATE == TX_ACK_DELIMITER 		? 1'b1								:
+				( TX_STATE == TX_END_OF_FRAME 		? 1'b1								:
+				( TX_STATE == TX_BIT_STUFF			? bit_stuff_bit						:
+                ( TX_STATE == TX_IDLE               ? 1'b1                              :
+                                                      1'b1 ))))))))))))))))))));
 
 endmodule

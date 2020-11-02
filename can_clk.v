@@ -1,8 +1,7 @@
 module can_clk
 #(
    parameter FREQ_I = 50_000_000,
-   parameter FREQ_O = 25_100,//1_000_000,
-   
+   parameter FREQ_O = 1_000_000,
    parameter END_COUNT = FREQ_I/(FREQ_O*2) - 1
 )( 
    input rst_i,
@@ -12,10 +11,9 @@ module can_clk
    output can_clk_o
 );
 
-
 reg [11:0] count;
-
 reg can_clk_o_reg;
+
 assign can_clk_o = can_clk_o_reg;
 
 always @( posedge clk_i or negedge rst_i ) begin
