@@ -3,27 +3,27 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk_i'
-Slack : -6.621
-TNS   : -403.466
+Slack : -6.284
+TNS   : -398.429
 
 Type  : Slow 1200mV 85C Model Setup 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -5.950
-TNS   : -332.788
-
-Type  : Slow 1200mV 85C Model Hold 'clk_i'
-Slack : 0.433
-TNS   : 0.000
+Slack : -5.337
+TNS   : -293.060
 
 Type  : Slow 1200mV 85C Model Hold 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
+Slack : 0.434
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk_i'
 Slack : 0.452
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Recovery 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -1.229
-TNS   : -18.435
+Slack : -1.187
+TNS   : -16.437
 
 Type  : Slow 1200mV 85C Model Removal 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 1.726
+Slack : 1.240
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_i'
@@ -35,27 +35,27 @@ Slack : -1.487
 TNS   : -114.499
 
 Type  : Slow 1200mV 0C Model Setup 'clk_i'
-Slack : -6.072
-TNS   : -367.771
+Slack : -5.732
+TNS   : -367.602
 
 Type  : Slow 1200mV 0C Model Setup 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -5.593
-TNS   : -308.753
-
-Type  : Slow 1200mV 0C Model Hold 'clk_i'
-Slack : 0.382
-TNS   : 0.000
+Slack : -4.952
+TNS   : -271.993
 
 Type  : Slow 1200mV 0C Model Hold 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 0.403
+Slack : 0.387
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk_i'
+Slack : 0.400
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Recovery 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -1.018
-TNS   : -15.270
+Slack : -1.011
+TNS   : -13.959
 
 Type  : Slow 1200mV 0C Model Removal 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 1.597
+Slack : 1.146
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_i'
@@ -67,32 +67,32 @@ Slack : -1.487
 TNS   : -114.499
 
 Type  : Fast 1200mV 0C Model Setup 'clk_i'
-Slack : -2.261
-TNS   : -122.457
+Slack : -2.221
+TNS   : -119.948
 
 Type  : Fast 1200mV 0C Model Setup 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -2.042
-TNS   : -102.658
-
-Type  : Fast 1200mV 0C Model Hold 'clk_i'
-Slack : 0.178
-TNS   : 0.000
+Slack : -1.787
+TNS   : -82.551
 
 Type  : Fast 1200mV 0C Model Hold 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 0.184
+Slack : 0.175
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk_i'
+Slack : 0.186
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Recovery 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : -0.010
-TNS   : -0.150
+Slack : 0.015
+TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Removal 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
-Slack : 0.723
+Slack : 0.483
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_i'
 Slack : -3.000
-TNS   : -141.954
+TNS   : -141.662
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg'
 Slack : -1.000

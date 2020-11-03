@@ -14,24 +14,29 @@ module can_top
     //
     parameter [5:0] LOCAL_ADDRESS = 6'b000101,
     
-    parameter [19:0] addr_setting_send   = 20'hA0001,
-    parameter [19:0] addr_data_send_1    = 20'hA0002,
-    parameter [19:0] addr_data_send_2    = 20'hA0003
+    parameter [19:0] addr_setting_send      = 20'hA0001,
+    parameter [19:0] addr_data_send_1       = 20'hA0002,
+    parameter [19:0] addr_data_send_2       = 20'hA0003,
+    
+    parameter [19:0] addr_setting_recieved  = 20'hB0001,
+    parameter [19:0] addr_data_recieved_1   = 20'hB0002,
+    parameter [19:0] addr_data_recieved_2   = 20'hB0003
 )(   
     input  rst_i,
     input  clk_i,
     
     input  rx_i,
     output rx_busy,
+    output rx_received,
     
     output tx_o,
     output tx_busy,
     input  tx_send_i,
    
     // <DMA>
-    output [DATA_WIDTH-1 : 0] data_wr,
-    output [ADDR_WIDTH-1 : 0] addr_wr,
-    output wr_en,
+    output reg [DATA_WIDTH-1 : 0] data_wr,
+    output reg [ADDR_WIDTH-1 : 0] addr_wr,
+    output reg wr_en,
     input  wr_done,
     input  wr_busy,
     
@@ -77,8 +82,8 @@ reg [63:0]  data_to_send;
 
 //<input>
 reg        tx_message_type      = 1'b0;
-reg [5:0]  local_address     = 6'b000101;//6'h2A;        
-reg [5:0]  remote_address    = 6'b100010;
+reg [5:0]  local_address        = 6'b000101;//6'h2A;        
+reg [5:0]  remote_address       = 6'b100010;
 reg [1:0]  tx_handshake         = 2'b10;
 reg [1:0]  tx_atribute          = 2'b10;
 reg [3:0]  tx_expand_count      = 4'b1011;
@@ -88,7 +93,7 @@ reg [63:0] tx_data;
 //</input>
 
 //<output>
-reg [63:0] rx_data_reg;
+reg  [63:0] rx_data_reg;
 wire [63:0] rx_data;
 //</output>
 
@@ -108,15 +113,15 @@ assign tx_o = CAN_STATE == CAN_TX ? tx_o_tx :
             ( CAN_STATE == CAN_RX ? tx_o_rx : 1'b1 );
 
 localparam  CAN_START_INIT = 0;
-localparam  CAN_INIT       = 0;
-localparam  CAN_IDLE       = 1;
-localparam  CAN_PAUSE      = 2;
-localparam  CAN_START_RX   = 3;
-localparam  CAN_RX         = 4;
-localparam  CAN_START_TX   = 5;
-localparam  CAN_TX         = 6;
-localparam  CAN_TEST_START = 7;
-localparam  CAN_TEST       = 8;
+localparam  CAN_INIT       = 1;
+localparam  CAN_IDLE       = 2;
+localparam  CAN_PAUSE      = 3;
+localparam  CAN_START_RX   = 4;
+localparam  CAN_RX         = 5;
+localparam  CAN_START_TX   = 6;
+localparam  CAN_TX         = 7;
+localparam  CAN_TEST_START = 8;
+localparam  CAN_TEST       = 9;
 
 
 reg [3:0] CAN_STATE;  
@@ -222,6 +227,7 @@ always @( posedge clk_i or negedge rst_i ) begin
     end
 end
 
+//tx data dma read
 always @( posedge clk_i or negedge rst_i ) begin
     if ( rst_i == 1'b0 ) begin
         tx_data    <= 64'h0;
@@ -239,11 +245,16 @@ always @( posedge clk_i or negedge rst_i ) begin
     end
 end
 
+//rx data dma write
 always @( posedge clk_i or negedge rst_i ) begin
     if ( rst_i == 1'b0 ) begin
         rx_data_reg <= 64'h0;
     end else begin
         if ( rx_frame_ready ) begin
+        
+            addr_wr     <= addr_data_recieved_1;
+            data_wr     <= rx_data[63:32];
+            wr_en       <= 1'b1;
             rx_data_reg <= rx_data;
         end
     end

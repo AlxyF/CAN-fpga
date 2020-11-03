@@ -246,7 +246,8 @@ always @( posedge clk_i or negedge rst_i ) begin
                                 if ( rx_i == 1'b0 && rx_i_last == 1'b1 ) begin
                                     RX_STATE        <= RX_START_OF_FRAME;
                                     quant_count     <= 12'd1;
-                                    rx_busy_o       <= 1'b1;                           
+                                    rx_busy_o       <= 1'b1;
+                                    rx_data         <= 64'd0;                           
                                 end
                             end                                                                     
         // <MAC-level>

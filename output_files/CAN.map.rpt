@@ -1,5 +1,5 @@
 Analysis & Synthesis report for CAN
-Mon Nov 02 19:19:09 2020
+Tue Nov 03 16:48:12 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -63,13 +63,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 02 19:19:09 2020       ;
+; Analysis & Synthesis Status        ; Successful - Tue Nov 03 16:48:12 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_test                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 487                                         ;
-;     Total combinational functions  ; 474                                         ;
+; Total logic elements               ; 486                                         ;
+;     Total combinational functions  ; 473                                         ;
 ;     Dedicated logic registers      ; 184                                         ;
 ; Total registers                    ; 184                                         ;
 ; Total pins                         ; 8                                           ;
@@ -204,16 +204,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 487         ;
+; Estimated Total logic elements              ; 486         ;
 ;                                             ;             ;
-; Total combinational functions               ; 474         ;
+; Total combinational functions               ; 473         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 307         ;
-;     -- 3 input functions                    ; 67          ;
-;     -- <=2 input functions                  ; 100         ;
+;     -- 4 input functions                    ; 308         ;
+;     -- 3 input functions                    ; 68          ;
+;     -- <=2 input functions                  ; 97          ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 414         ;
+;     -- normal mode                          ; 413         ;
 ;     -- arithmetic mode                      ; 60          ;
 ;                                             ;             ;
 ; Total registers                             ; 184         ;
@@ -226,8 +226,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;             ;
 ; Maximum fan-out node                        ; rst_i~input ;
 ; Maximum fan-out                             ; 170         ;
-; Total fan-out                               ; 2307        ;
-; Average fan-out                             ; 3.42        ;
+; Total fan-out                               ; 2308        ;
+; Average fan-out                             ; 3.43        ;
 +---------------------------------------------+-------------+
 
 
@@ -236,10 +236,10 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node          ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                            ; Entity Name ; Library Name ;
 +-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
-; |can_test                           ; 474 (0)             ; 184 (0)                   ; 0           ; 0            ; 0       ; 0         ; 8    ; 0            ; |can_test                                                                      ; can_test    ; work         ;
-;    |can_top:can_top_inst|           ; 474 (40)            ; 184 (21)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst                                                 ; can_top     ; work         ;
+; |can_test                           ; 473 (0)             ; 184 (0)                   ; 0           ; 0            ; 0       ; 0         ; 8    ; 0            ; |can_test                                                                      ; can_test    ; work         ;
+;    |can_top:can_top_inst|           ; 473 (40)            ; 184 (21)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst                                                 ; can_top     ; work         ;
 ;       |can_clk:can_clk_instance|    ; 18 (18)             ; 13 (13)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_clk:can_clk_instance                        ; can_clk     ; work         ;
-;       |can_rx:can_rx_instance|      ; 232 (232)           ; 71 (71)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance                          ; can_rx      ; work         ;
+;       |can_rx:can_rx_instance|      ; 231 (231)           ; 71 (71)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance                          ; can_rx      ; work         ;
 ;       |can_tx:can_tx_instance|      ; 184 (176)           ; 79 (64)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance                          ; can_tx      ; work         ;
 ;          |can_crc:can_crc_instance| ; 8 (8)               ; 15 (15)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|can_crc:can_crc_instance ; can_crc     ; work         ;
 +-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
@@ -259,21 +259,22 @@ Encoding Type:  One-Hot
 
 
 Encoding Type:  One-Hot
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |can_test|can_top:can_top_inst|CAN_STATE                                                                                                                                                                         ;
-+--------------------------+--------------------------+------------------+------------------------+------------------+------------------------+---------------------+--------------------+--------------------+--------------------+
-; Name                     ; CAN_STATE.CAN_TEST_START ; CAN_STATE.CAN_TX ; CAN_STATE.CAN_START_TX ; CAN_STATE.CAN_RX ; CAN_STATE.CAN_START_RX ; CAN_STATE.CAN_PAUSE ; CAN_STATE.CAN_INIT ; CAN_STATE.CAN_IDLE ; CAN_STATE.CAN_TEST ;
-+--------------------------+--------------------------+------------------+------------------------+------------------+------------------------+---------------------+--------------------+--------------------+--------------------+
-; CAN_STATE.CAN_IDLE       ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 0                  ; 0                  ; 0                  ;
-; CAN_STATE.CAN_INIT       ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 1                  ; 1                  ; 0                  ;
-; CAN_STATE.CAN_PAUSE      ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 1                   ; 0                  ; 1                  ; 0                  ;
-; CAN_STATE.CAN_START_RX   ; 0                        ; 0                ; 0                      ; 0                ; 1                      ; 0                   ; 0                  ; 1                  ; 0                  ;
-; CAN_STATE.CAN_RX         ; 0                        ; 0                ; 0                      ; 1                ; 0                      ; 0                   ; 0                  ; 1                  ; 0                  ;
-; CAN_STATE.CAN_START_TX   ; 0                        ; 0                ; 1                      ; 0                ; 0                      ; 0                   ; 0                  ; 1                  ; 0                  ;
-; CAN_STATE.CAN_TX         ; 0                        ; 1                ; 0                      ; 0                ; 0                      ; 0                   ; 0                  ; 1                  ; 0                  ;
-; CAN_STATE.CAN_TEST_START ; 1                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 0                  ; 1                  ; 0                  ;
-; CAN_STATE.CAN_TEST       ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 0                  ; 1                  ; 1                  ;
-+--------------------------+--------------------------+------------------+------------------------+------------------+------------------------+---------------------+--------------------+--------------------+--------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |can_test|can_top:can_top_inst|CAN_STATE                                                                                                                                                                                                    ;
++--------------------------+--------------------+--------------------------+------------------+------------------------+------------------+------------------------+---------------------+--------------------------+--------------------+--------------------+
+; Name                     ; CAN_STATE.CAN_TEST ; CAN_STATE.CAN_TEST_START ; CAN_STATE.CAN_TX ; CAN_STATE.CAN_START_TX ; CAN_STATE.CAN_RX ; CAN_STATE.CAN_START_RX ; CAN_STATE.CAN_PAUSE ; CAN_STATE.CAN_START_INIT ; CAN_STATE.CAN_INIT ; CAN_STATE.CAN_IDLE ;
++--------------------------+--------------------+--------------------------+------------------+------------------------+------------------+------------------------+---------------------+--------------------------+--------------------+--------------------+
+; CAN_STATE.CAN_IDLE       ; 0                  ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 0                        ; 0                  ; 0                  ;
+; CAN_STATE.CAN_INIT       ; 0                  ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 0                        ; 1                  ; 1                  ;
+; CAN_STATE.CAN_START_INIT ; 0                  ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 1                        ; 0                  ; 1                  ;
+; CAN_STATE.CAN_PAUSE      ; 0                  ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 1                   ; 0                        ; 0                  ; 1                  ;
+; CAN_STATE.CAN_START_RX   ; 0                  ; 0                        ; 0                ; 0                      ; 0                ; 1                      ; 0                   ; 0                        ; 0                  ; 1                  ;
+; CAN_STATE.CAN_RX         ; 0                  ; 0                        ; 0                ; 0                      ; 1                ; 0                      ; 0                   ; 0                        ; 0                  ; 1                  ;
+; CAN_STATE.CAN_START_TX   ; 0                  ; 0                        ; 0                ; 1                      ; 0                ; 0                      ; 0                   ; 0                        ; 0                  ; 1                  ;
+; CAN_STATE.CAN_TX         ; 0                  ; 0                        ; 1                ; 0                      ; 0                ; 0                      ; 0                   ; 0                        ; 0                  ; 1                  ;
+; CAN_STATE.CAN_TEST_START ; 0                  ; 1                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 0                        ; 0                  ; 1                  ;
+; CAN_STATE.CAN_TEST       ; 1                  ; 0                        ; 0                ; 0                      ; 0                ; 0                      ; 0                   ; 0                        ; 0                  ; 1                  ;
++--------------------------+--------------------+--------------------------+------------------+------------------------+------------------+------------------------+---------------------+--------------------------+--------------------+--------------------+
 
 
 Encoding Type:  One-Hot
@@ -396,9 +397,11 @@ Encoding Type:  One-Hot
 ; can_top:can_top_inst|tx_pending                                                                                       ; Merged with can_top:can_top_inst|tx_data[10] ;
 ; PMRAMIF:PMRAMIF_inst|op_counter_en                                                                                    ; Stuck at GND due to stuck port data_in       ;
 ; PMRAMIF:PMRAMIF_inst|op_counter[0,1]                                                                                  ; Stuck at GND due to stuck port data_in       ;
+; can_top:can_top_inst|CAN_STATE.CAN_START_INIT                                                                         ; Lost fanout                                  ;
 ; can_top:can_top_inst|CAN_STATE~6                                                                                      ; Lost fanout                                  ;
 ; can_top:can_top_inst|CAN_STATE~7                                                                                      ; Lost fanout                                  ;
 ; can_top:can_top_inst|CAN_STATE~8                                                                                      ; Lost fanout                                  ;
+; can_top:can_top_inst|CAN_STATE~9                                                                                      ; Lost fanout                                  ;
 ; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~4                                                           ; Lost fanout                                  ;
 ; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~5                                                           ; Lost fanout                                  ;
 ; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~6                                                           ; Lost fanout                                  ;
@@ -429,28 +432,28 @@ Encoding Type:  One-Hot
 ; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~9                                                                ; Lost fanout                                  ;
 ; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~10                                                               ; Lost fanout                                  ;
 ; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~11                                                               ; Lost fanout                                  ;
+; can_top:can_top_inst|CAN_STATE.CAN_INIT                                                                               ; Stuck at GND due to stuck port data_in       ;
 ; PMRAMIF:PMRAMIF_inst|STATE.MRAM_WRITE                                                                                 ; Lost fanout                                  ;
 ; PMRAMIF:PMRAMIF_inst|STATE.MRAM_READ                                                                                  ; Lost fanout                                  ;
 ; PMRAMIF:PMRAMIF_inst|STATE.IDLE                                                                                       ; Lost fanout                                  ;
 ; can_top:can_top_inst|CAN_STATE.CAN_TEST_START                                                                         ; Stuck at GND due to stuck port data_in       ;
-; can_top:can_top_inst|CAN_STATE.CAN_INIT                                                                               ; Stuck at GND due to stuck port data_in       ;
 ; can_top:can_top_inst|CAN_STATE.CAN_TEST                                                                               ; Stuck at GND due to stuck port data_in       ;
-; Total Number of Removed Registers = 113                                                                               ;                                              ;
+; Total Number of Removed Registers = 115                                                                               ;                                              ;
 +-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                           ;
-+-----------------------------------------------------------------+---------------------------+-----------------------------------------+
-; Register name                                                   ; Reason for Removal        ; Registers Removed due to This Register  ;
-+-----------------------------------------------------------------+---------------------------+-----------------------------------------+
-; can_top:can_top_inst|can_rx:can_rx_instance|local_adress_reg[5] ; Stuck at GND              ; can_top:can_top_inst|init               ;
-;                                                                 ; due to stuck port data_in ;                                         ;
-; PMRAMIF:PMRAMIF_inst|op_counter_en                              ; Stuck at GND              ; PMRAMIF:PMRAMIF_inst|op_counter[1]      ;
-;                                                                 ; due to stuck port data_in ;                                         ;
-; can_top:can_top_inst|CAN_STATE.CAN_INIT                         ; Stuck at GND              ; can_top:can_top_inst|CAN_STATE.CAN_TEST ;
-;                                                                 ; due to stuck port data_in ;                                         ;
-+-----------------------------------------------------------------+---------------------------+-----------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                 ;
++-----------------------------------------------------------------+---------------------------+-----------------------------------------------+
+; Register name                                                   ; Reason for Removal        ; Registers Removed due to This Register        ;
++-----------------------------------------------------------------+---------------------------+-----------------------------------------------+
+; can_top:can_top_inst|can_rx:can_rx_instance|local_adress_reg[5] ; Stuck at GND              ; can_top:can_top_inst|init                     ;
+;                                                                 ; due to stuck port data_in ;                                               ;
+; PMRAMIF:PMRAMIF_inst|op_counter_en                              ; Stuck at GND              ; PMRAMIF:PMRAMIF_inst|op_counter[1]            ;
+;                                                                 ; due to stuck port data_in ;                                               ;
+; can_top:can_top_inst|CAN_STATE.CAN_INIT                         ; Stuck at GND              ; can_top:can_top_inst|CAN_STATE.CAN_TEST_START ;
+;                                                                 ; due to stuck port data_in ;                                               ;
++-----------------------------------------------------------------+---------------------------+-----------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -486,18 +489,17 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|bit_pol_count[2] ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|bit_pol_count[1] ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|bit_pol_count[0] ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_clk:can_clk_instance|count[2]       ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|quant_count[0]   ;
-; 5:1                ; 11 bits   ; 33 LEs        ; 11 LEs               ; 22 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|quant_count[11]  ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|tx_busy_o        ;
-; 17:1               ; 7 bits    ; 77 LEs        ; 7 LEs                ; 70 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|count[2]         ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_clk:can_clk_instance|count[1]       ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|quant_count[8]   ;
+; 5:1                ; 11 bits   ; 33 LEs        ; 11 LEs               ; 22 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|quant_count[1]   ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|frame_sent_o     ;
+; 17:1               ; 7 bits    ; 77 LEs        ; 7 LEs                ; 70 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|count[1]         ;
 ; 6:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|count[2]         ;
-; 13:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector6                               ;
-; 14:1               ; 4 bits    ; 36 LEs        ; 16 LEs               ; 20 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector9                               ;
-; 15:1               ; 2 bits    ; 20 LEs        ; 4 LEs                ; 16 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector2                               ;
-; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|Selector35       ;
+; 13:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector5                               ;
+; 14:1               ; 5 bits    ; 45 LEs        ; 20 LEs               ; 25 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector1                               ;
+; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|Selector33       ;
 ; 19:1               ; 3 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE         ;
 ; 20:1               ; 4 bits    ; 52 LEs        ; 24 LEs               ; 28 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE         ;
 ; 15:1               ; 2 bits    ; 20 LEs        ; 4 LEs                ; 16 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE         ;
@@ -726,18 +728,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA CLR SCLR      ; 14                          ;
 ;     ENA SCLR          ; 23                          ;
 ;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 475                         ;
+; cycloneiii_lcell_comb ; 474                         ;
 ;     arith             ; 60                          ;
 ;         2 data inputs ; 60                          ;
-;     normal            ; 415                         ;
+;     normal            ; 414                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 8                           ;
-;         2 data inputs ; 32                          ;
-;         3 data inputs ; 67                          ;
-;         4 data inputs ; 307                         ;
+;         2 data inputs ; 29                          ;
+;         3 data inputs ; 68                          ;
+;         4 data inputs ; 308                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 10.00                       ;
-; Average LUT depth     ; 5.09                        ;
+; Average LUT depth     ; 5.06                        ;
 +-----------------------+-----------------------------+
 
 
@@ -756,7 +758,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 02 19:19:01 2020
+    Info: Processing started: Tue Nov 03 16:48:02 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CAN -c CAN
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -795,7 +797,6 @@ Info (12128): Elaborating entity "can_top" for hierarchy "can_top:can_top_inst" 
 Warning (10036): Verilog HDL or VHDL warning at can_top.v(83): object "tx_atribute" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 83
 Warning (10036): Verilog HDL or VHDL warning at can_top.v(91): object "rx_data_reg" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 91
 Warning (10230): Verilog HDL assignment warning at can_top.v(72): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/CAN/can_top.v Line: 72
-Warning (10272): Verilog HDL Case Statement warning at can_top.v(150): case item expression covers a value already covered by a previous case item File: C:/hdl_projects/CAN/can_top.v Line: 150
 Warning (10034): Output port "data_wr" at can_top.v(32) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 32
 Warning (10034): Output port "addr_wr" at can_top.v(33) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 33
 Warning (10034): Output port "wr_en" at can_top.v(34) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 34
@@ -830,18 +831,18 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "test_rx_rx" is stuck at GND File: C:/hdl_projects/CAN/can_test.v Line: 12
     Warning (13410): Pin "test_sample" is stuck at GND File: C:/hdl_projects/CAN/can_test.v Line: 15
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 37 registers lost all their fanouts during netlist optimizations.
+Info (17049): 39 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/hdl_projects/CAN/output_files/CAN.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 498 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 497 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 5 output pins
-    Info (21061): Implemented 490 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 45 warnings
-    Info: Peak virtual memory: 4764 megabytes
-    Info: Processing ended: Mon Nov 02 19:19:09 2020
-    Info: Elapsed time: 00:00:08
+    Info (21061): Implemented 489 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 44 warnings
+    Info: Peak virtual memory: 4757 megabytes
+    Info: Processing ended: Tue Nov 03 16:48:12 2020
+    Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:16
 
 
