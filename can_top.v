@@ -12,11 +12,11 @@ module can_top
     parameter OP_CYCLE_NS       = 35,
     
     //
-    parameter [5:0] LOCAL_ADDRESS = 6'b000101,
+    parameter [5:0]  LOCAL_ADDRESS = 6'b000101,
     
-    parameter [19:0] addr_setting_send      = 20'hA0001,
-    parameter [19:0] addr_data_send_1       = 20'hA0002,
-    parameter [19:0] addr_data_send_2       = 20'hA0003,
+    parameter [19:0] ADDR_SETTING_SEND      = 20'hA0001,
+    parameter [19:0] ADDR_DATA_SEND_1       = 20'hA0002,
+    parameter [19:0] ADDR_DATA_SEND_2       = 20'hA0003,
     
     parameter [19:0] addr_setting_recieved  = 20'hB0001,
     parameter [19:0] addr_data_recieved_1   = 20'hB0002,
@@ -36,11 +36,15 @@ module can_top
     // <DMA>
     output reg [DATA_WIDTH-1 : 0] data_wr,
     output reg [ADDR_WIDTH-1 : 0] addr_wr,
-    output reg wr_en,
-    input  wr_done,
-    input  wr_busy,
+    output reg                    wr_en,
+    input                         wr_done,
+    input                         wr_busy,
     
-    
+    input      [DATA_WIDTH-1 : 0] data_rd,
+    output reg [ADDR_WIDTH-1 : 0] addr_rd,
+    output reg                    rd_en,
+    input                         rd_done,
+    input                         rd_busy,
     // </DMA>
     
     // tx fields
@@ -51,14 +55,14 @@ module can_top
     
     // - output CAN frame LLC/DLC data
          
-    // test
+    // <test>
     output test_clk_can,
-    output [2:0] test_can_state,
-    output [7:0] test_can_tx_state,
-    output [7:0] test_bit_count,
-    output [3:0] test_bit_pol_count,
-    output reg   bit_stuffed,
-    output       test_last_bit,
+    output [2:0]  test_can_state,
+    output [7:0]  test_can_tx_state,
+    output [7:0]  test_bit_count,
+    output [3:0]  test_bit_pol_count,
+    output reg    bit_stuffed,
+    output        test_last_bit,
     
     output [7:0]  test_rx_state,
     output [11:0] test_rx_quant_count,
@@ -68,12 +72,13 @@ module can_top
     output [6:0]  test_rx_count,
     output test_rx_rx,
     output test_sample
+    // </test>
 );
 
 // <test>
 wire test_arbi;
 reg count_rst;
-assign test_sample              = (CAN_STATE == CAN_PAUSE) ? 1'b0 : 1'b1;
+assign test_sample              = ( CAN_STATE == CAN_PAUSE ) ? 1'b0 : 1'b1;
 assign test_can_state           = CAN_STATE;
 // </test>
 
@@ -89,7 +94,9 @@ reg [1:0]  tx_atribute          = 2'b10;
 reg [3:0]  tx_expand_count      = 4'b1011;
 reg [7:0]  tx_cmd_data_sign     = 8'b1111_0101;
 reg [3:0]  tx_dlc               = 4'b1001;
+
 reg [63:0] tx_data;
+reg [31:0] can_send_setting;
 //</input>
 
 //<output>
@@ -109,6 +116,9 @@ wire frame_sent;
 wire can_is_free;
 wire rx_frame_ready;
 
+
+
+//<CAN MAIN FLOW>
 assign tx_o = CAN_STATE == CAN_TX ? tx_o_tx :
             ( CAN_STATE == CAN_RX ? tx_o_rx : 1'b1 );
 
@@ -122,7 +132,6 @@ localparam  CAN_START_TX   = 6;
 localparam  CAN_TX         = 7;
 localparam  CAN_TEST_START = 8;
 localparam  CAN_TEST       = 9;
-
 
 reg [3:0] CAN_STATE;  
 reg [10:0] count;
@@ -226,39 +235,137 @@ always @( posedge clk_i or negedge rst_i ) begin
         endcase
     end
 end
+//</CAN MAIN FLOW>
 
-//tx data dma read
+//<TX DATA DMA READ>
+localparam  TX_READ_IDLE            = 0; 
+localparam  TX_START_READ_SETTING   = 1;
+localparam  TX_READ_SETTING         = 2;
+localparam  TX_START_READ_DATA_1    = 3;
+localparam  TX_READ_DATA_1          = 4;
+localparam  TX_START_READ_DATA_2    = 5;
+localparam  TX_READ_DATA_2          = 6;
+localparam  TX_START_SEND_DATA      = 7;
+localparam  TX_SEND_DATA            = 8;
+
+reg [3:0] TX_DMA_STATE;  
+
 always @( posedge clk_i or negedge rst_i ) begin
     if ( rst_i == 1'b0 ) begin
-        tx_data    <= 64'h0;
-        
-        tx_pending <= 1'b0;
+        can_send_setting    <= 32'd0;
+        tx_data             <= 64'h0;
+        tx_pending          <= 1'b0;       
     end else begin
-        if ( tx_send_i == 1'b1 ) begin
-            // all inputs reg
-            tx_data    <= tx_data_i;
-            tx_pending <= 1'b1;
-            
-        end else begin
-        
-        end
+        case ( TX_DMA_STATE ) 
+        TX_READ_IDLE:           begin
+                                    if ( tx_send_i == 1'b1  ) begin
+                                         TX_DMA_STATE <= TX_START_READ_SETTING;
+                                    end
+                                end
+        TX_START_READ_SETTING:  begin
+                                    addr_rd           <= ADDR_SETTING_SEND;
+                                    can_send_setting  <= data_rd;
+                                    rd_en             <= 1'b1;
+                                    TX_DMA_STATE      <= TX_READ_SETTING;
+                                end
+        TX_READ_SETTING:        begin
+                                    rd_en             <= 1'b0;
+                                    TX_DMA_STATE      <= TX_START_READ_DATA_1;
+                                end
+        TX_START_READ_DATA_1:   begin
+                                    addr_rd           <= ADDR_DATA_SEND_1;
+                                    tx_data[63:32]    <= data_rd;
+                                    rd_en             <= 1'b1;
+                                    TX_DMA_STATE      <= TX_READ_DATA_1;    
+                                end
+        TX_READ_DATA_1:         begin
+                                    rd_en             <= 1'b0;
+                                    TX_DMA_STATE      <= TX_START_READ_DATA_2;
+                                end
+        TX_START_READ_DATA_2:   begin
+                                    addr_rd           <= ADDR_DATA_SEND_2;
+                                    tx_data[31:0]     <= data_rd;
+                                    rd_en             <= 1'b1;
+                                    TX_DMA_STATE      <= TX_START_READ_DATA_2;  
+                                end
+        TX_READ_DATA_2:         begin
+                                    rd_en             <= 1'b0;
+                                    TX_DMA_STATE      <= TX_START_SEND_DATA;  
+                                end
+        TX_START_SEND_DATA:     begin
+                                    tx_pending        <= 1'b1;
+                                    TX_DMA_STATE      <= TX_SEND_DATA;
+                                end
+        TX_SEND_DATA:           begin
+                                    if ( tx_busy ) begin
+                                        tx_pending    <= 1'b0;
+                                        TX_DMA_STATE  <= TX_READ_IDLE;
+                                    end
+                                end
+        endcase                       
     end
 end
+//</TX DATA DMA READ>
 
-//rx data dma write
+//<RX DATA DMA READ>
+localparam  RX_WRITE_IDLE            = 0; 
+localparam  RX_START_WRITE_SETTING   = 1;
+localparam  RX_WRITE_SETTING         = 2;
+localparam  RX_START_WRITE_DATA_1    = 3;
+localparam  RX_WRITE_DATA_1          = 4;
+localparam  RX_START_WRITE_DATA_2    = 5;
+localparam  RX_WRITE_DATA_2          = 6;
+localparam  RX_START_SEND_DATA       = 7;
+localparam  RX_SEND_DATA             = 8;
+
+reg [3:0] RX_DMA_STATE;
+
 always @( posedge clk_i or negedge rst_i ) begin
     if ( rst_i == 1'b0 ) begin
         rx_data_reg <= 64'h0;
     end else begin
-        if ( rx_frame_ready ) begin
-        
-            addr_wr     <= addr_data_recieved_1;
-            data_wr     <= rx_data[63:32];
-            wr_en       <= 1'b1;
-            rx_data_reg <= rx_data;
-        end
+        case ( TX_DMA_STATE ) 
+        RX_WRITE_IDLE:          begin
+                                    if ( tx_send_i == 1'b1  ) begin
+                                         RX_DMA_STATE <= RX_START_READ_SETTING;
+                                    end
+                                end
+        RX_START_WRITE_SETTING: begin
+                                    addr_rd           <= ADDR_SETTING_SEND;
+                                    can_send_setting  <= data_rd;
+                                    rd_en             <= 1'b1;
+                                    RX_DMA_STATE      <= RX_READ_SETTING;
+                                end
+        RX_WRITE_SETTING:       begin
+                                    rd_en             <= 1'b0;
+                                    RX_DMA_STATE      <= RX_START_READ_DATA_1;
+                                end
+        RX_START_WRITE_DATA_1:  begin
+                                    addr_rd           <= ADDR_DATA_SEND_1;
+                                    tx_data[63:32]    <= data_rd;
+                                    rd_en             <= 1'b1;
+                                    RX_DMA_STATE      <= RX_READ_DATA_1;    
+                                end
+        RX_WRITE_DATA_1:        begin
+                                    rd_en             <= 1'b0;
+                                    RX_DMA_STATE      <= RX_START_READ_DATA_2;
+                                end
+        RX_START_WRITE_DATA_2:  begin
+                                    addr_rd           <= ADDR_DATA_SEND_2;
+                                    tx_data[31:0]     <= data_rd;
+                                    rd_en             <= 1'b1;
+                                    RX_DMA_STATE      <= RX_START_READ_DATA_2;  
+                                end
+        RX_WRITE_DATA_2:        begin
+                                    rd_en             <= 1'b0;
+                                    RX_DMA_STATE      <= RX_START_SEND_DATA;  
+                                end
+
+        endcase                       
+
     end
 end
+//</RX DATA DMA READ>
 
 can_tx #(
     .CLK_FREQ               (CLK_FREQ),
@@ -340,5 +447,4 @@ can_clk #(
     .can_clk_o      (clk_can) 
 );
     
-
 endmodule

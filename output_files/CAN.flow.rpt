@@ -1,5 +1,5 @@
 Flow report for CAN
-Tue Nov 03 16:48:25 2020
+Fri Nov 06 16:17:41 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -41,17 +41,17 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Nov 03 16:48:22 2020       ;
+; Flow Status                        ; Successful - Fri Nov 06 16:17:38 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_test                                    ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE6E22C8                                 ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 477 / 6,272 ( 8 % )                         ;
-;     Total combinational functions  ; 474 / 6,272 ( 8 % )                         ;
-;     Dedicated logic registers      ; 184 / 6,272 ( 3 % )                         ;
-; Total registers                    ; 184                                         ;
+; Total logic elements               ; 411 / 6,272 ( 7 % )                         ;
+;     Total combinational functions  ; 406 / 6,272 ( 6 % )                         ;
+;     Dedicated logic registers      ; 160 / 6,272 ( 3 % )                         ;
+; Total registers                    ; 160                                         ;
 ; Total pins                         ; 8 / 92 ( 9 % )                              ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 276,480 ( 0 % )                         ;
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/03/2020 16:48:03 ;
+; Start date & time ; 11/06/2020 16:17:19 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; CAN                 ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 30902513708070.160441128201200         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 30902513708070.160466863911164         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; can_test    ; Top        ;
@@ -94,11 +94,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4757 MB             ; 00:00:16                           ;
-; Fitter               ; 00:00:06     ; 1.0                     ; 5498 MB             ; 00:00:06                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 4682 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4761 MB             ; 00:00:01                           ;
-; Total                ; 00:00:18     ; --                      ; --                  ; 00:00:24                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4764 MB             ; 00:00:16                           ;
+; Fitter               ; 00:00:07     ; 1.0                     ; 5506 MB             ; 00:00:06                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 4680 MB             ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4760 MB             ; 00:00:01                           ;
+; Total                ; 00:00:20     ; --                      ; --                  ; 00:00:24                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for CAN
-Tue Nov 03 16:48:12 2020
+Fri Nov 06 16:17:28 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -14,29 +14,30 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. State Machine - |can_test|PMRAMIF:PMRAMIF_inst|STATE
-  9. State Machine - |can_test|can_top:can_top_inst|CAN_STATE
- 10. State Machine - |can_test|can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE
- 11. State Machine - |can_test|can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE
- 12. State Machine - |can_test|can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE
- 13. State Machine - |can_test|can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE
- 14. Registers Removed During Synthesis
- 15. Removed Registers Triggering Further Register Optimizations
- 16. General Register Statistics
- 17. Inverted Register Statistics
- 18. Multiplexer Restructuring Statistics (Restructuring Performed)
- 19. Parameter Settings for User Entity Instance: can_top:can_top_inst
- 20. Parameter Settings for User Entity Instance: can_top:can_top_inst|can_tx:can_tx_instance
- 21. Parameter Settings for User Entity Instance: can_top:can_top_inst|can_rx:can_rx_instance
- 22. Parameter Settings for User Entity Instance: can_top:can_top_inst|can_clk:can_clk_instance
- 23. Parameter Settings for User Entity Instance: PMRAMIF:PMRAMIF_inst
- 24. Port Connectivity Checks: "PMRAMIF:PMRAMIF_inst"
- 25. Port Connectivity Checks: "can_top:can_top_inst|can_rx:can_rx_instance"
- 26. Port Connectivity Checks: "can_top:can_top_inst|can_tx:can_tx_instance"
- 27. Port Connectivity Checks: "can_top:can_top_inst"
- 28. Post-Synthesis Netlist Statistics for Top Partition
- 29. Elapsed Time Per Partition
- 30. Analysis & Synthesis Messages
- 31. Analysis & Synthesis Suppressed Messages
+  9. State Machine - |can_test|can_top:can_top_inst|TX_DMA_STATE
+ 10. State Machine - |can_test|can_top:can_top_inst|CAN_STATE
+ 11. State Machine - |can_test|can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE
+ 12. State Machine - |can_test|can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE
+ 13. State Machine - |can_test|can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE
+ 14. State Machine - |can_test|can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE
+ 15. Registers Removed During Synthesis
+ 16. Removed Registers Triggering Further Register Optimizations
+ 17. General Register Statistics
+ 18. Inverted Register Statistics
+ 19. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 20. Parameter Settings for User Entity Instance: can_top:can_top_inst
+ 21. Parameter Settings for User Entity Instance: can_top:can_top_inst|can_tx:can_tx_instance
+ 22. Parameter Settings for User Entity Instance: can_top:can_top_inst|can_rx:can_rx_instance
+ 23. Parameter Settings for User Entity Instance: can_top:can_top_inst|can_clk:can_clk_instance
+ 24. Parameter Settings for User Entity Instance: PMRAMIF:PMRAMIF_inst
+ 25. Port Connectivity Checks: "PMRAMIF:PMRAMIF_inst"
+ 26. Port Connectivity Checks: "can_top:can_top_inst|can_rx:can_rx_instance"
+ 27. Port Connectivity Checks: "can_top:can_top_inst|can_tx:can_tx_instance"
+ 28. Port Connectivity Checks: "can_top:can_top_inst"
+ 29. Post-Synthesis Netlist Statistics for Top Partition
+ 30. Elapsed Time Per Partition
+ 31. Analysis & Synthesis Messages
+ 32. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -63,15 +64,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov 03 16:48:12 2020       ;
+; Analysis & Synthesis Status        ; Successful - Fri Nov 06 16:17:28 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CAN                                         ;
 ; Top-level Entity Name              ; can_test                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 486                                         ;
-;     Total combinational functions  ; 473                                         ;
-;     Dedicated logic registers      ; 184                                         ;
-; Total registers                    ; 184                                         ;
+; Total logic elements               ; 417                                         ;
+;     Total combinational functions  ; 406                                         ;
+;     Dedicated logic registers      ; 160                                         ;
+; Total registers                    ; 160                                         ;
 ; Total pins                         ; 8                                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -204,20 +205,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 486         ;
+; Estimated Total logic elements              ; 417         ;
 ;                                             ;             ;
-; Total combinational functions               ; 473         ;
+; Total combinational functions               ; 406         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 308         ;
-;     -- 3 input functions                    ; 68          ;
-;     -- <=2 input functions                  ; 97          ;
+;     -- 4 input functions                    ; 249         ;
+;     -- 3 input functions                    ; 75          ;
+;     -- <=2 input functions                  ; 82          ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 413         ;
-;     -- arithmetic mode                      ; 60          ;
+;     -- normal mode                          ; 357         ;
+;     -- arithmetic mode                      ; 49          ;
 ;                                             ;             ;
-; Total registers                             ; 184         ;
-;     -- Dedicated logic registers            ; 184         ;
+; Total registers                             ; 160         ;
+;     -- Dedicated logic registers            ; 160         ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 8           ;
@@ -225,9 +226,9 @@ https://fpgasoftware.intel.com/eula.
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; rst_i~input ;
-; Maximum fan-out                             ; 170         ;
-; Total fan-out                               ; 2308        ;
-; Average fan-out                             ; 3.43        ;
+; Maximum fan-out                             ; 146         ;
+; Total fan-out                               ; 1968        ;
+; Average fan-out                             ; 3.38        ;
 +---------------------------------------------+-------------+
 
 
@@ -236,11 +237,11 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node          ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                            ; Entity Name ; Library Name ;
 +-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
-; |can_test                           ; 473 (0)             ; 184 (0)                   ; 0           ; 0            ; 0       ; 0         ; 8    ; 0            ; |can_test                                                                      ; can_test    ; work         ;
-;    |can_top:can_top_inst|           ; 473 (40)            ; 184 (21)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst                                                 ; can_top     ; work         ;
+; |can_test                           ; 406 (0)             ; 160 (0)                   ; 0           ; 0            ; 0       ; 0         ; 8    ; 0            ; |can_test                                                                      ; can_test    ; work         ;
+;    |can_top:can_top_inst|           ; 406 (22)            ; 160 (16)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst                                                 ; can_top     ; work         ;
 ;       |can_clk:can_clk_instance|    ; 18 (18)             ; 13 (13)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_clk:can_clk_instance                        ; can_clk     ; work         ;
-;       |can_rx:can_rx_instance|      ; 231 (231)           ; 71 (71)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance                          ; can_rx      ; work         ;
-;       |can_tx:can_tx_instance|      ; 184 (176)           ; 79 (64)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance                          ; can_tx      ; work         ;
+;       |can_rx:can_rx_instance|      ; 232 (232)           ; 71 (71)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance                          ; can_rx      ; work         ;
+;       |can_tx:can_tx_instance|      ; 134 (126)           ; 60 (45)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance                          ; can_tx      ; work         ;
 ;          |can_crc:can_crc_instance| ; 8 (8)               ; 15 (15)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|can_crc:can_crc_instance ; can_crc     ; work         ;
 +-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -256,6 +257,24 @@ Encoding Type:  One-Hot
 ; STATE.MRAM_WRITE ; 1          ; 0               ; 1                ;
 ; STATE.MRAM_READ  ; 1          ; 1               ; 0                ;
 +------------------+------------+-----------------+------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |can_test|can_top:can_top_inst|TX_DMA_STATE                                                                                                                                                                                                                                                                          ;
++------------------------------------+---------------------------------+-----------------------------+-----------------------------------+-----------------------------+-----------------------------------+------------------------------+------------------------------------+---------------------------+---------------------------+
+; Name                               ; TX_DMA_STATE.TX_START_SEND_DATA ; TX_DMA_STATE.TX_READ_DATA_2 ; TX_DMA_STATE.TX_START_READ_DATA_2 ; TX_DMA_STATE.TX_READ_DATA_1 ; TX_DMA_STATE.TX_START_READ_DATA_1 ; TX_DMA_STATE.TX_READ_SETTING ; TX_DMA_STATE.TX_START_READ_SETTING ; TX_DMA_STATE.TX_READ_IDLE ; TX_DMA_STATE.TX_SEND_DATA ;
++------------------------------------+---------------------------------+-----------------------------+-----------------------------------+-----------------------------+-----------------------------------+------------------------------+------------------------------------+---------------------------+---------------------------+
+; TX_DMA_STATE.TX_READ_IDLE          ; 0                               ; 0                           ; 0                                 ; 0                           ; 0                                 ; 0                            ; 0                                  ; 0                         ; 0                         ;
+; TX_DMA_STATE.TX_START_READ_SETTING ; 0                               ; 0                           ; 0                                 ; 0                           ; 0                                 ; 0                            ; 1                                  ; 1                         ; 0                         ;
+; TX_DMA_STATE.TX_READ_SETTING       ; 0                               ; 0                           ; 0                                 ; 0                           ; 0                                 ; 1                            ; 0                                  ; 1                         ; 0                         ;
+; TX_DMA_STATE.TX_START_READ_DATA_1  ; 0                               ; 0                           ; 0                                 ; 0                           ; 1                                 ; 0                            ; 0                                  ; 1                         ; 0                         ;
+; TX_DMA_STATE.TX_READ_DATA_1        ; 0                               ; 0                           ; 0                                 ; 1                           ; 0                                 ; 0                            ; 0                                  ; 1                         ; 0                         ;
+; TX_DMA_STATE.TX_START_READ_DATA_2  ; 0                               ; 0                           ; 1                                 ; 0                           ; 0                                 ; 0                            ; 0                                  ; 1                         ; 0                         ;
+; TX_DMA_STATE.TX_READ_DATA_2        ; 0                               ; 1                           ; 0                                 ; 0                           ; 0                                 ; 0                            ; 0                                  ; 1                         ; 0                         ;
+; TX_DMA_STATE.TX_START_SEND_DATA    ; 1                               ; 0                           ; 0                                 ; 0                           ; 0                                 ; 0                            ; 0                                  ; 1                         ; 0                         ;
+; TX_DMA_STATE.TX_SEND_DATA          ; 0                               ; 0                           ; 0                                 ; 0                           ; 0                                 ; 0                            ; 0                                  ; 1                         ; 1                         ;
++------------------------------------+---------------------------------+-----------------------------+-----------------------------------+-----------------------------+-----------------------------------+------------------------------+------------------------------------+---------------------------+---------------------------+
 
 
 Encoding Type:  One-Hot
@@ -385,75 +404,126 @@ Encoding Type:  One-Hot
 +-------------------------------+------------------+-----------------+---------------------------+--------------------------+-------------------------------+---------------------------+----------------------------+---------------------------+--------------------------+--------------------------+---------------------------+----------------------+---------------------------+-----------------+----------------------+-----------------+-----------------+-----------------+----------------------------+-----------------------+------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                                   ;
-+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
-; Register name                                                                                                         ; Reason for Removal                           ;
-+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
-; can_top:can_top_inst|tx_data[0..2,6,7,11,14..16,19,22,23,25,27,30..33,35,38,39,42,43,46..48,50,51,54,55,57..59,62,63] ; Stuck at GND due to stuck port data_in       ;
-; can_top:can_top_inst|can_rx:can_rx_instance|local_adress_reg[0..5]                                                    ; Stuck at GND due to stuck port data_in       ;
-; can_top:can_top_inst|init                                                                                             ; Lost fanout                                  ;
-; can_top:can_top_inst|tx_data[3..5,8,9,12,13,17,18,20,21,24,26,28,29,34,36,37,40,41,44,45,49,52,53,56,60,61]           ; Merged with can_top:can_top_inst|tx_data[10] ;
-; can_top:can_top_inst|tx_pending                                                                                       ; Merged with can_top:can_top_inst|tx_data[10] ;
-; PMRAMIF:PMRAMIF_inst|op_counter_en                                                                                    ; Stuck at GND due to stuck port data_in       ;
-; PMRAMIF:PMRAMIF_inst|op_counter[0,1]                                                                                  ; Stuck at GND due to stuck port data_in       ;
-; can_top:can_top_inst|CAN_STATE.CAN_START_INIT                                                                         ; Lost fanout                                  ;
-; can_top:can_top_inst|CAN_STATE~6                                                                                      ; Lost fanout                                  ;
-; can_top:can_top_inst|CAN_STATE~7                                                                                      ; Lost fanout                                  ;
-; can_top:can_top_inst|CAN_STATE~8                                                                                      ; Lost fanout                                  ;
-; can_top:can_top_inst|CAN_STATE~9                                                                                      ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~4                                                           ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~5                                                           ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~6                                                           ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~7                                                           ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~8                                                           ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~10                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~11                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~19                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~20                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~21                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~22                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~23                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~24                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~25                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~26                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~19                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~20                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~21                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~22                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~23                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~25                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~26                                                          ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~4                                                                ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~5                                                                ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~6                                                                ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~7                                                                ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~8                                                                ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~9                                                                ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~10                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~11                                                               ; Lost fanout                                  ;
-; can_top:can_top_inst|CAN_STATE.CAN_INIT                                                                               ; Stuck at GND due to stuck port data_in       ;
-; PMRAMIF:PMRAMIF_inst|STATE.MRAM_WRITE                                                                                 ; Lost fanout                                  ;
-; PMRAMIF:PMRAMIF_inst|STATE.MRAM_READ                                                                                  ; Lost fanout                                  ;
-; PMRAMIF:PMRAMIF_inst|STATE.IDLE                                                                                       ; Lost fanout                                  ;
-; can_top:can_top_inst|CAN_STATE.CAN_TEST_START                                                                         ; Stuck at GND due to stuck port data_in       ;
-; can_top:can_top_inst|CAN_STATE.CAN_TEST                                                                               ; Stuck at GND due to stuck port data_in       ;
-; Total Number of Removed Registers = 115                                                                               ;                                              ;
-+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                  ;
++----------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                              ; Reason for Removal                     ;
++----------------------------------------------------------------------------+----------------------------------------+
+; can_top:can_top_inst|tx_data[0..63]                                        ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|can_rx:can_rx_instance|local_adress_reg[0..5]         ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|init                                                  ; Lost fanout                            ;
+; PMRAMIF:PMRAMIF_inst|op_counter_en                                         ; Stuck at GND due to stuck port data_in ;
+; PMRAMIF:PMRAMIF_inst|op_counter[0,1]                                       ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|CAN_STATE.CAN_START_INIT                              ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE~11                                       ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE~12                                       ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE~13                                       ; Lost fanout                            ;
+; can_top:can_top_inst|CAN_STATE~6                                           ; Lost fanout                            ;
+; can_top:can_top_inst|CAN_STATE~7                                           ; Lost fanout                            ;
+; can_top:can_top_inst|CAN_STATE~8                                           ; Lost fanout                            ;
+; can_top:can_top_inst|CAN_STATE~9                                           ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~4                ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~5                ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~6                ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~7                ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~8                ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~10               ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|NEXT_RX_STATE~11               ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~19                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~20                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~21                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~22                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~23                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~24                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~25                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE~26                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~19               ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~20               ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~21               ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~22               ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~23               ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~25               ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE~26               ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~4                     ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~5                     ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~6                     ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~7                     ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~8                     ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~9                     ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~10                    ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE~11                    ; Lost fanout                            ;
+; can_top:can_top_inst|CAN_STATE.CAN_INIT                                    ; Stuck at GND due to stuck port data_in ;
+; PMRAMIF:PMRAMIF_inst|STATE.MRAM_WRITE                                      ; Lost fanout                            ;
+; PMRAMIF:PMRAMIF_inst|STATE.MRAM_READ                                       ; Lost fanout                            ;
+; PMRAMIF:PMRAMIF_inst|STATE.IDLE                                            ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_READ_IDLE                             ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_START_READ_SETTING                    ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_READ_SETTING                          ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_START_READ_DATA_1                     ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_READ_DATA_1                           ; Lost fanout                            ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_START_READ_DATA_2                     ; Lost fanout                            ;
+; can_top:can_top_inst|CAN_STATE.CAN_TEST_START                              ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_READ_DATA_2                           ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|CAN_STATE.CAN_TEST                                    ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_START_SEND_DATA                       ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|TX_DMA_STATE.TX_SEND_DATA                             ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|tx_pending                                            ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|CAN_STATE.CAN_START_TX                                ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|CAN_STATE.CAN_TX                                      ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|tx_start                                              ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE.TX_START_OF_FRAME     ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|can_tx:can_tx_instance|tx_lost_arbitrage_o            ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[0..11]             ; Lost fanout                            ;
+; can_top:can_top_inst|count_rst                                             ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|can_tx:can_tx_instance|frame_sent_o                   ; Lost fanout                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE.TX_MESSAGE_TYPE  ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE.TX_MESSAGE_TYPE       ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE.TX_ADDRESS_LOCAL ; Stuck at GND due to stuck port data_in ;
+; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE.TX_ADDRESS_LOCAL      ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 151                                    ;                                        ;
++----------------------------------------------------------------------------+----------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                 ;
-+-----------------------------------------------------------------+---------------------------+-----------------------------------------------+
-; Register name                                                   ; Reason for Removal        ; Registers Removed due to This Register        ;
-+-----------------------------------------------------------------+---------------------------+-----------------------------------------------+
-; can_top:can_top_inst|can_rx:can_rx_instance|local_adress_reg[5] ; Stuck at GND              ; can_top:can_top_inst|init                     ;
-;                                                                 ; due to stuck port data_in ;                                               ;
-; PMRAMIF:PMRAMIF_inst|op_counter_en                              ; Stuck at GND              ; PMRAMIF:PMRAMIF_inst|op_counter[1]            ;
-;                                                                 ; due to stuck port data_in ;                                               ;
-; can_top:can_top_inst|CAN_STATE.CAN_INIT                         ; Stuck at GND              ; can_top:can_top_inst|CAN_STATE.CAN_TEST_START ;
-;                                                                 ; due to stuck port data_in ;                                               ;
-+-----------------------------------------------------------------+---------------------------+-----------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                 ;
++---------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; Register name                                                             ; Reason for Removal        ; Registers Removed due to This Register                                              ;
++---------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; can_top:can_top_inst|TX_DMA_STATE.TX_READ_DATA_2                          ; Stuck at GND              ; can_top:can_top_inst|TX_DMA_STATE.TX_START_SEND_DATA,                               ;
+;                                                                           ; due to stuck port data_in ; can_top:can_top_inst|tx_pending,                                                    ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|tx_lost_arbitrage_o,                    ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[11],                        ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[10],                        ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[9],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[8],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[7],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[6],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[5],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[4],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[3],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[2],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[1],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|quant_count[0],                         ;
+;                                                                           ;                           ; can_top:can_top_inst|count_rst                                                      ;
+; can_top:can_top_inst|TX_DMA_STATE~11                                      ; Lost Fanouts              ; can_top:can_top_inst|TX_DMA_STATE.TX_READ_IDLE,                                     ;
+;                                                                           ;                           ; can_top:can_top_inst|TX_DMA_STATE.TX_START_READ_SETTING,                            ;
+;                                                                           ;                           ; can_top:can_top_inst|TX_DMA_STATE.TX_READ_SETTING,                                  ;
+;                                                                           ;                           ; can_top:can_top_inst|TX_DMA_STATE.TX_START_READ_DATA_1,                             ;
+;                                                                           ;                           ; can_top:can_top_inst|TX_DMA_STATE.TX_READ_DATA_1,                                   ;
+;                                                                           ;                           ; can_top:can_top_inst|TX_DMA_STATE.TX_START_READ_DATA_2                              ;
+; can_top:can_top_inst|CAN_STATE.CAN_INIT                                   ; Stuck at GND              ; can_top:can_top_inst|CAN_STATE.CAN_TEST_START,                                      ;
+;                                                                           ; due to stuck port data_in ; can_top:can_top_inst|CAN_STATE.CAN_START_TX, can_top:can_top_inst|CAN_STATE.CAN_TX, ;
+;                                                                           ;                           ; can_top:can_top_inst|tx_start,                                                      ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE.TX_START_OF_FRAME,             ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|frame_sent_o                            ;
+; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE.TX_MESSAGE_TYPE ; Stuck at GND              ; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE.TX_MESSAGE_TYPE,               ;
+;                                                                           ; due to stuck port data_in ; can_top:can_top_inst|can_tx:can_tx_instance|NEXT_TX_STATE.TX_ADDRESS_LOCAL,         ;
+;                                                                           ;                           ; can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE.TX_ADDRESS_LOCAL               ;
+; can_top:can_top_inst|can_rx:can_rx_instance|local_adress_reg[5]           ; Stuck at GND              ; can_top:can_top_inst|init                                                           ;
+;                                                                           ; due to stuck port data_in ;                                                                                     ;
+; PMRAMIF:PMRAMIF_inst|op_counter_en                                        ; Stuck at GND              ; PMRAMIF:PMRAMIF_inst|op_counter[1]                                                  ;
+;                                                                           ; due to stuck port data_in ;                                                                                     ;
++---------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -461,12 +531,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 184   ;
-; Number of registers using Synchronous Clear  ; 50    ;
+; Total registers                              ; 160   ;
+; Number of registers using Synchronous Clear  ; 26    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 160   ;
+; Number of registers using Asynchronous Clear ; 148   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 98    ;
+; Number of registers using Clock Enable       ; 85    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -477,7 +547,7 @@ Encoding Type:  One-Hot
 ; Inverted Register                                            ; Fan out ;
 +--------------------------------------------------------------+---------+
 ; can_top:can_top_inst|can_rx:can_rx_instance|quant_count[0]   ; 3       ;
-; can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg  ; 78      ;
+; can_top:can_top_inst|can_clk:can_clk_instance|can_clk_o_reg  ; 72      ;
 ; can_top:can_top_inst|can_tx:can_tx_instance|bit_pol_count[0] ; 4       ;
 ; can_top:can_top_inst|can_tx:can_tx_instance|last_bit         ; 3       ;
 ; Total number of inverted registers = 4                       ;         ;
@@ -490,16 +560,16 @@ Encoding Type:  One-Hot
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|bit_pol_count[1] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|bit_pol_count[0] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|bit_pol_count[1] ;
 ; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_clk:can_clk_instance|count[1]       ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|quant_count[8]   ;
-; 5:1                ; 11 bits   ; 33 LEs        ; 11 LEs               ; 22 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|quant_count[1]   ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|frame_sent_o     ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|quant_count[5]   ;
+; 5:1                ; 11 bits   ; 33 LEs        ; 11 LEs               ; 22 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|quant_count[5]   ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|tx_busy_o        ;
 ; 17:1               ; 7 bits    ; 77 LEs        ; 7 LEs                ; 70 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|count[1]         ;
-; 6:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|count[2]         ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|count[4]         ;
 ; 13:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector5                               ;
-; 14:1               ; 5 bits    ; 45 LEs        ; 20 LEs               ; 25 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector1                               ;
-; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|Selector33       ;
+; 14:1               ; 5 bits    ; 45 LEs        ; 20 LEs               ; 25 LEs                 ; No         ; |can_test|can_top:can_top_inst|Selector8                               ;
+; 13:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|Selector39       ;
 ; 19:1               ; 3 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE         ;
 ; 20:1               ; 4 bits    ; 52 LEs        ; 24 LEs               ; 28 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_tx:can_tx_instance|TX_STATE         ;
 ; 15:1               ; 2 bits    ; 20 LEs        ; 4 LEs                ; 16 LEs                 ; No         ; |can_test|can_top:can_top_inst|can_rx:can_rx_instance|RX_STATE         ;
@@ -508,20 +578,23 @@ Encoding Type:  One-Hot
 
 +-------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: can_top:can_top_inst ;
-+-------------------+----------------------+------------------------+
-; Parameter Name    ; Value                ; Type                   ;
-+-------------------+----------------------+------------------------+
-; CLK_FREQ          ; 50000000             ; Signed Integer         ;
-; CAN_CLK_FREQ      ; 100000               ; Signed Integer         ;
-; DATA_WIDTH        ; 32                   ; Signed Integer         ;
-; ADDR_WIDTH        ; 20                   ; Signed Integer         ;
-; CLK_FREQUENCY     ; 200000000            ; Signed Integer         ;
-; OP_CYCLE_NS       ; 35                   ; Signed Integer         ;
-; LOCAL_ADDRESS     ; 000101               ; Unsigned Binary        ;
-; addr_setting_send ; 10100000000000000001 ; Unsigned Binary        ;
-; addr_data_send_1  ; 10100000000000000010 ; Unsigned Binary        ;
-; addr_data_send_2  ; 10100000000000000011 ; Unsigned Binary        ;
-+-------------------+----------------------+------------------------+
++-----------------------+----------------------+--------------------+
+; Parameter Name        ; Value                ; Type               ;
++-----------------------+----------------------+--------------------+
+; CLK_FREQ              ; 50000000             ; Signed Integer     ;
+; CAN_CLK_FREQ          ; 100000               ; Signed Integer     ;
+; DATA_WIDTH            ; 32                   ; Signed Integer     ;
+; ADDR_WIDTH            ; 20                   ; Signed Integer     ;
+; CLK_FREQUENCY         ; 200000000            ; Signed Integer     ;
+; OP_CYCLE_NS           ; 35                   ; Signed Integer     ;
+; LOCAL_ADDRESS         ; 000101               ; Unsigned Binary    ;
+; ADDR_SETTING_SEND     ; 10100000000000000001 ; Unsigned Binary    ;
+; ADDR_DATA_SEND_1      ; 10100000000000000010 ; Unsigned Binary    ;
+; ADDR_DATA_SEND_2      ; 10100000000000000011 ; Unsigned Binary    ;
+; addr_setting_recieved ; 10110000000000000001 ; Unsigned Binary    ;
+; addr_data_recieved_1  ; 10110000000000000010 ; Unsigned Binary    ;
+; addr_data_recieved_2  ; 10110000000000000011 ; Unsigned Binary    ;
++-----------------------+----------------------+--------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -602,12 +675,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port                ; Type   ; Severity ; Details                                                                                                                                                               ;
 +---------------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; rx_frame_ready_o    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                   ;
 ; local_address[5..3] ; Input  ; Info     ; Stuck at GND                                                                                                                                                          ;
 ; local_address[2]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                          ;
 ; local_address[1]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                          ;
 ; local_address[0]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                          ;
-; rx_data             ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                   ;
+; rx_data[31..0]      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                   ;
 ; test_bit_pol_count  ; Output ; Warning  ; Output or bidir port (3 bits) is smaller than the port expression (4 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
 ; message_type        ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                          ;
 ; rx_local_address    ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                          ;
@@ -653,66 +725,72 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "can_top:can_top_inst"                                                                                                     ;
-+-----------------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; Port                  ; Type   ; Severity ; Details                                                                                                  ;
-+-----------------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; tx_send_i             ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[61..60]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[53..52]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[45..44]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[41..40]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[37..36]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[29..28]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[21..20]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[18..17]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[13..12]     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[10..8]      ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[5..3]       ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[63..62]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[59..57]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[55..54]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[51..50]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[48..46]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[43..42]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[39..38]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[33..30]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[23..22]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[16..14]     ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[7..6]       ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[2..0]       ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[56]         ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[49]         ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[35]         ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[34]         ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[27]         ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[26]         ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[25]         ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[24]         ; Input  ; Info     ; Stuck at VCC                                                                                             ;
-; tx_data_i[19]         ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; tx_data_i[11]         ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; data_wr               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                      ;
-; addr_wr               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                      ;
-; wr_en                 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                      ;
-; wr_done               ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; wr_busy               ; Input  ; Info     ; Stuck at GND                                                                                             ;
-; test_clk_can          ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_can_state        ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_can_tx_state     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_bit_count        ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_bit_pol_count    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; bit_stuffed           ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_last_bit         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_rx_state         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_rx_quant_count   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_rx_bit_count     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_rx_bit_pol_count ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_rx_bit_stuffed   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_rx_count         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_rx_rx            ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; test_sample           ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-+-----------------------+--------+----------+----------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "can_top:can_top_inst"                                                                                                                                         ;
++-----------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                  ; Type   ; Severity ; Details                                                                                                                                      ;
++-----------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; tx_send_i             ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[61..60]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[53..52]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[45..44]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[41..40]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[37..36]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[29..28]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[21..20]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[18..17]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[13..12]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[10..8]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[5..3]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[63..62]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[59..57]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[55..54]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[51..50]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[48..46]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[43..42]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[39..38]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[33..30]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[23..22]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[16..14]     ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[7..6]       ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[2..0]       ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[56]         ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[49]         ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[35]         ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[34]         ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[27]         ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[26]         ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[25]         ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[24]         ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; tx_data_i[19]         ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; tx_data_i[11]         ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; data_wr               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; addr_wr               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; wr_en                 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; wr_done               ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; wr_busy               ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; rx_received           ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; data_rd               ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; addr_rd               ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; rd_en                 ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; rd_done               ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; rd_busy               ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; test_clk_can          ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_can_state        ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_can_tx_state     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_bit_count        ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_bit_pol_count    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; bit_stuffed           ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_last_bit         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_rx_state         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_rx_quant_count   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_rx_bit_count     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_rx_bit_pol_count ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_rx_bit_stuffed   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_rx_count         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_rx_rx            ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; test_sample           ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-----------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -721,25 +799,25 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 8                           ;
-; cycloneiii_ff         ; 184                         ;
-;     CLR               ; 72                          ;
-;     CLR SCLR          ; 13                          ;
-;     ENA CLR           ; 61                          ;
+; cycloneiii_ff         ; 160                         ;
+;     CLR               ; 62                          ;
+;     CLR SCLR          ; 12                          ;
+;     ENA               ; 11                          ;
+;     ENA CLR           ; 60                          ;
 ;     ENA CLR SCLR      ; 14                          ;
-;     ENA SCLR          ; 23                          ;
 ;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 474                         ;
-;     arith             ; 60                          ;
-;         2 data inputs ; 60                          ;
-;     normal            ; 414                         ;
+; cycloneiii_lcell_comb ; 407                         ;
+;     arith             ; 49                          ;
+;         2 data inputs ; 49                          ;
+;     normal            ; 358                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 29                          ;
-;         3 data inputs ; 68                          ;
-;         4 data inputs ; 308                         ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 26                          ;
+;         3 data inputs ; 75                          ;
+;         4 data inputs ; 249                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 10.00                       ;
-; Average LUT depth     ; 5.06                        ;
+; Max LUT depth         ; 9.00                        ;
+; Average LUT depth     ; 4.92                        ;
 +-----------------------+-----------------------------+
 
 
@@ -758,7 +836,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Tue Nov 03 16:48:02 2020
+    Info: Processing started: Fri Nov 06 16:17:18 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CAN -c CAN
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -779,9 +857,9 @@ Info (12021): Found 1 design units, including 1 entities, in source file can_tes
     Info (12023): Found entity 1: can_test File: C:/hdl_projects/CAN/can_test.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file pmramif.v
     Info (12023): Found entity 1: PMRAMIF File: C:/hdl_projects/CAN/pmramif.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(261): created implicit net for "tx_lost_arbitrage" File: C:/hdl_projects/CAN/can_top.v Line: 261
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(262): created implicit net for "tx_acknowledged" File: C:/hdl_projects/CAN/can_top.v Line: 262
-Warning (10236): Verilog HDL Implicit Net warning at can_top.v(296): created implicit net for "can_clk_sync" File: C:/hdl_projects/CAN/can_top.v Line: 296
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(330): created implicit net for "tx_lost_arbitrage" File: C:/hdl_projects/CAN/can_top.v Line: 330
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(331): created implicit net for "tx_acknowledged" File: C:/hdl_projects/CAN/can_top.v Line: 331
+Warning (10236): Verilog HDL Implicit Net warning at can_top.v(365): created implicit net for "can_clk_sync" File: C:/hdl_projects/CAN/can_top.v Line: 365
 Warning (10236): Verilog HDL Implicit Net warning at can_test.v(38): created implicit net for "data_wr" File: C:/hdl_projects/CAN/can_test.v Line: 38
 Warning (10236): Verilog HDL Implicit Net warning at can_test.v(39): created implicit net for "addr_wr" File: C:/hdl_projects/CAN/can_test.v Line: 39
 Warning (10236): Verilog HDL Implicit Net warning at can_test.v(40): created implicit net for "wr_en" File: C:/hdl_projects/CAN/can_test.v Line: 40
@@ -794,18 +872,17 @@ Warning (10030): Net "wr_busy" at can_test.v(42) has no driver or initial value,
 Warning (10034): Output port "test_rx_rx" at can_test.v(12) has no driver File: C:/hdl_projects/CAN/can_test.v Line: 12
 Warning (10034): Output port "test_sample" at can_test.v(15) has no driver File: C:/hdl_projects/CAN/can_test.v Line: 15
 Info (12128): Elaborating entity "can_top" for hierarchy "can_top:can_top_inst" File: C:/hdl_projects/CAN/can_test.v Line: 43
-Warning (10036): Verilog HDL or VHDL warning at can_top.v(83): object "tx_atribute" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 83
-Warning (10036): Verilog HDL or VHDL warning at can_top.v(91): object "rx_data_reg" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 91
-Warning (10230): Verilog HDL assignment warning at can_top.v(72): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/CAN/can_top.v Line: 72
-Warning (10034): Output port "data_wr" at can_top.v(32) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 32
-Warning (10034): Output port "addr_wr" at can_top.v(33) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 33
-Warning (10034): Output port "wr_en" at can_top.v(34) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 34
-Warning (10034): Output port "test_clk_can" at can_top.v(50) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 50
-Warning (10034): Output port "bit_stuffed" at can_top.v(55) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 55
-Warning (10034): Output port "test_last_bit" at can_top.v(56) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 56
-Info (12128): Elaborating entity "can_tx" for hierarchy "can_top:can_top_inst|can_tx:can_tx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 284
+Warning (10036): Verilog HDL or VHDL warning at can_top.v(93): object "tx_atribute" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 93
+Warning (10036): Verilog HDL or VHDL warning at can_top.v(101): object "rx_data_reg" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 101
+Warning (10036): Verilog HDL or VHDL warning at can_top.v(236): object "can_send_setting" assigned a value but never read File: C:/hdl_projects/CAN/can_top.v Line: 236
+Warning (10230): Verilog HDL assignment warning at can_top.v(82): truncated value with size 4 to match size of target (3) File: C:/hdl_projects/CAN/can_top.v Line: 82
+Warning (10034): Output port "rx_received" at can_top.v(30) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 30
+Warning (10034): Output port "test_clk_can" at can_top.v(59) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 59
+Warning (10034): Output port "bit_stuffed" at can_top.v(64) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 64
+Warning (10034): Output port "test_last_bit" at can_top.v(65) has no driver File: C:/hdl_projects/CAN/can_top.v Line: 65
+Info (12128): Elaborating entity "can_tx" for hierarchy "can_top:can_top_inst|can_tx:can_tx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 353
 Info (12128): Elaborating entity "can_crc" for hierarchy "can_top:can_top_inst|can_tx:can_tx_instance|can_crc:can_crc_instance" File: C:/hdl_projects/CAN/can_tx.v Line: 61
-Info (12128): Elaborating entity "can_rx" for hierarchy "can_top:can_top_inst|can_rx:can_rx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 319
+Info (12128): Elaborating entity "can_rx" for hierarchy "can_top:can_top_inst|can_rx:can_rx_instance" File: C:/hdl_projects/CAN/can_top.v Line: 388
 Warning (10858): Verilog HDL warning at can_rx.v(90): object local_adress used but never assigned File: C:/hdl_projects/CAN/can_rx.v Line: 90
 Warning (10036): Verilog HDL or VHDL warning at can_rx.v(151): object "rx_message_type" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 151
 Warning (10036): Verilog HDL or VHDL warning at can_rx.v(152): object "rx_address_local" assigned a value but never read File: C:/hdl_projects/CAN/can_rx.v Line: 152
@@ -822,7 +899,7 @@ Warning (10034): Output port "handshake" at can_rx.v(22) has no driver File: C:/
 Warning (10034): Output port "expand_count" at can_rx.v(23) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 23
 Warning (10034): Output port "cmd_data_sign" at can_rx.v(24) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 24
 Warning (10034): Output port "dlc" at can_rx.v(25) has no driver File: C:/hdl_projects/CAN/can_rx.v Line: 25
-Info (12128): Elaborating entity "can_clk" for hierarchy "can_top:can_top_inst|can_clk:can_clk_instance" File: C:/hdl_projects/CAN/can_top.v Line: 330
+Info (12128): Elaborating entity "can_clk" for hierarchy "can_top:can_top_inst|can_clk:can_clk_instance" File: C:/hdl_projects/CAN/can_top.v Line: 399
 Info (12128): Elaborating entity "PMRAMIF" for hierarchy "PMRAMIF:PMRAMIF_inst" File: C:/hdl_projects/CAN/can_test.v Line: 73
 Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13000): Registers with preset signals will power-up high File: C:/hdl_projects/CAN/can_rx.v Line: 236
@@ -831,17 +908,17 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "test_rx_rx" is stuck at GND File: C:/hdl_projects/CAN/can_test.v Line: 12
     Warning (13410): Pin "test_sample" is stuck at GND File: C:/hdl_projects/CAN/can_test.v Line: 15
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 39 registers lost all their fanouts during netlist optimizations.
+Info (17049): 62 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/hdl_projects/CAN/output_files/CAN.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 497 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 427 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 5 output pins
-    Info (21061): Implemented 489 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 44 warnings
-    Info: Peak virtual memory: 4757 megabytes
-    Info: Processing ended: Tue Nov 03 16:48:12 2020
+    Info (21061): Implemented 419 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 43 warnings
+    Info: Peak virtual memory: 4764 megabytes
+    Info: Processing ended: Fri Nov 06 16:17:28 2020
     Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:16
 
